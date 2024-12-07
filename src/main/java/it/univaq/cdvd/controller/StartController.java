@@ -1,15 +1,19 @@
 package it.univaq.cdvd.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 public class StartController {
 
     @FXML
-    private Button print;
+    public Button print;
 
     @FXML
-    public void printF(){
-        System.out.println("Ciao");
+    public void handleClick(){
+        print.setText("andato");
+    }
+    public Scene getScene(){
+        return new Scene(print);
     }
 }

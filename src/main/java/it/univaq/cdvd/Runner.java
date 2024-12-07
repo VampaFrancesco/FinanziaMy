@@ -4,12 +4,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.util.Objects;
 
 public class Runner extends Application {
+
+    public Button print;
+
     @Override
     public void start(Stage stage) throws Exception {
         try {

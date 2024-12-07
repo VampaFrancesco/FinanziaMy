@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: it.univaq.cdvd.testgui.StartControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.652 s -- in it.univaq.cdvd.testgui.StartControllerTest
