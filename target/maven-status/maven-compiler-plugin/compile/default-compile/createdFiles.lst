@@ -1,3 +1,5 @@
 it\univaq\cdvd\Runner.class
 it\univaq\cdvd\util\HibernateUtil.class
 it\univaq\cdvd\controller\AuthController.class
+it\univaq\cdvd\controller\HomeController.class
+it\univaq\cdvd\controller\LandingController.class
