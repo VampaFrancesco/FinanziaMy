@@ -17,7 +17,7 @@ public class Runner extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/view/auth.fxml"))));
+            Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("/view/landing.fxml"))));
             Scene scene = new Scene(root);
             Image icon = new Image(Objects.requireNonNull(getClass().getResource("/img/logoApp.jpg")).toExternalForm());
             stage.getIcons().add(icon);
