@@ -1,6 +1,6 @@
 package it.univaq.cdvd.controller;
 
-import it.univaq.cdvd.DAO.LoginDAO;
+import it.univaq.cdvd.DAO.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +33,7 @@ public class LoginController {
     @FXML
     public Label loginMessageLabel;
 
-    private final LoginDAO loginDao = new LoginDAO();
+    private final UtenteDAO loginDao = new UtenteDAO();
 
     @FXML
     public void annullaButtonOnAction(ActionEvent event) {

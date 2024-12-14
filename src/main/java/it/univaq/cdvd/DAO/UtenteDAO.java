@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import static it.univaq.cdvd.util.HibernateUtil.sessionFactory;
 
-public class LoginDAO {
+public class UtenteDAO {
 
     /**
      * Metodo che verifica le credenziali dell'utente nel database.
