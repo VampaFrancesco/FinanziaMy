@@ -23,7 +23,7 @@ import static it.univaq.cdvd.util.HibernateUtil.sessionFactory;
 public class LoginController {
 
     @FXML
-    public Button annullaButton;
+    public Button annulButton;
     @FXML
     public Button loginButton;
     @FXML
@@ -33,10 +33,17 @@ public class LoginController {
     @FXML
     public Label loginMessageLabel;
 
+    public LoginController() {
+       annulButton = new Button();
+       loginButton = new Button();
+       usernameTextField = new TextField();
+       passwordPasswordField = new PasswordField();
+    }
+
     private final UtenteDAO loginDao = new UtenteDAO();
 
     @FXML
-    public void annullaButtonOnAction(ActionEvent event) {
+    public void annulButtonOnAction(ActionEvent event) {
 
         try {
             // Carica il file auth.fxml
