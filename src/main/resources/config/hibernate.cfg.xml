@@ -5,18 +5,17 @@
 <hibernate-configuration>
     <session-factory>
         <!-- Connessione al database MySQL -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MariaDBDialect</property>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/finanziamy</property>
         <property name="hibernate.connection.username">admin</property>
         <property name="hibernate.connection.password">admin</property>
-
-
-        <!-- Configurazione opzionale -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.generate_statistics">true</property>
 
         <!-- Mapping delle classi modello -->
-        <mapping class="it.univaq.cdvd.model."/>
+        <mapping class="it.univaq.cdvd.model.Transazione"/>
     </session-factory>
 </hibernate-configuration>
