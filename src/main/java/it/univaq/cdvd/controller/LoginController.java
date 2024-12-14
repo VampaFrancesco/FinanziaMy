@@ -1,5 +1,6 @@
 package it.univaq.cdvd.controller;
 
+import it.univaq.cdvd.DAO.LoginDAO;
 import it.univaq.cdvd.model.Utente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,14 +22,22 @@ import static it.univaq.cdvd.util.HibernateUtil.sessionFactory;
 
 public class LoginController {
 
-    @FXML private Button annullaButton;
-    @FXML private Button loginButton;
-    @FXML private TextField usernameTextField;
-    @FXML private PasswordField passwordPasswordField;
-    @FXML private Label loginMessageLabel;
+    @FXML
+    public Button annullaButton;
+    @FXML
+    public Button loginButton;
+    @FXML
+    public TextField usernameTextField;
+    @FXML
+    public PasswordField passwordPasswordField;
+    @FXML
+    public Label loginMessageLabel;
+
+    private final LoginDAO loginDao = new LoginDAO();
 
     @FXML
     public void annullaButtonOnAction(ActionEvent event) {
+
         try {
             // Carica il file auth.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/auth.fxml"));
@@ -42,6 +51,7 @@ public class LoginController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML
@@ -53,25 +63,15 @@ public class LoginController {
             loginMessageLabel.setText("inserisci username e password.");
             return;
         }
+        // Esegui la query e controlla il risultato
+        Utente user = loginDao.findUserByUsernameAndPassword(username, password);
 
-        // Apertura della sessione Hibernate
-        try (Session session = sessionFactory.openSession()) {
-            // Costruisci la query per verificare l'utente
-            String hql = "FROM Utente WHERE username = :username AND password = :password";
-            Query<Utente> query = session.createQuery(hql, Utente.class);
-            query.setParameter("username", username);
-            query.setParameter("password", password);
-
-            // Esegui la query e controlla il risultato
-            Utente user = query.uniqueResult();
-            if (user != null) {
-                loginMessageLabel.setText("Accesso confermato. Benvenuto, " + user.getUsername() + "!");
-            } else {
-                loginMessageLabel.setText("Accesso negato. Username o password errati.");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (user != null) {
+            loginMessageLabel.setText("Benvenuto " + user.getUsername() + "!");
+        } else {
+            loginMessageLabel.setText("Accesso negato. Username o password errati.");
         }
     }
-
 }
+
+
