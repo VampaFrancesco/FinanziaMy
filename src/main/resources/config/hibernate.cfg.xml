@@ -17,6 +17,6 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!-- Mapping delle classi modello -->
-        <mapping class="it.univaq.cdvd.model."/>
+        <mapping class="it.univaq.cdvd.model.Utente"/>
     </session-factory>
 </hibernate-configuration>

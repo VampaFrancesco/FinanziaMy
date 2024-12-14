@@ -20,6 +20,6 @@
       <Label layoutX="69.0" layoutY="120.0" prefHeight="17.0" prefWidth="105.0" text="Inserisci email" wrapText="true" />
       <Label layoutX="61.0" layoutY="201.0" prefHeight="17.0" prefWidth="105.0" text="inserisci password" wrapText="true" />
       <Button fx:id="register" layoutX="80.0" layoutY="319.0" mnemonicParsing="false" text="Registrati" />
-      <PasswordField layoutX="38.0" layoutY="224.0" promptText="password" />
+      <PasswordField fx:id="password" layoutX="38.0" layoutY="224.0" promptText="password" />
    </children>
 </AnchorPane>

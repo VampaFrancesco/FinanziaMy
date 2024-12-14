@@ -1,3 +1,6 @@
+it\univaq\cdvd\model\Utente.class
 it\univaq\cdvd\Runner.class
 it\univaq\cdvd\util\HibernateUtil.class
 it\univaq\cdvd\controller\AuthController.class
+it\univaq\cdvd\dao\UtenteDAO.class
+it\univaq\cdvd\controller\RegistrazioneController.class

@@ -1,5 +1,6 @@
 package it.univaq.cdvd.controller;
 
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
 import javafx.event.ActionEvent;
@@ -29,9 +30,13 @@ public class RegistrazioneController {
     @FXML
     public TextField usernameTextField;
     @FXML
+    public TextField emailTextField;
+    @FXML
     public PasswordField passwordPasswordField;
     @FXML
     public Label registerMessage;
+
+    private final UtenteDAO utenteDAO = new UtenteDAO();
 
     @FXML
     public void handleAnnullaClick(ActionEvent event) {
@@ -51,19 +56,30 @@ public class RegistrazioneController {
     }
 
     @FXML
-    public void handleRegistrazioneClick(ActionEvent event) {
+    public void handleRegistrazioneClick(ActionEvent event) throws Exception {
         // Recupera i dati inseriti dall'utente
         String username = usernameTextField.getText();
         String password = passwordPasswordField.getText();
-
+        String email = emailTextField.getText();
         // Controlla che i campi non siano vuoti
-        if (username.isEmpty() || password.isEmpty()) {
-            registerMessage.setText("Username o password non possono essere vuoti.");
-            return;
-        }
+        if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
 
+            registerMessage.setText("Username, email, o password non validi.");
+            throw new Exception();
+        }
+        Utente utenteEsistente = null;
+        utenteEsistente = utenteDAO.findUserByUsername(username);
+        if (utenteEsistente != null) {
+            registerMessage.setText("Username già esistente.");
+            throw new Exception();
+        }
+        utenteDAO.saveUser(username, email, password);
+        registerMessage.setText("Benvenuto, " + username + "!");
+
+
+  /*
         // Crea un nuovo oggetto Utente
-        Utente nuovoUtente = new Utente(username, password);
+        Utente nuovoUtente = new Utente (username, email, password);
 
         // Salva l'utente nel database
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -81,10 +97,10 @@ public class RegistrazioneController {
             registerMessage.setText("Errore durante la registrazione: " + e.getMessage());
             e.printStackTrace();
         } finally {
-            session.close(); // Chiudi la sessione
-        }
+            session.close(); // Chiudi la sessione */
     }
 }
+
 
 
 
