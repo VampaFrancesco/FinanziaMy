@@ -33,7 +33,8 @@ public class Runner extends Application {
         }
     }
 
-    public static void main(String[] args) { launch(args);
+    public static void main(String[] args) {
+        launch(args);
         // Crea un'istanza del nuovo utente
       /*  Utente nuovoUtente = new Utente("MarioRossi", "esempio@gmail.com", "password123");
 
@@ -59,8 +60,8 @@ public class Runner extends Application {
             e.printStackTrace();
         } finally {
              session.close(); // Chiudi la sessione */
-        }
     }
+}
 
 
 

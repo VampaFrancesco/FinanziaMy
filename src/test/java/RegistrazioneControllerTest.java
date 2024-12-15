@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RegistrazioneControllerTest {
 
-    // test per verificare che non si possano inserire campi vuoti
+    // test per verificare che non si possano inserire campi vuoti nella registrazione
     @Test
     public void testUnvalidRegistration() {
         UtenteDAO utenteDAO = new UtenteDAO();
@@ -20,7 +20,7 @@ public class RegistrazioneControllerTest {
     public void testExistingUser() {
         UtenteDAO utenteDAO = new UtenteDAO();
         assertThrows(Exception.class, () -> {
-            utenteDAO.saveUser("prova", "x", "x");
+            utenteDAO.saveUser("prova", "x", "x"); //utente "prova" già presente nel DB
         });
     }
 }
