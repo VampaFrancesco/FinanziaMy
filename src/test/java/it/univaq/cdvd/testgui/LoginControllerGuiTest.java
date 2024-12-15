@@ -1,8 +1,12 @@
 package it.univaq.cdvd.testgui;
 
+import it.univaq.cdvd.controller.LoginController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,6 +57,21 @@ public class LoginControllerGuiTest extends ApplicationTest {
 
         // Compare the roots
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
+    }
+    @Test
+    void testLoginButtonDisplaysOtherPage() throws Exception {
+
+        clickOn("#usernameTextField").write("MarioRossi");
+        clickOn("#passwordPasswordField").write("esempio@gmail.com");
+
+        clickOn("#loginButton");
+
+        // Recupera il messaggio visualizzato nella loginMessageLabel
+        Label loginMessageLabel = (Label) lookup("#loginMessageLabel").query();
+
+        // Verifica che il messaggio sia corretto
+        assertEquals("Benvenuto MarioRossi!", loginMessageLabel.getText(),
+                "Il messaggio della loginMessageLabel non è corretto.");
     }
 }
 

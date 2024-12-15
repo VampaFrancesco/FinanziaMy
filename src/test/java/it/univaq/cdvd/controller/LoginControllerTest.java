@@ -19,7 +19,7 @@ public class LoginControllerTest extends ApplicationTest {
 
     @Test
     public void testLoginWithValidCredentials() {
-        Utente user =loginDao.findUserByUsernameAndPassword("MarioRossi", "Password123");
+        Utente user =loginDao.findUserByUsernameAndPassword("MarioRossi", "esempio@gmail.com");
 
         assertEquals("MarioRossi", user.getUsername(), "Il nome utente o password non corrisponde.");
     }
