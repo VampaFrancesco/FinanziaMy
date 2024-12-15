@@ -8,18 +8,20 @@ import org.hibernate.Transaction;
 
 public class TransazioneDAO {
 
-    public void save(Transazione transazione) {
+    public boolean save(Transazione transazione) {
         Transaction tx = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
-            session.save(transazione);  // Assicurati di usare 'save' o 'persist' correttamente
+            session.save(transazione);
             tx.commit();
+            return true;
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
             }
             e.printStackTrace();
         }
+        return false;
     }
 
 }

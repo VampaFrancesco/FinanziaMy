@@ -3,7 +3,7 @@
 
 
 .idea/
-target
+/ target
 finanziamy.iml
 # User-specific stuff
 .idea/**/workspace.xml
