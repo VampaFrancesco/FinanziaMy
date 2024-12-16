@@ -20,14 +20,12 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-
+    public static void setSessionFactory(SessionFactory factory) {
+        sessionFactory = factory;
+    }
 
     public static void shutdown() {
         getSessionFactory().close();
-    }
-
-    public static void setSessionFactory(SessionFactory factory) {
-        sessionFactory = factory;
     }
 
 }

@@ -38,7 +38,11 @@ public class InserimentoController {
         categoriaList.setItems(FXCollections.observableArrayList(casa.getNome(), spesa.getNome(), viaggio.getNome()));
     }
 
-
+    /**
+     * Metodo che, al click del pulsante sul bottone "Inserisci", permette di salvare una transazione all'interno del database richiamando il metodo save in TransazioneDAO
+     * @param event
+     * @throws Exception
+     */
     @FXML public void inserisciTransazione(ActionEvent event) throws Exception{
         try {
 
@@ -53,7 +57,7 @@ public class InserimentoController {
             tx.setImporto(inserisciImporto.getText().isEmpty() ? 0 : Double.parseDouble(inserisciImporto.getText()));
             tx.setCausale(causale.getText());
             tx.setNomeCategoria(categoriaList.getValue());
-            tx.setData(data.getValue());// Set the current date in MariaDB-compatible format
+            tx.setData(data.getValue());
             tx.setCategoria(casa);
             System.out.println(tx);
 
@@ -71,7 +75,12 @@ public class InserimentoController {
 
     }
 
-
+    /**
+     * Permette di visualizzare un alert se viene sollevata qualche eccezione
+     * @param title titolo dell'alert
+     * @param message messaggio da mostrare
+     * @param type tipo enum del messaggio (INFORMATION,ERROR...)
+     */
     public void showAlert(String title, String message, Alert.AlertType type){
         alert.setAlertType(type);
         alert.setTitle(title);

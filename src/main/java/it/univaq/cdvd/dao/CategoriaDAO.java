@@ -8,7 +8,10 @@ import org.hibernate.Transaction;
 
 public class CategoriaDAO {
 
-    public boolean save(Categoria categoria) {
+    //per inserire le categoria nella combobox posso fare un metodo che mi torna una lista di categorie e prendere il nome, per quanto riguarda l'inserimento basta inserire solo il nome
+    //e volendo posso associare ad ogni categoria un colore, si potrebbe fare.
+
+    /*public boolean save(Categoria categoria) {
         Transaction tx = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
@@ -22,5 +25,5 @@ public class CategoriaDAO {
         }
         return false;
     }
-
+*/
 }
