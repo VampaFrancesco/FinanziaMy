@@ -13,12 +13,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 
 import java.io.IOException;
 
-import static it.univaq.cdvd.util.HibernateUtil.sessionFactory;
 
 public class LoginController {
 
