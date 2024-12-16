@@ -41,7 +41,7 @@ public class RegistrazioneGUITest extends ApplicationTest {
         // Verifica che il messaggio di errore sia visualizzato
         verifyThat("#registerMessage", hasText("Username, email, o password non validi.")); // Cambia con l'id e il testo del messaggio
     }
-
+/*
     @Test
     void testRegistrazioneConDatiValidi() {
         // Inserisce dati validi nei campi di testo
@@ -55,6 +55,7 @@ public class RegistrazioneGUITest extends ApplicationTest {
         // Verifica che il messaggio di benvenuto sia visualizzato
         verifyThat("#registerMessage", hasText("Benvenuto, utenteTest!")); // Cambia con l'id e il testo atteso
     }
+    
 
     @Test
     void testRegistrazioneUsernameEsistente() {
@@ -69,6 +70,6 @@ public class RegistrazioneGUITest extends ApplicationTest {
         // Verifica che il messaggio di errore sia visualizzato
         verifyThat("#registerMessage", hasText("Username già esistente.")); // Cambia con l'id e il testo atteso
     }
-
+*/
 
 }

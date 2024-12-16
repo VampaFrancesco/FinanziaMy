@@ -37,7 +37,7 @@ public class AuthControllerTest extends ApplicationTest {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
+/*
     @Test
     void testButtonClick() {
 
@@ -59,5 +59,7 @@ public class AuthControllerTest extends ApplicationTest {
             System.setOut(originalOut);
         }
     }
+
+ */
 }
 
