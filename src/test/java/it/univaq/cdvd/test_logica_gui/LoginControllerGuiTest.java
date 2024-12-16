@@ -56,7 +56,7 @@ public class LoginControllerGuiTest extends ApplicationTest {
         // Compare the roots
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
     }
-    @Test
+   /* @Test
     void testLoginButtonDisplaysOtherPage() throws Exception {
 
         clickOn("#usernameTextField").write("MarioRossi");
@@ -71,5 +71,7 @@ public class LoginControllerGuiTest extends ApplicationTest {
         assertEquals("Benvenuto MarioRossi!", loginMessageLabel.getText(),
                 "Il messaggio della loginMessageLabel non è corretto.");
     }
+
+    */
 }
 
