@@ -19,7 +19,7 @@ public class Utente {
     public Utente() {
     }
 
-    public Utente(String username, String password, String email) {
+    public Utente(String username, String email, String password) {
         this.username = username;
         this.password = password;
         this.email = email;
