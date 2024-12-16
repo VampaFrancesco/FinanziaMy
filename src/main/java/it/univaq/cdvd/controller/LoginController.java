@@ -1,6 +1,6 @@
 package it.univaq.cdvd.controller;
 
-import it.univaq.cdvd.DAO.UtenteDAO;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

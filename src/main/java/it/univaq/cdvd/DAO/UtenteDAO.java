@@ -1,9 +1,10 @@
-package it.univaq.cdvd.DAO;
+package it.univaq.cdvd.dao;
 
 import it.univaq.cdvd.model.Utente;
+import it.univaq.cdvd.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import static it.univaq.cdvd.util.HibernateUtil.sessionFactory;
+
 
 public class UtenteDAO {
 
@@ -15,7 +16,7 @@ public class UtenteDAO {
      * @return l'oggetto Utente se trovato, altrimenti null.
      */
     public Utente findUserByUsernameAndPassword(String username, String password) {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM Utente WHERE username = :username AND password = :password";
             Query<Utente> query = session.createQuery(hql, Utente.class);
             query.setParameter("username", username);

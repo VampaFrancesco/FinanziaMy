@@ -1,6 +1,5 @@
-package testInserimento;
+package it.univaq.cdvd.test_logica_business;
 
-import it.univaq.cdvd.controller.InserimentoController;
 import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;

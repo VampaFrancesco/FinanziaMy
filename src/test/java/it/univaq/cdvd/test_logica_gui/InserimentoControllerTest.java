@@ -1,7 +1,6 @@
-package testInserimento;
+package it.univaq.cdvd.test_logica_gui;
 
 import it.univaq.cdvd.controller.InserimentoController;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

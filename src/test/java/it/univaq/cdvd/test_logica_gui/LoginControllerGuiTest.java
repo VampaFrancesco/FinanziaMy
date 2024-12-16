@@ -1,17 +1,15 @@
-package it.univaq.cdvd.testgui;
+package it.univaq.cdvd.test_logica_gui;
 
-import it.univaq.cdvd.controller.LoginController;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.framework.junit5.ApplicationTest;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,7 +35,7 @@ public class LoginControllerGuiTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
         Parent root = loader.load();
         stage.setScene(new Scene(root));
         stage.show();
@@ -67,7 +65,7 @@ public class LoginControllerGuiTest extends ApplicationTest {
         clickOn("#loginButton");
 
         // Recupera il messaggio visualizzato nella loginMessageLabel
-        Label loginMessageLabel = (Label) lookup("#loginMessageLabel").query();
+        Label loginMessageLabel = lookup("#loginMessageLabel").query();
 
         // Verifica che il messaggio sia corretto
         assertEquals("Benvenuto MarioRossi!", loginMessageLabel.getText(),

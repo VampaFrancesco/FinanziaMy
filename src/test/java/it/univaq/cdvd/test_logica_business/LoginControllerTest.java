@@ -1,9 +1,9 @@
-package it.univaq.cdvd.controller;
-import it.univaq.cdvd.DAO.UtenteDAO;
+package it.univaq.cdvd.test_logica_business;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.testfx.framework.junit.ApplicationTest;
+import org.testfx.framework.junit5.ApplicationTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 

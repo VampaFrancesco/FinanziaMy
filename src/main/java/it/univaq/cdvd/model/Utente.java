@@ -3,7 +3,7 @@ package it.univaq.cdvd.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "utente") // Nome della tabella nel database
+@Table(name = "Utente") // Nome della tabella nel database
 public class Utente {
 
     @Column(name = "email", nullable = false)

@@ -18,5 +18,6 @@
         <!-- Mapping delle classi modello -->
         <mapping class="it.univaq.cdvd.model.Transazione"/>
         <mapping class="it.univaq.cdvd.model.Categoria"/>
+        <mapping class="it.univaq.cdvd.model.Utente"/>
     </session-factory>
 </hibernate-configuration>
