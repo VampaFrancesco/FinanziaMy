@@ -92,6 +92,24 @@ public class RegistrazioneController {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void annulButtonOnAction(ActionEvent event) {
+
+        try {
+            // Carica il file auth.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
+            Parent root = loader.load();
+
+            // Ottieni la finestra corrente e imposta la nuova scena
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pagina Iniziale");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 
 
