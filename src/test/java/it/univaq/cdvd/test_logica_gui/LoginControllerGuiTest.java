@@ -51,7 +51,7 @@ public class LoginControllerGuiTest extends ApplicationTest {
 
         clickOn("#loginButton");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
         Parent expectedRoot = loader.load();
 
         // Get the current scene root
@@ -67,14 +67,14 @@ public class LoginControllerGuiTest extends ApplicationTest {
         clickOn("#annulButton");
 
         // Load the auth.fxml to compare
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/auth.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
         Parent expectedRoot = loader.load();
 
         // Get the current scene root
         Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
 
         // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
+        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
     }
 }
 
