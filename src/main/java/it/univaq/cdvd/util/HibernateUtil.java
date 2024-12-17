@@ -19,6 +19,9 @@ public class HibernateUtil {
     }
 
     public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null || sessionFactory.isClosed()) {
+            sessionFactory = new Configuration().configure("/config/hibernate.cfg.xml").buildSessionFactory();
+        }
         return sessionFactory;
     }
 
