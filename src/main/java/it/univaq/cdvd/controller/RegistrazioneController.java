@@ -77,4 +77,21 @@ public class RegistrazioneController {
             throw new Exception();
         }
         utenteDAO.saveUser(username, email, password);
-        registerMessage.setText("Benvenuto, " + username + "!");}}
+        registerMessage.setText("Benvenuto, " + username + "!");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
+            Parent root = loader.load();
+
+            // Ottieni la finestra corrente e imposta la nuova scena
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pagina Main");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
