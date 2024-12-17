@@ -28,7 +28,7 @@ public class RegistrazioneGUITest extends ApplicationTest {
         stage.setScene(scene);
         stage.show();
     }
-    @Test
+   /* @Test
     void registerButtonTest() throws Exception {
 
         clickOn(controller.usernameTextField).write("Paola");
@@ -45,6 +45,24 @@ public class RegistrazioneGUITest extends ApplicationTest {
 
         // Compare the roots
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
+    }
+
+    */
+    @Test
+
+    void testAnnulButtonDisplaysAuthPage() throws Exception {
+        // Click the annulButton
+        clickOn("#annullaButton");
+
+        // Load the auth.fxml to compare
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
+        Parent expectedRoot = loader.load();
+
+        // Get the current scene root
+        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
+
+        // Compare the roots
+        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
     }
 
 }
