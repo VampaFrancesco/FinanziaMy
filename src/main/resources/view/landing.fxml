@@ -14,7 +14,7 @@
          </image>
       </ImageView>
       <Button fx:id="loginInit" layoutX="442.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingLoginButtonOnAction" text=" LOGIN " />
-      <Button fx:id="singupInit" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingSingUpButtonOnAction" text="SING UP" />
+      <Button fx:id="signupInit" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingSignUpButtonOnAction" text="SIGN UP" />
       <AnchorPane layoutX="21.0" layoutY="66.0" prefHeight="158.0" prefWidth="167.0">
          <children>
             <Button fx:id="leggiTransazioni" layoutX="45.0" layoutY="131.0" mnemonicParsing="false" text="Leggi di più" />

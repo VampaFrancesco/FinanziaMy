@@ -25,7 +25,7 @@ public class LandingController {
 
         try {
             // Carica il file auth.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
             Parent root = loader.load();
 
             // Ottieni la finestra corrente e imposta la nuova scena
@@ -40,11 +40,11 @@ public class LandingController {
     }
 
     @FXML
-    public void landingSingUpButtonOnAction(ActionEvent event) {
+    public void landingSignUpButtonOnAction(ActionEvent event) {
 
         try {
             // Carica il file auth.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/registrazione.fxml"));
             Parent root = loader.load();
 
             // Ottieni la finestra corrente e imposta la nuova scena
