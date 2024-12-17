@@ -74,7 +74,7 @@ public class LoginController {
             loginMessageLabel.setText("Benvenuto " + user.getUsername() + "!");
             try {
                 // Carica il file auth.fxml
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
                 Parent root = loader.load();
 
                 // Ottieni la finestra corrente e imposta la nuova scena
