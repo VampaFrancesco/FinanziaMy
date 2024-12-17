@@ -72,6 +72,20 @@ public class LoginController {
 
         if (user != null) {
             loginMessageLabel.setText("Benvenuto " + user.getUsername() + "!");
+            try {
+                // Carica il file auth.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main.fxml"));
+                Parent root = loader.load();
+
+                // Ottieni la finestra corrente e imposta la nuova scena
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Pagina Main");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         } else {
             loginMessageLabel.setText("Accesso negato. Username o password errati.");
         }

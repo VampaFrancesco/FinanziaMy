@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
+
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,6 +42,25 @@ public class LoginControllerGuiTest extends ApplicationTest {
         stage.show();
     }
 
+
+    @Test
+    void testLoginButtonDisplaysOtherPage() throws Exception {
+
+        clickOn("#usernameTextField").write("MarioRossi");
+        clickOn("#passwordPasswordField").write("esempio@gmail.com");
+
+        clickOn("#loginButton");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main.fxml"));
+        Parent expectedRoot = loader.load();
+
+        // Get the current scene root
+        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
+
+        // Compare the roots
+        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
+    }
+
     @Test
     void testAnnulButtonDisplaysAuthPage() throws Exception {
         // Click the annulButton
@@ -56,22 +76,5 @@ public class LoginControllerGuiTest extends ApplicationTest {
         // Compare the roots
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
     }
-   /* @Test
-    void testLoginButtonDisplaysOtherPage() throws Exception {
-
-        clickOn("#usernameTextField").write("MarioRossi");
-        clickOn("#passwordPasswordField").write("esempio@gmail.com");
-
-        clickOn("#loginButton");
-
-        // Recupera il messaggio visualizzato nella loginMessageLabel
-        Label loginMessageLabel = lookup("#loginMessageLabel").query();
-
-        // Verifica che il messaggio sia corretto
-        assertEquals("Benvenuto MarioRossi!", loginMessageLabel.getText(),
-                "Il messaggio della loginMessageLabel non è corretto.");
-    }
-
-    */
 }
 
