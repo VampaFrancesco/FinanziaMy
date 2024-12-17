@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.HomeController">
    <children>
       <MenuBar fx:id="menu" prefHeight="26.0" prefWidth="600.0">
          <menus>
@@ -24,7 +24,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Transazioni">
                <items>
-                  <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" text="Nuova transazione" />
+                  <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
                   <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" text="Elimina transazione" />
                   <MenuItem fx:id="elencoTransazioni" mnemonicParsing="false" text="Elenco transazoini" />
                </items>

@@ -6,15 +6,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.LandingController">
    <children>
       <ImageView fitHeight="40.0" fitWidth="182.0" layoutX="14.0" layoutY="9.0">
          <image>
             <Image url="@../img/logoAuth.png" />
          </image>
       </ImageView>
-      <Button fx:id="loginInit" layoutX="442.0" layoutY="16.0" mnemonicParsing="false" text=" LOGIN " />
-      <Button fx:id="singupInit" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" text="SING UP" />
+      <Button fx:id="loginInit" layoutX="442.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingLoginButtonOnAction" text=" LOGIN " />
+      <Button fx:id="singupInit" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingSingUpButtonOnAction" text="SING UP" />
       <AnchorPane layoutX="21.0" layoutY="66.0" prefHeight="158.0" prefWidth="167.0">
          <children>
             <Button fx:id="leggiTransazioni" layoutX="45.0" layoutY="131.0" mnemonicParsing="false" text="Leggi di più" />
