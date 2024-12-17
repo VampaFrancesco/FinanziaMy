@@ -14,7 +14,7 @@ import java.io.IOException;
 public class LandingController {
 
     @FXML public Button loginInit = new Button();
-    @FXML public Button singupInit = new Button();
+    @FXML public Button signupInit = new Button();
     @FXML public Button leggiTransazioni = new Button();
     @FXML public Button leggiCategorie = new Button();
     @FXML public Button leggiStatistiche = new Button();
@@ -57,4 +57,5 @@ public class LandingController {
         }
 
     }
+
 }
