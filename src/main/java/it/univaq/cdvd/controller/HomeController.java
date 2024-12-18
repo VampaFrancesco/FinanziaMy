@@ -1,5 +1,6 @@
 package it.univaq.cdvd.controller;
 
+import it.univaq.cdvd.model.Transazione;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,7 @@ public class HomeController {
     @FXML public MenuBar menu = new MenuBar();
     @FXML public Button login = new Button();
     @FXML public Label saldo = new Label();
-    @FXML public TableView tabellaTransazioni = new TableView();
+    @FXML public TableView<Transazione> tabellaTransazioni = new TableView<>();
     @FXML public MenuItem logout = new MenuItem();
     @FXML public MenuItem modificaAccount = new MenuItem();
     @FXML public MenuItem nuovaTransazione = new MenuItem();
