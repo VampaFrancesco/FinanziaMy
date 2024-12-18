@@ -38,10 +38,14 @@ public class RegistrazioneController {
 
     private final UtenteDAO utenteDAO = new UtenteDAO();
 
+
+    /**
+     * Torna alla pagina di landing se si clicca il button "annulla"
+     * @param event
+     */
     @FXML
     public void handleAnnullaClick(ActionEvent event) {
         try {
-            // Carica il file auth.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
             Parent root = loader.load();
 
@@ -54,6 +58,7 @@ public class RegistrazioneController {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     public void handleRegistrazioneClick(ActionEvent event) throws Exception {
@@ -92,6 +97,8 @@ public class RegistrazioneController {
             e.printStackTrace();
         }
     }
+
+    /*
     @FXML
     public void annulButtonOnAction(ActionEvent event) {
 
@@ -108,8 +115,9 @@ public class RegistrazioneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
+     */
 }
 
 
