@@ -86,7 +86,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version> <!-- Usa l'ultima versione -->
+                <version>0.8.12 </version> <!-- Usa l'ultima versione -->
                 <executions>
                     <!-- Prepara l'ambiente per la raccolta dei dati di coverage -->
                     <execution>
