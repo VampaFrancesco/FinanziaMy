@@ -29,6 +29,11 @@ public class UtenteDAO {
         }
     }
 
+    /**
+     * Metodo per restituire un utente dal DB dato il suo username
+     * @param username
+     * @return
+     */
     public Utente findUserByUsername(String username) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM Utente WHERE username = :username";
@@ -41,6 +46,13 @@ public class UtenteDAO {
         }
     }
 
+    /**
+     * metodo per inserire un utente nel DB
+     * @param username
+     * @param email
+     * @param password
+     * @throws Exception
+     */
     public void saveUser(String username, String email, String password) throws Exception {
         if ((email.trim().isEmpty()) || (username.trim().isEmpty()) || (password.trim().isEmpty())) {
             throw new Exception("Email, username e password non possono essere vuoti!");
