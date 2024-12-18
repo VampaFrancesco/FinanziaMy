@@ -50,25 +50,11 @@ public class HomeController {
                 throw new RuntimeException(e);
             }
         });
-
-      /*  try {
-            // Carica il file auth.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
-            Parent root = loader.load();
-
-            // Ottieni la finestra corrente e imposta la nuova scena
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Nuova Transazione");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
     public void apriDialog() throws IOException {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
             Parent root = loader.load();
 
             Dialog<Void> dialog = new Dialog<>();
