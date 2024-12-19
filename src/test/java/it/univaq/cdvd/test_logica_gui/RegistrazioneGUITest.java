@@ -5,12 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -50,7 +47,7 @@ public class RegistrazioneGUITest extends ApplicationTest {
     */
     @Test
 
-    void testAnnulButtonDisplaysAuthPage() throws Exception {
+    void testAnnulButtonDisplaysLandingPage() throws Exception {
         // Click the annulButton
         clickOn("#annullaButton");
 

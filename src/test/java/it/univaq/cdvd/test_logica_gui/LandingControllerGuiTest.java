@@ -45,7 +45,7 @@ public class LandingControllerGuiTest extends ApplicationTest {
         Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
 
         // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
+        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The login.fxml page should be displayed.");
     }
 
     @Test
@@ -61,7 +61,7 @@ public class LandingControllerGuiTest extends ApplicationTest {
         Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
 
         // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
+        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The registrazione.fxml page should be displayed.");
     }
 }
 

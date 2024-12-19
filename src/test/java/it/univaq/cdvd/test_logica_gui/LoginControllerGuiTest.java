@@ -5,9 +5,7 @@ import it.univaq.cdvd.controller.LoginController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -36,7 +34,7 @@ public class LoginControllerGuiTest extends ApplicationTest {
 
 
     @Test
-    void testLoginButtonDisplaysOtherPage() throws Exception {
+    void testLoginButtonDisplaysHomePage() throws Exception {
 
         clickOn(controller.usernameTextField).write("MarioRossi");
         clickOn(controller.passwordPasswordField).write("esempio@gmail.com");
@@ -50,11 +48,11 @@ public class LoginControllerGuiTest extends ApplicationTest {
         Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
 
         // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
+        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The home.fxml page should be displayed.");
     }
 
     @Test
-    void testAnnulButtonDisplaysAuthPage() throws Exception {
+    void testAnnulButtonDisplaysLandingPage() throws Exception {
         // Click the annulButton
         clickOn(controller.annulButton);
 
