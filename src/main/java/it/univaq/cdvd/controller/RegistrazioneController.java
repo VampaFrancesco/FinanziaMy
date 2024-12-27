@@ -18,6 +18,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 
 public class RegistrazioneController {
@@ -91,7 +92,7 @@ public class RegistrazioneController {
             return false;
         }
 
-        double saldoIniziale = Double.parseDouble(saldo);
+        BigDecimal saldoIniziale = new BigDecimal(saldo);;
 
 
 

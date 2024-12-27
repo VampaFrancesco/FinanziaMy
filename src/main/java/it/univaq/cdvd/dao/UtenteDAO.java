@@ -7,6 +7,8 @@ import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
+import java.math.BigDecimal;
+
 
 public class UtenteDAO {
 
@@ -54,7 +56,7 @@ public class UtenteDAO {
      * @param password
      * @throws Exception
      */
-    public boolean saveUser(String username, String email, String password, double saldoIniziale) {
+    public boolean saveUser(String username, String email, String password, BigDecimal saldoIniziale) {
         // Verifica se i campi obbligatori sono vuoti
         if (email.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty()) {
             System.err.println("Email, username e password non possono essere vuoti!");
