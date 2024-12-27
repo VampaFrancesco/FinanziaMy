@@ -16,13 +16,18 @@ public class Utente {
     @Column(name = "username", nullable = false, unique = true) // Non può essere null e deve essere univoco
     private String username;
 
+    @Id
+    @Column(name = "saldo", nullable = false, columnDefinition = "int default 0" ) // Non può essere null e deve essere univoco
+    private double saldo = 0;
+
     public Utente() {
     }
 
-    public Utente(String username, String email, String password) {
+    public Utente(String username, String email, String password, double saldo) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.saldo = saldo;
     }
 
 
