@@ -3,6 +3,7 @@ import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mindrot.jbcrypt.BCrypt;
 import org.testfx.framework.junit5.ApplicationTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -10,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class LoginControllerTest extends ApplicationTest {
 
     private UtenteDAO loginDao;
-
     @BeforeEach
     public void setUp() {
         // Inizializza l'istanza di UtenteDAO
@@ -19,9 +19,9 @@ public class LoginControllerTest extends ApplicationTest {
 
     @Test
     public void testLoginWithValidCredentials() {
-        Utente user =loginDao.findUserByUsernameAndPassword("MarioRossi", "esempio@gmail.com");
+        Utente user =loginDao.findUserByUsernameAndPassword("edoardone", "ghepardo");
 
-        assertEquals("MarioRossi", user.getUsername(), "Il nome utente o password non corrisponde.");
+        assertEquals("edoardone", user.getUsername(), "Il nome utente o password non corrisponde.");
     }
     @Test
     public void testLoginWithUnValidCredentials() {
