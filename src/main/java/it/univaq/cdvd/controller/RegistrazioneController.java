@@ -3,6 +3,7 @@ package it.univaq.cdvd.controller;
 import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +43,7 @@ public class RegistrazioneController {
 
     private final UtenteDAO utenteDAO = new UtenteDAO();
 
+    SessionManager session = SessionManager.getInstance();
 
     /**
      * Torna alla pagina di landing se si clicca il button "annulla"
@@ -103,6 +105,9 @@ public class RegistrazioneController {
             return false;
         }
         utenteDAO.saveUser(username, email, password, saldoIniziale);
+        Utente utente = new Utente(username, email, password, saldoIniziale);
+        session.setUtente(utente);
+        System.out.println("Utente registrato: " + session.getUtente());
         registerMessage.setText("Benvenuto, " + username + "!");
 
         try {
