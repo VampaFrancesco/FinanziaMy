@@ -94,7 +94,7 @@ public class RegistrazioneController {
             return false;
         }
 
-        BigDecimal saldoIniziale = new BigDecimal(saldo);;
+        Double saldoIniziale = new Double(saldo);;
 
 
 

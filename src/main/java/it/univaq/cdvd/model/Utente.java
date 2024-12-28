@@ -2,7 +2,10 @@ package it.univaq.cdvd.model;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "Utente") // Nome della tabella nel database
@@ -18,14 +21,20 @@ public class Utente {
     @Column(name = "username", nullable = false, unique = true) // Non può essere null e deve essere univoco
     private String username;
 
+
     @Id
-    @Column(name = "saldo", nullable = false, columnDefinition = "int default 0" ) // Non può essere null e deve essere univoco
-    private BigDecimal saldo = BigDecimal.valueOf(0);
+    @Column(name = "saldo", nullable = false) // Non può essere null e deve essere univoco
+    private Double saldo = 0.0;
+
+
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transazione> transazioni = new ArrayList<>();
+
 
     public Utente() {
     }
 
-    public Utente(String username, String email, String password, BigDecimal saldo) {
+    public Utente(String username, String email, String password, Double saldo) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -47,6 +56,15 @@ public class Utente {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public List<Transazione> getTransazioni() {
+        return transazioni;
+    }
+
+    public void setTransazioni(List<Transazione> transazioni) {
+        this.transazioni = transazioni;
     }
 
 

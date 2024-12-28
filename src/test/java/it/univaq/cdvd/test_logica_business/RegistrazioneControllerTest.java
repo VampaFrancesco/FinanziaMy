@@ -14,14 +14,14 @@ public class RegistrazioneControllerTest {
     @Test
     public void testUnvalidRegistration() {
         UtenteDAO utenteDAO = new UtenteDAO();
-        assertFalse( utenteDAO.saveUser("", "", "",BigDecimal.valueOf(0)));
+        assertFalse( utenteDAO.saveUser("", "", "",0.0));
     }
 
     // test che verifica che non si possano inserire utenti già esistenti
     @Test
     public void testExistingUser() {
         UtenteDAO utenteDAO = new UtenteDAO();
-        assertFalse(utenteDAO.saveUser("prova", "x", "x", BigDecimal.valueOf(0)));
+        assertFalse(utenteDAO.saveUser("prova", "x", "x", 0.0));
 
     }
 }
