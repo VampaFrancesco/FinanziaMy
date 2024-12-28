@@ -1,13 +1,16 @@
 package it.univaq.cdvd.dao;
 
+import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
+import it.univaq.cdvd.util.SessionManager;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
-import java.math.BigDecimal;
+
 
 
 public class UtenteDAO {
@@ -34,6 +37,7 @@ public class UtenteDAO {
 
     /**
      * Metodo per restituire un utente dal DB dato il suo username
+     *
      * @param username
      * @return
      */
@@ -50,7 +54,8 @@ public class UtenteDAO {
     }
 
     /**
-     * metodo per inserire un utente nel DB
+     * Metodo per inserire un utente nel DB
+     *
      * @param username
      * @param email
      * @param password
@@ -86,4 +91,14 @@ public class UtenteDAO {
             return false;
         }
     }
+
+//    public ArrayList<Transazione> getTransazione() {
+//        Session session = null;
+//        Utente utente = SessionManager.getInstance().getUtente();
+//        try {
+//
+//
+//        }
+//    }
+
 }

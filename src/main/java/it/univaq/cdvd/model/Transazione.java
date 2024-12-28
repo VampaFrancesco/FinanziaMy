@@ -29,6 +29,20 @@ public class Transazione {
     @JoinColumn(name = "fk_categoria", referencedColumnName = "id")
     private Categoria categoria;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_utente", nullable = false)
+    private Utente utente;
+
+    // Getter e Setter
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+
     // Getters e Setters
     public Long getId() {
         return id;
