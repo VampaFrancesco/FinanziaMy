@@ -2,6 +2,8 @@ package it.univaq.cdvd.model;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "Utente") // Nome della tabella nel database
 public class Utente {
@@ -16,13 +18,18 @@ public class Utente {
     @Column(name = "username", nullable = false, unique = true) // Non può essere null e deve essere univoco
     private String username;
 
+    @Id
+    @Column(name = "saldo", nullable = false, columnDefinition = "int default 0" ) // Non può essere null e deve essere univoco
+    private BigDecimal saldo = BigDecimal.valueOf(0);
+
     public Utente() {
     }
 
-    public Utente(String username, String email, String password) {
+    public Utente(String username, String email, String password, BigDecimal saldo) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.saldo = saldo;
     }
 
 
