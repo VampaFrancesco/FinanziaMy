@@ -24,7 +24,7 @@ public class InserimentoControllerTest extends ApplicationTest {
         Parent root = loader.load();
         controller = loader.getController();
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
@@ -66,6 +66,7 @@ public class InserimentoControllerTest extends ApplicationTest {
 
         // Verifica che venga mostrato un alert di errore
         assertEquals("", controller.causale.getText());
+
     }
 
     @Test
