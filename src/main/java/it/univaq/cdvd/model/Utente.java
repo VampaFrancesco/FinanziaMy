@@ -23,9 +23,8 @@ public class Utente {
 
 
     @Id
-    @Column(name = "saldo", nullable = false) // Non può essere null e deve essere univoco
+    @Column(name = "saldo", nullable = false, columnDefinition = "int default 0" ) // Non può essere null e deve essere univoco
     private Double saldo = 0.0;
-
 
     @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transazione> transazioni = new ArrayList<>();
