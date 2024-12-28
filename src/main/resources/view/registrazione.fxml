@@ -10,15 +10,15 @@
     <children>
         <Label layoutX="253.0" layoutY="86.0" prefHeight="18.0" prefWidth="94.0" text="REGISTRAZIONE" />
         <Label layoutX="134.0" layoutY="206.0" text="Password" />
-        <TextField fx:id="usernameTextField" layoutX="224.0" layoutY="128.0" promptText="Username" />
-        <PasswordField fx:id="passwordPasswordField" layoutX="224.0" layoutY="202.0" promptText="Password" />
-        <Button fx:id="registratiButton" layoutX="225.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleRegistrazioneClick" prefHeight="26.0" prefWidth="150.0" text="Registrati" />
-        <Button fx:id="annullaButton" layoutX="223.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleAnnullaClick" prefHeight="26.0" prefWidth="150.0" text="Annulla" />
         <Label layoutX="138.0" layoutY="131.0" prefHeight="18.0" prefWidth="63.0" text="Username" />
         <Label fx:id="registerMessage" layoutX="173.0" layoutY="111.0" prefHeight="18.0" prefWidth="272.0" />
         <Label fx:id="emailLabel" layoutX="137.0" layoutY="171.0" prefHeight="18.0" prefWidth="71.0" text="Email" />
+        <TextField fx:id="usernameTextField" layoutX="224.0" layoutY="128.0" promptText="Username" />
         <TextField fx:id="emailTextField" layoutX="224.0" layoutY="168.0" promptText="Email" />
-      <Label layoutX="134.0" layoutY="242.0" prefHeight="18.0" prefWidth="78.0" text="Saldo iniziale" />
+        <PasswordField fx:id="passwordPasswordField" layoutX="224.0" layoutY="202.0" promptText="Password" />
       <TextField fx:id="saldoTextField" layoutX="224.0" layoutY="238.0" promptText="0.00" />
+      <Label layoutX="134.0" layoutY="242.0" prefHeight="18.0" prefWidth="78.0" text="Saldo iniziale" />
+        <Button fx:id="registratiButton" layoutX="225.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleRegistrazioneClick" prefHeight="26.0" prefWidth="150.0" text="Registrati" />
+        <Button fx:id="annullaButton" layoutX="225.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleAnnullaClick" prefHeight="26.0" prefWidth="150.0" text="Annulla" />
     </children>
 </AnchorPane>
