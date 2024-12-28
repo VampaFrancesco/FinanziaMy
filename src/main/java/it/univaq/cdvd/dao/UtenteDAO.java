@@ -56,7 +56,7 @@ public class UtenteDAO {
      * @param password
      * @throws Exception
      */
-    public boolean saveUser(String username, String email, String password, BigDecimal saldoIniziale) {
+    public boolean saveUser(String username, String email, String password, Double saldoIniziale) {
         // Verifica se i campi obbligatori sono vuoti
         if (email.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty()) {
             System.err.println("Email, username e password non possono essere vuoti!");

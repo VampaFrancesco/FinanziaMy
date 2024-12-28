@@ -20,12 +20,12 @@ public class Utente {
 
     @Id
     @Column(name = "saldo", nullable = false, columnDefinition = "int default 0" ) // Non può essere null e deve essere univoco
-    private BigDecimal saldo = BigDecimal.valueOf(0);
+    private Double saldo = 0.0;
 
     public Utente() {
     }
 
-    public Utente(String username, String email, String password, BigDecimal saldo) {
+    public Utente(String username, String email, String password, Double saldo) {
         this.username = username;
         this.password = password;
         this.email = email;
