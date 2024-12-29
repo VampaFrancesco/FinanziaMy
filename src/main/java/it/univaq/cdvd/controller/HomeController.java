@@ -1,6 +1,7 @@
 package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -114,6 +115,13 @@ SessionManager session = SessionManager.getInstance();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void showSaldo () {
+        Utente utente = session.getUtente();
+        String saldoUtente = Double.toString(utente.getSaldo());
+        saldo.setText("$ " + saldoUtente);
     }
 
 }

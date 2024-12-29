@@ -80,4 +80,8 @@ public class Utente {
     public void setSaldo(double v) {
         this.saldo = saldo;
     }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
 }
