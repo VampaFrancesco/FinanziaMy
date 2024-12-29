@@ -11,8 +11,6 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 
-
-
 public class UtenteDAO {
 
     /**
@@ -92,6 +90,31 @@ public class UtenteDAO {
         }
     }
 
+    // per salvare nel db un utente direttamente come ogetto.
+    public boolean save(Utente utente) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Utente utenteEsistente = findUserByUsername(utente.getUsername());
+            if (utenteEsistente != null) {
+                System.err.println("Username già esistente.");
+                return false;
+
+            }
+            Transaction transaction = session.beginTransaction();
+            session.save(utente); // Salva il nuovo utente
+            transaction.commit();
+            return true; // Salvataggio riuscito
+        } catch (ConstraintViolationException e) {
+            // Gestione della violazione del vincolo di unicità
+            System.err.println("Errore: Username già esistente. " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
+
+
 //    public ArrayList<Transazione> getTransazione() {
 //        Session session = null;
 //        Utente utente = SessionManager.getInstance().getUtente();
@@ -101,4 +124,4 @@ public class UtenteDAO {
 //        }
 //    }
 
-}
+       // }

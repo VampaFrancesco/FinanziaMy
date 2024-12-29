@@ -22,7 +22,6 @@ public class Utente {
     private String username;
 
 
-    @Id
     @Column(name = "saldo", nullable = false, columnDefinition = "int default 0" ) // Non può essere null e deve essere univoco
     private Double saldo = 0.0;
 
@@ -65,7 +64,9 @@ public class Utente {
     public void setTransazioni(List<Transazione> transazioni) {
         this.transazioni = transazioni;
     }
-
+    public void setEmail(String mail) {
+        this.email = mail;
+    }
 
     @Override
     public String toString() {
@@ -74,5 +75,9 @@ public class Utente {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void setSaldo(double v) {
+        this.saldo = saldo;
     }
 }
