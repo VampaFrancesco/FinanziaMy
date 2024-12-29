@@ -4,52 +4,123 @@ import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.SessionManager;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import org.hibernate.query.Query;
 
-import java.io.File;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 public class CancellazioneController {
 
+    @FXML private TableView<Transazione> lista;
+    @FXML private TableColumn<Transazione, String> codiceTr;
+    @FXML private TableColumn<Transazione, Double> importo;
+    @FXML private TableColumn<Transazione, String> causale;
+    @FXML private TableColumn<Transazione, LocalDate> data;
+    @FXML private TableColumn<Transazione, String> categoria;
+
+    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+    private Utente utente;
+
+    private ObservableList<Transazione> transazioniUtente;
+
     @FXML
-    public ListView<String> lista;
-    Alert alert;
-
-    Utente utente = SessionManager.getInstance().getUtente();
-    ObservableList<Transazione> transazioniUtente = (ObservableList<Transazione>) utente.getTransazioni();
-
     public void initialize() {
-        transazioniUtente.clear();
-        caricaTransazione();
+        try {
+            // Recupera l'utente corrente dalla sessione
+            utente = SessionManager.getInstance().getUtente();
+
+            // Configura le colonne della TableView
+            configuraColonne();
+
+            // Carica le transazioni dal database
+            caricaTransazioni();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Errore", "Errore durante l'inizializzazione: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
-    public void caricaTransazione() {
-        ObservableList<String> elementi = FXCollections.observableArrayList();
-        for (Transazione transazione : transazioniUtente) {
-            elementi.add(transazione.getCausale());
+    private void configuraColonne() {
+        // Collega le colonne ai campi del modello Transazione
+        codiceTr.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getId())));
+        importo.setCellValueFactory(new PropertyValueFactory<>("importo"));
+        causale.setCellValueFactory(new PropertyValueFactory<>("causale"));
+        data.setCellValueFactory(new PropertyValueFactory<>("data"));
+        categoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategoria().getNome()));
+    }
+
+    private void caricaTransazioni() {
+        try {
+            // Recupera le transazioni legate all'utente dal DAO
+            TransazioneDAO transazioneDAO = new TransazioneDAO();
+            List<Transazione> transazioni = transazioneDAO.findAll();
+
+            // Converte la lista in un ObservableList
+            transazioniUtente = FXCollections.observableArrayList(transazioni);
+
+            // Associa i dati alla TableView
+            lista.setItems(transazioniUtente);
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Errore", "Errore durante il caricamento delle transazioni: " + e.getMessage(), Alert.AlertType.ERROR);
         }
-        lista.setItems(elementi);
+    }
+
+    @FXML
+    public void cancella(MouseEvent event) {
+
+        Transazione transazione = lista.getSelectionModel().getSelectedItem();
+        if(transazione == null){
+            showAlert("Errore", "Seleziona una transazione", Alert.AlertType.WARNING);
+        }
+
+        TransazioneDAO transazioneDAO = new TransazioneDAO();
+
+        boolean eliminata = transazioneDAO.eliminaTransazione(transazione.getId());
+        if(eliminata){
+            transazioniUtente.remove(transazione);
+            showAlert("Successo", "Transazione eliminata", Alert.AlertType.INFORMATION);
+        }else{
+            showAlert("Errore", "Errore durante l'eliminazione della transazione", Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    private void gestisciClick(MouseEvent event) {
+        // Verifica che l'evento sia un doppio clic
+        if (event.getClickCount() == 2) {
+            cancella(event);
+        }
     }
 
 
     /**
-     * Permette di visualizzare un alert se viene sollevata qualche eccezione
+     * Mostra un alert in caso di errore o informazione.
      *
      * @param title   titolo dell'alert
      * @param message messaggio da mostrare
-     * @param type    tipo enum del messaggio (INFORMATION,ERROR...)
+     * @param type    tipo enum del messaggio (INFORMATION, ERROR...)
      */
     public void showAlert(String title, String message, Alert.AlertType type) {
         alert.setAlertType(type);
         alert.setTitle(title);
-        alert.setHeaderText(message);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void setTransazioneDAO(TransazioneDAO mockTransazioneDAO) {
+        this.transazioniUtente = FXCollections.observableArrayList(mockTransazioneDAO.findAll());
     }
 }

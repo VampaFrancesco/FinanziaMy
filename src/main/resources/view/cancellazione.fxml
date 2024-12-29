@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.15283842794759825" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="460.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.CancellazioneController">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="130.0" prefWidth="328.0">
-         <children>
-            <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elimina transazione">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Text>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-         <children>
-            <ListView fx:id="lista" prefHeight="385.0" prefWidth="328.0" />
-         </children></AnchorPane>
-  </items>
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="538.0" prefWidth="484.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.CancellazioneController">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="557.0" prefWidth="515.0">
+        <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elimina transazione" wrappingWidth="123.587890625">
+            <font>
+              <Font size="15.0" />
+            </font>
+        </Text>
+      <TableView fx:id="lista" layoutY="85.0" onMouseClicked="#gestisciClick" prefHeight="455.0" prefWidth="484.0">
+        <columns>
+          <TableColumn fx:id="codiceTr" prefWidth="75.0" text="Codice Tr." />
+          <TableColumn fx:id="importo" prefWidth="100.0" text="Importo" />
+            <TableColumn fx:id="causale" prefWidth="83.0" text="Causale" />
+            <TableColumn fx:id="data" prefWidth="112.0" text="Data" />
+            <TableColumn fx:id="categoria" prefWidth="112.0" text="Categoria" />
+        </columns>
+      </TableView>
+    </AnchorPane>
 </SplitPane>

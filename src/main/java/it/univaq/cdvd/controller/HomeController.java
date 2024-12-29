@@ -66,38 +66,58 @@ public class HomeController {
     public MenuItem info = new MenuItem();
 
 SessionManager session = SessionManager.getInstance();
-    @FXML
-    public void nuovaTransazioneOnAction(ActionEvent event) {
+
+    @FXML public void nuovaTransazioneOnAction(ActionEvent event) {
 
         nuovaTransazione.setOnAction(evento -> {
+            System.out.println("nuovaTransazione");
             try {
-                apriDialog();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
+                Parent root = loader.load();
+
+
+                Dialog<Void> dialog = new Dialog<>();
+                dialog.setTitle("Nuova Transazione");
+                dialog.getDialogPane().setContent(root);
+
+                dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+                dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+
+                dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+
+                dialog.showAndWait();
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
     }
 
-    public void apriDialog() throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
-            Parent root = loader.load();
+    @FXML
+    public void eliminaTransazione(ActionEvent event) throws IOException {
+        System.out.println("eliminaTransazione");
 
-            Dialog<Void> dialog = new Dialog<>();
-            dialog.setTitle("Nuova Transazione");
-            dialog.getDialogPane().setContent(root);
+        eliminaTransazione.setOnAction(evento -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/cancellazione.fxml"));
+                Parent root = loader.load();
 
-            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
-            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+                Dialog<Void> dialog = new Dialog<>();
+                dialog.setTitle("Elimina Transazione");
+                dialog.getDialogPane().setContent(root);
 
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+                dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+                dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
 
-            dialog.showAndWait();
+                dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+                dialog.showAndWait();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
+
     @FXML
     public void handleLogoutClick (ActionEvent event) {
     session.clearSession();

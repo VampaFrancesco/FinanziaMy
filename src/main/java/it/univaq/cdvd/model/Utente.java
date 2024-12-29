@@ -1,5 +1,6 @@
 package it.univaq.cdvd.model;
 
+import it.univaq.cdvd.dao.TransazioneDAO;
 import jakarta.persistence.*;
 
 
@@ -21,13 +22,13 @@ public class Utente {
     @Column(name = "username", nullable = false, unique = true) // Non può essere null e deve essere univoco
     private String username;
 
-
-    @Id
     @Column(name = "saldo", nullable = false, columnDefinition = "int default 0" ) // Non può essere null e deve essere univoco
     private Double saldo = 0.0;
 
     @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transazione> transazioni = new ArrayList<>();
+
+
 
 
     public Utente() {
@@ -39,7 +40,6 @@ public class Utente {
         this.email = email;
         this.saldo = saldo;
     }
-
 
     public String getUsername() {
         return username;
@@ -59,7 +59,9 @@ public class Utente {
 
 
     public List<Transazione> getTransazioni() {
-        return transazioni;
+        TransazioneDAO dao = new TransazioneDAO();
+        List<Transazione> list = dao.findAll();
+        return list;
     }
 
     public void setTransazioni(List<Transazione> transazioni) {

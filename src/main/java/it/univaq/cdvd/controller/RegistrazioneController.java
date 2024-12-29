@@ -94,7 +94,7 @@ public class RegistrazioneController {
             return false;
         }
 
-        Double saldoIniziale = new Double(saldo);;
+        Double saldoIniziale = new Double(saldo);
 
 
 
