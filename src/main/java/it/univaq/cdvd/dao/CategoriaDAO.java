@@ -1,10 +1,14 @@
 package it.univaq.cdvd.dao;
 
 import it.univaq.cdvd.model.Categoria;
+import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class CategoriaDAO {
 
@@ -26,4 +30,12 @@ public class CategoriaDAO {
         return false;
     }
 */
+    public List<Categoria> getAllCategorie() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("FROM Categoria", Categoria.class).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -49,7 +49,7 @@
                   <MenuItem fx:id="graficoBarre" mnemonicParsing="false" text="Grafico a barre" />
                   <MenuItem fx:id="graficoLinee" mnemonicParsing="false" text="Grafico a linee" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="creaReport" mnemonicParsing="false" text="Crea Report" />
+                  <MenuItem fx:id="creaReport" mnemonicParsing="false" onAction="#reportButtonOnAction" text="Crea Report" />
                </items>
             </Menu>
             <Menu fx:id="info" mnemonicParsing="false" text="Informazioni" />

@@ -76,4 +76,25 @@ public class HomeController {
 
     }
 
+    @FXML
+    public void reportButtonOnAction(ActionEvent event) {
+
+        try {
+            // Carica il file report.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/report.fxml"));
+            Parent root = loader.load();
+
+            // Ottieni lo stage corrente
+            Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+
+            // Imposta la nuova scena con il contenuto del file FXML
+            stage.setScene(new Scene(root));
+
+            // Mostra la scena
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Errore durante il caricamento della pagina report.fxml", e);
+        }
+    }
 }
