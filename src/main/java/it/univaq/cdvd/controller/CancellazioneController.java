@@ -4,6 +4,7 @@ import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.SessionManager;
+import it.univaq.cdvd.util.ShowAlert;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,7 +29,7 @@ public class CancellazioneController {
     @FXML private TableColumn<Transazione, LocalDate> data;
     @FXML private TableColumn<Transazione, String> categoria;
 
-    private Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private ShowAlert sa;
 
     private Utente utente;
 
@@ -47,7 +48,7 @@ public class CancellazioneController {
             caricaTransazioni();
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Errore", "Errore durante l'inizializzazione: " + e.getMessage(), Alert.AlertType.ERROR);
+            sa.showAlert("Errore", "Errore durante l'inizializzazione: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -73,7 +74,7 @@ public class CancellazioneController {
             lista.setItems(transazioniUtente);
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("Errore", "Errore durante il caricamento delle transazioni: " + e.getMessage(), Alert.AlertType.ERROR);
+            sa.showAlert("Errore", "Errore durante il caricamento delle transazioni: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -82,7 +83,7 @@ public class CancellazioneController {
 
         Transazione transazione = lista.getSelectionModel().getSelectedItem();
         if(transazione == null){
-            showAlert("Errore", "Seleziona una transazione", Alert.AlertType.WARNING);
+            sa.showAlert("Errore", "Seleziona una transazione", Alert.AlertType.WARNING);
         }
 
         TransazioneDAO transazioneDAO = new TransazioneDAO();
@@ -90,9 +91,9 @@ public class CancellazioneController {
         boolean eliminata = transazioneDAO.eliminaTransazione(transazione.getId());
         if(eliminata){
             transazioniUtente.remove(transazione);
-            showAlert("Successo", "Transazione eliminata", Alert.AlertType.INFORMATION);
+            sa.showAlert("Successo", "Transazione eliminata", Alert.AlertType.INFORMATION);
         }else{
-            showAlert("Errore", "Errore durante l'eliminazione della transazione", Alert.AlertType.ERROR);
+            sa.showAlert("Errore", "Errore durante l'eliminazione della transazione", Alert.AlertType.ERROR);
         }
     }
 
@@ -105,22 +106,5 @@ public class CancellazioneController {
     }
 
 
-    /**
-     * Mostra un alert in caso di errore o informazione.
-     *
-     * @param title   titolo dell'alert
-     * @param message messaggio da mostrare
-     * @param type    tipo enum del messaggio (INFORMATION, ERROR...)
-     */
-    public void showAlert(String title, String message, Alert.AlertType type) {
-        alert.setAlertType(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
-    public void setTransazioneDAO(TransazioneDAO mockTransazioneDAO) {
-        this.transazioniUtente = FXCollections.observableArrayList(mockTransazioneDAO.findAll());
-    }
 }

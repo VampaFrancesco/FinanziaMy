@@ -37,7 +37,7 @@ public class HomeController {
     @FXML
     public MenuItem eliminaTransazione = new MenuItem();
     @FXML
-    public MenuItem elencoTransazioni = new MenuItem();
+    public MenuItem modificaTransazione = new MenuItem();
     @FXML
     public MenuItem casa = new MenuItem();
     @FXML
@@ -72,6 +72,7 @@ SessionManager session = SessionManager.getInstance();
     @FXML public void initialize(){
         nuovaTransazione.setOnAction(this::nuovaTransazioneOnAction);
         eliminaTransazione.setOnAction(this::eliminaTransazione);
+        modificaTransazione.setOnAction(this::eliminaTransazione);
     }
 
     @FXML public void nuovaTransazioneOnAction(ActionEvent event) {
@@ -111,6 +112,25 @@ SessionManager session = SessionManager.getInstance();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+    }
+
+    @FXML
+    public void modificaTransazione(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifica.fxml"));
+            Parent root = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Modifica Transazione");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @FXML

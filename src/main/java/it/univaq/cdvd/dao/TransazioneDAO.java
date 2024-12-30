@@ -65,8 +65,6 @@ public class TransazioneDAO {
         return transazioni;
     }
 
-
-
     public boolean eliminaTransazione(long idTransazione) {
         Transaction transaction = null;
 
@@ -93,6 +91,21 @@ public class TransazioneDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean modifica(Transazione transazione) {
+        Transaction tx = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            session.update(transazione);
+            tx.commit();
+            return true;
+        }catch(Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+        }
+        return false;
     }
 
 }
