@@ -3,6 +3,7 @@ package it.univaq.cdvd.controller;
 import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,6 +60,7 @@ public class InserimentoController {
             tx.setNomeCategoria(categoriaList.getValue());
             tx.setData(data.getValue());
             tx.setCategoria(casa);
+            tx.setUtente(SessionManager.getInstance().getUtente());
             System.out.println(tx);
 
             if(tdao.save(tx)){

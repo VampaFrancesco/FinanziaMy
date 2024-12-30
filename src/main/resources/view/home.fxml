@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -25,8 +26,8 @@
             <Menu mnemonicParsing="false" text="Transazioni">
                <items>
                   <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
-                  <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" text="Elimina transazione" />
-                  <MenuItem fx:id="elencoTransazioni" mnemonicParsing="false" text="Elenco transazoini" />
+                  <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elimina transazione" />
+                  <MenuItem fx:id="elencoTransazioni" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elenco transazoini" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Categoria">
@@ -77,5 +78,6 @@
             <Image url="@../img/logoAuth.png" />
          </image>
       </ImageView>
+      <Button fx:id="logoutButton" layoutX="529.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleLogoutClick" prefHeight="25.0" prefWidth="61.0" text="Logout" />
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,8 @@ public class LoginController {
     public PasswordField passwordPasswordField;
     @FXML
     public Label loginMessageLabel;
+
+    SessionManager session = SessionManager.getInstance();
 
     public LoginController() {
        annulButton = new Button();
@@ -71,6 +74,9 @@ public class LoginController {
         Utente user = loginDao.findUserByUsernameAndPassword(username, password);
 
         if (user != null) {
+            session.setUtente(user);
+            System.out.println("Utente loggato: " + session.getUtente());
+
             loginMessageLabel.setText("Benvenuto " + user.getUsername() + "!");
             try {
                 // Carica il file auth.fxml

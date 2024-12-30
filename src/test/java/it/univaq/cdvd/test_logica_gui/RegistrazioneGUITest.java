@@ -25,13 +25,13 @@ public class RegistrazioneGUITest extends ApplicationTest {
         stage.setScene(scene);
         stage.show();
     }
-   /* @Test
+    @Test
     void registerButtonTest() throws Exception {
 
         clickOn(controller.usernameTextField).write("Paola");
         clickOn(controller.passwordPasswordField).write("p");
         clickOn(controller.emailTextField).write("esempio@gmail.com");
-
+        clickOn(controller.saldoTextField).write("0.00");
         clickOn(controller.registratiButton);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
@@ -44,7 +44,7 @@ public class RegistrazioneGUITest extends ApplicationTest {
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
     }
 
-    */
+
     @Test
 
     void testAnnulButtonDisplaysLandingPage() throws Exception {
