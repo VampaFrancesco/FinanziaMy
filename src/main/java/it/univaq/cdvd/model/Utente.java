@@ -84,4 +84,8 @@ public class Utente {
     public double getSaldo() {
         return this.saldo;
     }
+
+    public String getEmail() {
+        return this.email;
+    }
 }
