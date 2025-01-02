@@ -140,13 +140,13 @@ TransazioneDAO transazioneDAO = new TransazioneDAO();
     session.clearSession();
     System.out.println("utente logout" + session.getUtente());
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
             Parent root = loader.load();
 
-            // Ottieni la finestra corrente e imposta la nuova scena
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Ottieni la finestra corrente
+            Stage stage = (Stage) tabellaTransazioni.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle("Pagina Iniziale");
+            stage.setTitle("Login");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
