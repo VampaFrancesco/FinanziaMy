@@ -109,6 +109,30 @@ public class UtenteDAO {
         Double saldo = utente.getSaldo();
         saveUser(username, email, password, saldo);
     }
+
+    public void updateSaldo(Utente utente, Double transazione) {
+        // Calcola il nuovo saldo
+        double nuovoSaldo = utente.getSaldo() + transazione;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            // Aggiorna il saldo utilizzando lo username
+            String hql = "UPDATE Utente SET saldo = :nuovoSaldo WHERE username = :username";
+            Query query = session.createQuery(hql);
+            query.setParameter("nuovoSaldo", nuovoSaldo);
+            query.setParameter("username", utente.getUsername());
+
+            int rowsAffected = query.executeUpdate(); // Ritorna il numero di righe aggiornate
+            if (rowsAffected > 0) {
+                utente.setSaldo(nuovoSaldo); // Aggiorna il saldo anche nell'oggetto in memoria
+            }
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
