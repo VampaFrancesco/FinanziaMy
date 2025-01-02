@@ -1,10 +1,16 @@
 package it.univaq.cdvd.dao;
 
+import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
+import it.univaq.cdvd.util.SessionManager;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
+
+
 
 
 public class UtenteDAO {
@@ -31,6 +37,7 @@ public class UtenteDAO {
 
     /**
      * Metodo per restituire un utente dal DB dato il suo username
+     *
      * @param username
      * @return
      */
@@ -47,22 +54,51 @@ public class UtenteDAO {
     }
 
     /**
-     * metodo per inserire un utente nel DB
+     * Metodo per inserire un utente nel DB
+     *
      * @param username
      * @param email
      * @param password
      * @throws Exception
      */
-    public void saveUser(String username, String email, String password) throws Exception {
-        if ((email.trim().isEmpty()) || (username.trim().isEmpty()) || (password.trim().isEmpty())) {
-            throw new Exception("Email, username e password non possono essere vuoti!");
-
+    public boolean saveUser(String username, String email, String password, Double saldoIniziale) {
+        // Verifica se i campi obbligatori sono vuoti
+        if (email.trim().isEmpty() || username.trim().isEmpty() || password.trim().isEmpty()) {
+            System.err.println("Email, username e password non possono essere vuoti!");
+            return false;
         }
-        Utente nuovoUtente = new Utente(username, email, password);
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(nuovoUtente); // Salva il nuovo utente
-        transaction.commit();
-        session.close(); // Chiudi la sessione
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Controlla se l'utente esiste già
+            Utente utenteEsistente = findUserByUsername(username);
+            if (utenteEsistente != null) {
+                System.err.println("Username già esistente.");
+                return false;
+            }
+
+            // Crea un nuovo utente e salva
+            Utente nuovoUtente = new Utente(username, email, password, saldoIniziale);
+            Transaction transaction = session.beginTransaction();
+            session.save(nuovoUtente); // Salva il nuovo utente
+            transaction.commit();
+            return true; // Salvataggio riuscito
+        } catch (ConstraintViolationException e) {
+            // Gestione della violazione del vincolo di unicità
+            System.err.println("Errore: Username già esistente. " + e.getMessage());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
+
+//    public ArrayList<Transazione> getTransazione() {
+//        Session session = null;
+//        Utente utente = SessionManager.getInstance().getUtente();
+//        try {
+//
+//
+//        }
+//    }
+
 }

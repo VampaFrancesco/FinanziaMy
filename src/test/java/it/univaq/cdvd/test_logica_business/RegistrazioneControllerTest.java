@@ -4,6 +4,8 @@ import it.univaq.cdvd.controller.RegistrazioneController;
 import it.univaq.cdvd.dao.UtenteDAO;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RegistrazioneControllerTest {
@@ -12,17 +14,14 @@ public class RegistrazioneControllerTest {
     @Test
     public void testUnvalidRegistration() {
         UtenteDAO utenteDAO = new UtenteDAO();
-        assertThrows(Exception.class, () -> {
-            utenteDAO.saveUser("", "", "");
-        });
+        assertFalse( utenteDAO.saveUser("", "", "",0.0));
     }
 
     // test che verifica che non si possano inserire utenti già esistenti
     @Test
     public void testExistingUser() {
         UtenteDAO utenteDAO = new UtenteDAO();
-        assertThrows(Exception.class, () -> {
-            utenteDAO.saveUser("prova", "x", "x"); //utente "prova" già presente nel DB
-        });
+        assertFalse(utenteDAO.saveUser("prova", "x", "x", 0.0));
+
     }
 }

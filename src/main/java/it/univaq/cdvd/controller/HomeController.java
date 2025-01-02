@@ -1,6 +1,7 @@
 package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,10 +10,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import jdk.internal.org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HomeController {
 
@@ -63,37 +67,17 @@ public class HomeController {
     @FXML
     public MenuItem info = new MenuItem();
 
+    SessionManager session = SessionManager.getInstance();
 
-    @FXML public void initialize(){
+    @FXML
+    public void initialize() {
         nuovaTransazione.setOnAction(this::nuovaTransazioneOnAction);
-        aggiungiCategoria.setOnAction(this::aggiuntaCategoriaOnAction);
+        eliminaTransazione.setOnAction(this::eliminaTransazione);
     }
 
     @FXML
     public void nuovaTransazioneOnAction(ActionEvent event) {
-
-        nuovaTransazione.setOnAction(evento -> {
-            try {
-                apriDialog();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
-
-    @FXML
-    public void aggiuntaCategoriaOnAction(ActionEvent event) {
-
-        aggiungiCategoria.setOnAction(evento -> {
-            try {
-                apriDialogCategoria();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
-
-    public void apriDialog() throws IOException {
+        System.out.println("nuovaTransazione");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
             Parent root = loader.load();
@@ -101,39 +85,33 @@ public class HomeController {
             Dialog<Void> dialog = new Dialog<>();
             dialog.setTitle("Nuova Transazione");
             dialog.getDialogPane().setContent(root);
-
             dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
             dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
-
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-
             dialog.showAndWait();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
-    public void apriDialogCategoria() throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/aggiuntacategoria.fxml"));
-            Parent root = loader.load();
+        @FXML
+        public void handleLogoutClick (ActionEvent event){
+            session.clearSession();
+            System.out.println("utente logout" + session.getUtente());
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
+                Parent root = loader.load();
 
-            Dialog<Void> dialog = new Dialog<>();
-            dialog.setTitle("Aggiungi Categoria");
-            dialog.getDialogPane().setContent(root);
+                // Ottieni la finestra corrente e imposta la nuova scena
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Pagina Iniziale");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
-            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
-
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-
-            dialog.showAndWait();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-
     }
 }
