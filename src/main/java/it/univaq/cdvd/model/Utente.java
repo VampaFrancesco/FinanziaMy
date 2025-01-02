@@ -2,6 +2,9 @@ package it.univaq.cdvd.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Utente") // Nome della tabella nel database
 public class Utente {
@@ -15,6 +18,9 @@ public class Utente {
     @Id
     @Column(name = "username", nullable = false, unique = true) // Non può essere null e deve essere univoco
     private String username;
+
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Categoria> categoria = new ArrayList<>();
 
     public Utente() {
     }

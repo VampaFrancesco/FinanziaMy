@@ -32,6 +32,10 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transazione> transazioni = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_utente", referencedColumnName = "username")
+    private Utente utente;
+
     // Getters e Setters
     public Long getId() {
         return id;
