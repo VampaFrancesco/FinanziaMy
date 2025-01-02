@@ -66,13 +66,13 @@ public class RegistrazioneGUITest extends ApplicationTest {
     //verifica che l'utente corretto sia nella sessione corrente
     @Test
     public void testSession () {
-        clickOn(controller.usernameTextField).write("prova2");
+        clickOn(controller.usernameTextField).write("prova3");
         clickOn(controller.passwordPasswordField).write("p");
         clickOn(controller.emailTextField).write("esempio@gmail.com");
         clickOn(controller.saldoTextField).write("0.00");
         clickOn(controller.registratiButton);
 
-        assertEquals(SessionManager.getInstance().getUtente().getUsername(),"prova2");
+        assertEquals(SessionManager.getInstance().getUtente().getUsername(),"prova3");
     }
 
 
