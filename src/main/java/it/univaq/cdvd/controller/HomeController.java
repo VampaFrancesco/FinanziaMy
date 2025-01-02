@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import jdk.internal.org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
 import java.util.Objects;
