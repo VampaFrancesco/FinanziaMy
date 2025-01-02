@@ -1,5 +1,6 @@
 package it.univaq.cdvd.dao;
 import it.univaq.cdvd.model.Categoria;
+import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,4 +62,51 @@ public class CategoriaDAO {
         return categoria;
     }
 
+    public List<Categoria> findAll() {
+        List<Categoria> categorie = new ArrayList<>();
+
+
+        Session session = null;
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.createQuery("from Categoria");
+            for (Object o : query.list()) {
+                System.out.println(o.toString());
+                categorie.add((Categoria) o);
+            }
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return categorie;
+    }
+
+    public boolean eliminaCategoria(long idCategoria) {
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Inizia una transazione
+            transaction = session.beginTransaction();
+
+            // Recupera l'entità da eliminare
+            Categoria categoria = session.get(Categoria.class, idCategoria);
+            if (categoria != null) {
+                // Elimina l'entità
+                session.delete(categoria);
+                // Conferma la transazione
+                transaction.commit();
+                return true;
+            } else {
+                System.out.println("Transazione non trovata con ID: " + idCategoria);
+                return false;
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Rollback in caso di errore
+            }
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

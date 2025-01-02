@@ -27,7 +27,7 @@
                <items>
                   <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
                   <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elimina transazione" />
-                  <MenuItem fx:id="elencoTransazioni" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elenco transazoini" />
+                  <MenuItem fx:id="modificaTransazione" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elenco transazoini" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Categoria">

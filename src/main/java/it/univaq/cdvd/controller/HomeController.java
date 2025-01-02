@@ -37,7 +37,7 @@ public class HomeController {
     @FXML
     public MenuItem eliminaTransazione = new MenuItem();
     @FXML
-    public MenuItem elencoTransazioni = new MenuItem();
+    public MenuItem modificaTransazione = new MenuItem();
     @FXML
     public MenuItem casa = new MenuItem();
     @FXML
@@ -73,6 +73,9 @@ public class HomeController {
     public void initialize() {
         nuovaTransazione.setOnAction(this::nuovaTransazioneOnAction);
         eliminaTransazione.setOnAction(this::eliminaTransazione);
+        aggiungiCategoria.setOnAction(this::aggiuntaCategoriaOnAction);
+        eliminaCategoria.setOnAction(this::eliminaCategoriaOnAction);
+        modificaTransazione.setOnAction(this::modificaTransazione);
     }
 
     @FXML
@@ -95,6 +98,81 @@ public class HomeController {
         }
     }
 
+    @FXML
+    public void aggiuntaCategoriaOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/aggiuntacategoria.fxml"));
+            Parent root = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Nuova Categoria");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public void eliminaCategoriaOnAction(ActionEvent event)  {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/eliminaCategoria.fxml"));
+            Parent root = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Elimina Categoria");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void eliminaTransazione(ActionEvent event)  {
+        System.out.println("eliminaTransazione");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/cancellazione.fxml"));
+            Parent root = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Elimina Transazione");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void modificaTransazione(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifica.fxml"));
+            Parent root = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Modifica Transazione");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
         @FXML
         public void handleLogoutClick (ActionEvent event){
             session.clearSession();
@@ -114,4 +192,3 @@ public class HomeController {
 
         }
     }
-}
