@@ -3,6 +3,7 @@ package it.univaq.cdvd.controller;
 import it.univaq.cdvd.dao.CategoriaDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.util.SessionManager;
 import it.univaq.cdvd.util.ShowAlert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +28,9 @@ public class AggiuntaCategoriaController {
         try {
 
             Categoria c = new Categoria();
+            c.setId(1L);
             c.setNome(nomeCategoria.getText());
+            c.setUtente(SessionManager.getInstance().getUtente());
 
             System.out.println(c);
 

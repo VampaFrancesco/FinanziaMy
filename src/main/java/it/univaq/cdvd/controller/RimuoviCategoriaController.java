@@ -50,7 +50,7 @@ public class RimuoviCategoriaController {
         try {
             // Recupera le transazioni legate all'utente dal DAO
             CategoriaDAO categoriaDAO = new CategoriaDAO();
-            List<Categoria> categorie = categoriaDAO.findAll();
+            List<Categoria> categorie = categoriaDAO.findByUtente(SessionManager.getInstance().getUtente().getUsername());
 
             // Converte la lista in un ObservableList
             listaCategorie = FXCollections.observableArrayList(categorie);

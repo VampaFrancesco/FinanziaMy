@@ -1,6 +1,7 @@
 package it.univaq.cdvd.dao;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,7 +66,6 @@ public class CategoriaDAO {
     public List<Categoria> findAll() {
         List<Categoria> categorie = new ArrayList<>();
 
-
         Session session = null;
 
         try {
@@ -109,4 +109,52 @@ public class CategoriaDAO {
             return false;
         }
     }
+
+   /** public ObservableList<Categoria> findByUtente(String username) {
+        List<Categoria> categorie = new ArrayList<>();
+        ObservableList<Categoria> categorieList = FXCollections.observableArrayList();
+
+        Session session = null;
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.createQuery("from Categoria ategoria where utente.username = :username");
+            for (Object o : query.list()) {
+                System.out.println(o.toString());
+                categorie.add((Categoria) o);
+            }
+            categorieList.addAll(categorie);
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return categorieList;
+    }*/
+   public ObservableList<Categoria> findByUtente(String username) {
+       List<Categoria> categorie = new ArrayList<>();
+       ObservableList<Categoria> categorieList = FXCollections.observableArrayList();
+
+       Session session = null;
+
+       try {
+           session = HibernateUtil.getSessionFactory().openSession();
+           // Modifica della query per utilizzare il nome corretto della proprietà
+           Query query = session.createQuery("from Categoria where utente.username = :username");
+           query.setParameter("username", username);  // Impostazione del parametro username
+           for (Object o : query.list()) {
+               System.out.println(o.toString());
+               categorie.add((Categoria) o);
+           }
+           categorieList.addAll(categorie);
+
+       } catch (Exception e) {
+           e.printStackTrace();
+       } finally {
+           if (session != null) {
+               session.close(); // Chiudere la sessione Hibernate
+           }
+       }
+       return categorieList;
+   }
+
 }
