@@ -1,8 +1,13 @@
 package it.univaq.cdvd.controller;
 
+import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.SessionManager;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +21,8 @@ import javafx.stage.Stage;
 //import jdk.internal.org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 public class HomeController {
 
@@ -65,8 +72,37 @@ public class HomeController {
     public MenuItem creaReport = new MenuItem();
     @FXML
     public MenuItem info = new MenuItem();
+    @FXML
+    private TableColumn<Transazione, String> categoriaColumn;
+    @FXML
+    private TableColumn<Transazione, Double> importoColumn;
+    @FXML
+    private TableColumn<Transazione, LocalDate> dataColumn;
+    @FXML
+    private TableColumn<Transazione, String> causaleColumn;
 
 SessionManager session = SessionManager.getInstance();
+TransazioneDAO transazioneDAO = new TransazioneDAO();
+
+
+    @FXML
+    public void initialize() {
+        // Lega i valori alle proprietà della classe Transazione
+        categoriaColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty((cellData.getValue().getCategoria().getNome())));
+
+        importoColumn.setCellValueFactory(cellData ->
+                new SimpleObjectProperty<>(cellData.getValue().getImporto()));
+
+        dataColumn.setCellValueFactory(cellData ->
+                new SimpleObjectProperty<>(cellData.getValue().getData()));
+
+        causaleColumn.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCausale()));
+
+        // Popola la tabella con i dati dell'utente corrente
+        popolaTabellaTransazioni();
+    }
     @FXML
     public void nuovaTransazioneOnAction(ActionEvent event) {
 
@@ -122,6 +158,18 @@ SessionManager session = SessionManager.getInstance();
         Utente utente = session.getUtente();
         String saldoUtente = Double.toString(utente.getSaldo());
         saldo.setText("$ " + saldoUtente);
+    }
+    private void popolaTabellaTransazioni() {
+        // Ottieni l'utente dalla sessione
+        Utente utenteCorrente = SessionManager.getInstance().getUtente();
+
+        if (utenteCorrente != null) {
+            // Ottieni le transazioni dal database per l'utente
+            List<Transazione> transazioni = transazioneDAO.findTransactionByUser(utenteCorrente);
+            // Converti la lista in ObservableList e imposta nella tabella
+            ObservableList<Transazione> transazioniObservable = FXCollections.observableArrayList(transazioni);
+            tabellaTransazioni.setItems(transazioniObservable);
+        }
     }
 
 }

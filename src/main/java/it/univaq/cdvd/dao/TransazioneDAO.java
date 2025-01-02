@@ -1,10 +1,15 @@
 package it.univaq.cdvd.dao;
 
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import java.util.Collections;
+import java.util.List;
 
 public class TransazioneDAO {
 
@@ -35,5 +40,17 @@ public class TransazioneDAO {
             }
         }
         return false;
+    }
+
+    public List<Transazione> findTransactionByUser(Utente utente) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Transazione t WHERE t.utente = :utente";
+            Query<Transazione> query = session.createQuery(hql, Transazione.class);
+            query.setParameter("utente", utente);
+            return query.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 }
