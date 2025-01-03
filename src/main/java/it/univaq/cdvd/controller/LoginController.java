@@ -61,15 +61,15 @@ public class LoginController {
 
     }
 
-    @FXML
     public void loginButtonOnAction(ActionEvent event) {
         String username = usernameTextField.getText();
         String password = passwordPasswordField.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
-            loginMessageLabel.setText("inserisci username e password.");
+            loginMessageLabel.setText("Inserisci username e password.");
             return;
         }
+
         // Esegui la query e controlla il risultato
         Utente user = loginDao.findUserByUsernameAndPassword(username, password);
 
@@ -79,9 +79,15 @@ public class LoginController {
 
             loginMessageLabel.setText("Benvenuto " + user.getUsername() + "!");
             try {
-                // Carica il file auth.fxml
+                // Carica il file home.fxml
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
                 Parent root = loader.load();
+
+                // Ottieni il controller della home
+                HomeController homeController = loader.getController();
+
+                // Imposta i dati iniziali della home
+                homeController.showSaldo(); // Aggiorna il saldo dell'utente
 
                 // Ottieni la finestra corrente e imposta la nuova scena
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

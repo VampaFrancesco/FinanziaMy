@@ -56,7 +56,7 @@
             <Menu fx:id="info" mnemonicParsing="false" text="Informazioni" />
          </menus>
       </MenuBar>
-      <Label fx:id="saldo" alignment="CENTER" contentDisplay="CENTER" layoutX="248.0" layoutY="38.0" prefHeight="56.0" prefWidth="117.0" text="\$ 10,00">
+      <Label fx:id="saldo" alignment="CENTER" contentDisplay="CENTER" layoutX="248.0" layoutY="38.0" prefHeight="56.0" prefWidth="117.0">
          <font>
             <Font size="30.0" />
          </font>
@@ -65,10 +65,10 @@
          <children>
             <TableView fx:id="tabellaTransazioni" prefHeight="231.0" prefWidth="526.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Categoria" />
-                <TableColumn prefWidth="75.0" text="Importo" />
-                  <TableColumn prefWidth="75.0" text="Data" />
-                  <TableColumn prefWidth="298.39990234375" text="Casuale" />
+                 <TableColumn fx:id="categoriaColumn" prefWidth="75.0" text="Categoria" />
+                 <TableColumn fx:id="importoColumn" prefWidth="75.0" text="Importo" />
+                 <TableColumn fx:id="dataColumn" prefWidth="75.0" text="Data" />
+                 <TableColumn fx:id="causaleColumn" prefWidth="298.4" text="Causale" />
               </columns>
             </TableView>
          </children>

@@ -9,8 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
-
-
+import org.mindrot.jbcrypt.BCrypt;
 
 
 public class UtenteDAO {
@@ -24,11 +23,18 @@ public class UtenteDAO {
      */
     public Utente findUserByUsernameAndPassword(String username, String password) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM Utente WHERE username = :username AND password = :password";
+            // Recupera l'utente con lo username specificato
+            String hql = "FROM Utente WHERE username = :username";
             Query<Utente> query = session.createQuery(hql, Utente.class);
             query.setParameter("username", username);
-            query.setParameter("password", password);
-            return query.uniqueResult(); // Restituisce l'utente o null se non trovato
+            Utente utente = query.uniqueResult();
+
+            // Verifica se l'utente esiste e se la password corrisponde
+            if (utente != null && BCrypt.checkpw(password, utente.getPassword())) {
+                return utente; // Restituisce l'utente se la password corrisponde
+            } else {
+                return null; // Utente non trovato o password errata
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -76,8 +82,11 @@ public class UtenteDAO {
                 return false;
             }
 
+            // Cripta la password usando BCrypt
+            String passwordCriptata = BCrypt.hashpw(password, BCrypt.gensalt());
+
             // Crea un nuovo utente e salva
-            Utente nuovoUtente = new Utente(username, email, password, saldoIniziale);
+            Utente nuovoUtente = new Utente(username, email, passwordCriptata, saldoIniziale);
             Transaction transaction = session.beginTransaction();
             session.save(nuovoUtente); // Salva il nuovo utente
             transaction.commit();
@@ -92,6 +101,17 @@ public class UtenteDAO {
         }
     }
 
+    // per salvare nel db un utente direttamente come ogetto.
+    public void save(Utente utente) {
+        String username = utente.getUsername();
+        String email = utente.getEmail();
+        String password = utente.getPassword();
+        Double saldo = utente.getSaldo();
+        saveUser(username, email, password, saldo);
+    }
+}
+
+
 //    public ArrayList<Transazione> getTransazione() {
 //        Session session = null;
 //        Utente utente = SessionManager.getInstance().getUtente();
@@ -101,4 +121,4 @@ public class UtenteDAO {
 //        }
 //    }
 
-}
+// }

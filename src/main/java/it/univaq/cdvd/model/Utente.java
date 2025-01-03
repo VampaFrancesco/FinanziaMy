@@ -67,7 +67,9 @@ public class Utente {
     public void setTransazioni(List<Transazione> transazioni) {
         this.transazioni = transazioni;
     }
-
+    public void setEmail(String mail) {
+        this.email = mail;
+    }
 
     @Override
     public String toString() {
@@ -76,5 +78,17 @@ public class Utente {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void setSaldo(double v) {
+        this.saldo = saldo;
+    }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+
+    public String getEmail() {
+        return this.email;
     }
 }

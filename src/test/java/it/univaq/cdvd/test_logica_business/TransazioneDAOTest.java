@@ -1,8 +1,10 @@
 package it.univaq.cdvd.test_logica_business;
 
 import it.univaq.cdvd.dao.TransazioneDAO;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -12,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TransazioneDAOTest {
-
+UtenteDAO utenteDAO = new UtenteDAO();
     private TransazioneDAO transazioneDAO;
 
     @BeforeAll
@@ -28,6 +30,14 @@ public class TransazioneDAOTest {
 
     @Test
     public void testSave() {
+        Utente utente = new Utente();
+        utente.setUsername("testuser");
+        utente.setEmail("test@example.com");
+        utente.setPassword("password");
+        utente.setSaldo(1000.0);
+
+        // Salva l'utente nel database (necessario per mantenere l'integrità referenziale)
+        utenteDAO.save(utente);
         // Crea una nuova transazione di test
         Transazione transazione = new Transazione();
         transazione.setId(1L);
@@ -36,6 +46,7 @@ public class TransazioneDAOTest {
         transazione.setNomeCategoria("casa");
         transazione.setData(java.time.LocalDate.now());
         transazione.setCategoria(new Categoria(1L,"casa"));
+        transazione.setUtente(utente);
 
         // Verifica che la transazione venga salvata con successo
         boolean result = transazioneDAO.save(transazione);
