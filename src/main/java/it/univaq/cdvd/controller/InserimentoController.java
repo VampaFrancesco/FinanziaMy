@@ -1,14 +1,18 @@
 package it.univaq.cdvd.controller;
 
+import it.univaq.cdvd.dao.CategoriaDAO;
 import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.util.SessionManager;
+import it.univaq.cdvd.util.ShowAlert;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import org.hibernate.Session;
 
 public class InserimentoController {
 
@@ -25,17 +29,15 @@ public class InserimentoController {
 
 
     TransazioneDAO tdao = new TransazioneDAO();
-    public Categoria casa = new Categoria(1L,"casa");
-    public Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    CategoriaDAO cdao = new CategoriaDAO();
+    ShowAlert sa = new ShowAlert();
 
 
     @FXML public void initialize() {
         text.setAlignment(Pos.CENTER);
+        labelCausale.setAlignment(Pos.CENTER);
         importo.setAlignment(Pos.CENTER);
-        Categoria casa = new Categoria("casa");
-        Categoria spesa = new Categoria("spesa");
-        Categoria viaggio = new Categoria("viaggio");
-        categoriaList.setItems(FXCollections.observableArrayList(casa.getNome(), spesa.getNome(), viaggio.getNome()));
+        categoriaList.setItems(cdao.listaCategoria());
     }
 
     /**
@@ -47,46 +49,34 @@ public class InserimentoController {
         try {
 
             if(importo.getText().isEmpty() || causale.getText().isEmpty() || categoriaList.getValue() == null || data.getValue() == null){
-                showAlert("Errore", "Compila tutti i campi obbligatoriamente", Alert.AlertType.ERROR);
+                sa.showAlert("Errore", "Compila tutti i campi obbligatoriamente", Alert.AlertType.ERROR);
                 return;
             }
 
             Transazione tx = new Transazione();
 
-            tx.setId(1L);
             tx.setImporto(inserisciImporto.getText().isEmpty() ? 0 : Double.parseDouble(inserisciImporto.getText()));
             tx.setCausale(causale.getText());
             tx.setNomeCategoria(categoriaList.getValue());
             tx.setData(data.getValue());
-            tx.setCategoria(casa);
+            tx.setCategoria(cdao.cercaCategoria(categoriaList.getValue()));
+            tx.setUtente(SessionManager.getInstance().getUtente());
             System.out.println(tx);
 
             if(tdao.save(tx)){
-                showAlert("Transazione inserita", "Transazione inserita con successo", Alert.AlertType.INFORMATION);
+                sa.showAlert("Transazione inserita", "Transazione inserita con successo", Alert.AlertType.INFORMATION);
             }else{
-                showAlert("Transazione non inserita", "Transazione non inserita", Alert.AlertType.ERROR);
+                sa.showAlert("Transazione non inserita", "Transazione non inserita", Alert.AlertType.ERROR);
             }
         } catch (NumberFormatException e) {
-            showAlert("Errore","Importo non valido", Alert.AlertType.ERROR);
+            sa.showAlert("Errore","Importo non valido", Alert.AlertType.ERROR);
         }
         catch (Exception e){
-            showAlert("Si è verificato un errore", e.getMessage(), Alert.AlertType.ERROR);
+            sa.showAlert("Si è verificato un errore", e.getMessage(), Alert.AlertType.ERROR);
         }
 
     }
 
-    /**
-     * Permette di visualizzare un alert se viene sollevata qualche eccezione
-     * @param title titolo dell'alert
-     * @param message messaggio da mostrare
-     * @param type tipo enum del messaggio (INFORMATION,ERROR...)
-     */
-    public void showAlert(String title, String message, Alert.AlertType type){
-        alert.setAlertType(type);
-        alert.setTitle(title);
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
 
 }
 

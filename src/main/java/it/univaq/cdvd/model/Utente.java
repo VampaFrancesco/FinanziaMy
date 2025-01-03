@@ -1,6 +1,12 @@
 package it.univaq.cdvd.model;
 
+import it.univaq.cdvd.dao.TransazioneDAO;
 import jakarta.persistence.*;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "Utente") // Nome della tabella nel database
@@ -16,15 +22,24 @@ public class Utente {
     @Column(name = "username", nullable = false, unique = true) // Non può essere null e deve essere univoco
     private String username;
 
+    @Column(name = "saldo", nullable = false, columnDefinition = "int default 0" ) // Non può essere null e deve essere univoco
+    private Double saldo = 0.0;
+
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transazione> transazioni = new ArrayList<>();
+
+
+
+
     public Utente() {
     }
 
-    public Utente(String username, String email, String password) {
+    public Utente(String username, String email, String password, Double saldo) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.saldo = saldo;
     }
-
 
     public String getUsername() {
         return username;
@@ -43,6 +58,19 @@ public class Utente {
     }
 
 
+    public List<Transazione> getTransazioni() {
+        TransazioneDAO dao = new TransazioneDAO();
+        List<Transazione> list = dao.findAll();
+        return list;
+    }
+
+    public void setTransazioni(List<Transazione> transazioni) {
+        this.transazioni = transazioni;
+    }
+    public void setEmail(String mail) {
+        this.email = mail;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -50,5 +78,17 @@ public class Utente {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void setSaldo(double v) {
+        this.saldo = saldo;
+    }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+
+    public String getEmail() {
+        return this.email;
     }
 }
