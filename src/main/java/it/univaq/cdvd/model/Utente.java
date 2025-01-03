@@ -77,4 +77,8 @@ public class Utente {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    public Utente getUtente() {
+        return this;
+    }
 }

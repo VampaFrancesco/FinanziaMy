@@ -2,6 +2,7 @@ package it.univaq.cdvd.dao;
 
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
+import it.univaq.cdvd.util.SessionManager;
 import it.univaq.cdvd.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -97,13 +98,17 @@ public class TransazioneDAO {
 
     public List<Transazione> getTransazioni(String categoria, LocalDate dataInizio, LocalDate dataFine) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            Utente utenteCorrente = SessionManager.getInstance().getUtente();
+
             return session.createQuery(
-                            "FROM Transazione WHERE nome_categoria = :categoria AND data >= :dataInizio AND data <= :dataFine",
+                            "FROM Transazione WHERE nome_categoria = :categoria AND data >= :dataInizio AND data <= :dataFine AND utente = :utenteId",
                             Transazione.class
                     )
                     .setParameter("categoria", categoria)
                     .setParameter("dataInizio", dataInizio)
                     .setParameter("dataFine", dataFine)
+                    .setParameter("utenteId", utenteCorrente.getUtente())
                     .list();
         } catch (Exception e) {
             e.printStackTrace();
