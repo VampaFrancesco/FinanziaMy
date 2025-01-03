@@ -3,8 +3,10 @@ package it.univaq.cdvd.controller;
 import it.univaq.cdvd.dao.CategoriaDAO;
 import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.model.Categoria;
-import it.univaq.cdvd.model.PDFGenerator;
+import it.univaq.cdvd.model.Utente;
+import it.univaq.cdvd.util.PDFGenerator;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,7 +67,11 @@ public class ReportController {
 
         // Chiama il metodo DAO per recuperare le transazioni
         TransazioneDAO dao = new TransazioneDAO();
-        List<Transazione> transazioni = dao.getTransazioni(categoria, dataInizio, dataFine);
+        Utente utenteCorrente = SessionManager.getInstance().getUtente();
+        List<Transazione> transazioni = dao.getTransazioni(categoria, dataInizio, dataFine,utenteCorrente);
+
+        //test
+        System.out.println(transazioni);
 
         // Genera il PDF con le transazioni
         PDFGenerator pdfGenerator = new PDFGenerator();

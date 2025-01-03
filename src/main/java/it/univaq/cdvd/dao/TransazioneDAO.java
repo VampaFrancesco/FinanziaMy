@@ -96,10 +96,8 @@ public class TransazioneDAO {
         }
     }
 
-    public List<Transazione> getTransazioni(String categoria, LocalDate dataInizio, LocalDate dataFine) {
+    public List<Transazione> getTransazioni(String categoria, LocalDate dataInizio, LocalDate dataFine, Utente utenteCorrente) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-
-            Utente utenteCorrente = SessionManager.getInstance().getUtente();
 
             return session.createQuery(
                             "FROM Transazione WHERE nome_categoria = :categoria AND data >= :dataInizio AND data <= :dataFine AND utente = :utenteId",
@@ -108,7 +106,7 @@ public class TransazioneDAO {
                     .setParameter("categoria", categoria)
                     .setParameter("dataInizio", dataInizio)
                     .setParameter("dataFine", dataFine)
-                    .setParameter("utenteId", utenteCorrente.getUtente())
+                    .setParameter("utenteId", utenteCorrente)
                     .list();
         } catch (Exception e) {
             e.printStackTrace();

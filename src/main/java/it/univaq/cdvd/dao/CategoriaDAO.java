@@ -2,7 +2,9 @@ package it.univaq.cdvd.dao;
 
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
+import it.univaq.cdvd.util.SessionManager;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,7 +34,10 @@ public class CategoriaDAO {
 */
     public List<Categoria> getAllCategorie() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Categoria", Categoria.class).list();
+            Utente utenteCorrente = SessionManager.getInstance().getUtente();
+            return session.createQuery("FROM Categoria WHERE utente = :utenteId", Categoria.class)
+                    .setParameter("utenteId", utenteCorrente.getUtente())
+                    .list();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

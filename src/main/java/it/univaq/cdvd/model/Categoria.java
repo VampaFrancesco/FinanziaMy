@@ -32,6 +32,14 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transazione> transazioni = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "fk_utente")
+    private Utente utente;
+
+    /** @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+     @JoinColumn(name = "fk_utente", referencedColumnName = "username")
+     private Utente utente;*/
+
     // Getters e Setters
     public Long getId() {
         return id;
@@ -47,6 +55,13 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public List<Transazione> getTransazioni() {
