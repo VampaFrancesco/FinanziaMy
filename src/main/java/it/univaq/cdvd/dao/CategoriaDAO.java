@@ -1,7 +1,9 @@
 package it.univaq.cdvd.dao;
 
 import it.univaq.cdvd.model.Categoria;
+import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.hibernate.HibernateException;
@@ -59,5 +61,17 @@ public class CategoriaDAO {
             throw new RuntimeException(e);
         }
         return categoria;
+    }
+
+    public List<Categoria> getAllCategorie() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Utente utenteCorrente = SessionManager.getInstance().getUtente();
+            return session.createQuery("FROM Categoria WHERE utente = :utenteId", Categoria.class)
+                    .setParameter("utenteId", utenteCorrente.getUtente())
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

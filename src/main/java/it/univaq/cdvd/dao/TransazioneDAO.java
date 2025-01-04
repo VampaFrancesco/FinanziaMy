@@ -7,6 +7,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.Collections;
@@ -116,6 +118,24 @@ public class TransazioneDAO {
         } catch (Exception e) {
             e.printStackTrace();
             return Collections.emptyList();
+        }
+    }
+
+    public List<Transazione> getTransazioni(String categoria, LocalDate dataInizio, LocalDate dataFine, Utente utenteCorrente) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+            return session.createQuery(
+                            "FROM Transazione WHERE nome_categoria = :categoria AND data >= :dataInizio AND data <= :dataFine AND utente = :utenteId",
+                            Transazione.class
+                    )
+                    .setParameter("categoria", categoria)
+                    .setParameter("dataInizio", dataInizio)
+                    .setParameter("dataFine", dataFine)
+                    .setParameter("utenteId", utenteCorrente)
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

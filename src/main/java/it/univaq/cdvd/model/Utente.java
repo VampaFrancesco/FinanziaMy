@@ -91,4 +91,7 @@ public class Utente {
     public String getEmail() {
         return this.email;
     }
+    public Utente getUtente() {
+        return this;
+    }
 }
