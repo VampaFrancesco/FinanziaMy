@@ -29,7 +29,7 @@ public class CancellazioneController {
     @FXML private TableColumn<Transazione, LocalDate> data;
     @FXML private TableColumn<Transazione, String> categoria;
 
-    private ShowAlert sa;
+    private ShowAlert sa = new ShowAlert();
 
     private Utente utente;
 

@@ -11,20 +11,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-//import jdk.internal.org.jline.terminal.TerminalBuilder;
 
 import java.io.IOException;
-
-import java.util.Objects;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -172,8 +166,8 @@ TransazioneDAO transazioneDAO = new TransazioneDAO();
 
     @FXML
     public void handleLogoutClick (ActionEvent event) {
-    session.clearSession();
-    System.out.println("utente logout" + session.getUtente());
+        System.out.println("utente logout" + session.getUtente());
+        session.clearSession();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
             Parent root = loader.load();
@@ -194,6 +188,7 @@ TransazioneDAO transazioneDAO = new TransazioneDAO();
         String saldoUtente = Double.toString(utente.getSaldo());
         saldo.setText("$ " + saldoUtente);
     }
+
     private void popolaTabellaTransazioni() {
         // Ottieni l'utente dalla sessione
         Utente utenteCorrente = SessionManager.getInstance().getUtente();
