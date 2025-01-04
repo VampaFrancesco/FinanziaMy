@@ -69,10 +69,7 @@ public class ReportController {
         TransazioneDAO dao = new TransazioneDAO();
         Utente utenteCorrente = SessionManager.getInstance().getUtente();
         List<Transazione> transazioni = dao.getTransazioni(categoria, dataInizio, dataFine,utenteCorrente);
-
-        //test
-        System.out.println(transazioni);
-
+        
         // Genera il PDF con le transazioni
         PDFGenerator pdfGenerator = new PDFGenerator();
         pdfGenerator.generatePDF(transazioni, categoria, dataInizio, dataFine);
