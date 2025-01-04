@@ -1,6 +1,7 @@
 package it.univaq.cdvd.test_logica_gui;
 
 import it.univaq.cdvd.controller.RegistrazioneController;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -61,5 +62,18 @@ public class RegistrazioneGUITest extends ApplicationTest {
         // Compare the roots
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
     }
+
+    //verifica che l'utente corretto sia nella sessione corrente
+    @Test
+    public void testSession () {
+        clickOn(controller.usernameTextField).write("prova3");
+        clickOn(controller.passwordPasswordField).write("p");
+        clickOn(controller.emailTextField).write("esempio@gmail.com");
+        clickOn(controller.saldoTextField).write("0.00");
+        clickOn(controller.registratiButton);
+
+        assertEquals(SessionManager.getInstance().getUtente().getUsername(),"prova3");
+    }
+
 
 }

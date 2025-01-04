@@ -36,7 +36,7 @@ UtenteDAO utenteDAO = new UtenteDAO();
         utente.setPassword("password");
         utente.setSaldo(1000.0);
 
-        // Salva l'utente nel database (necessario per mantenere l'integrità referenziale)
+        // Salva l'utente nel database (necessario per mantenere l'integrità referenziale), lo devi mockare
         utenteDAO.save(utente);
         // Crea una nuova transazione di test
         Transazione transazione = new Transazione();
@@ -52,6 +52,7 @@ UtenteDAO utenteDAO = new UtenteDAO();
         boolean result = transazioneDAO.save(transazione);
         assertTrue(result, "La transazione non è stata salvata correttamente");
     }
+
 
     @AfterAll
     public void tearDown() {

@@ -2,6 +2,7 @@ package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.dao.CategoriaDAO;
 import it.univaq.cdvd.dao.TransazioneDAO;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.util.SessionManager;
@@ -31,6 +32,8 @@ public class InserimentoController {
     TransazioneDAO tdao = new TransazioneDAO();
     CategoriaDAO cdao = new CategoriaDAO();
     ShowAlert sa = new ShowAlert();
+    UtenteDAO utenteDAO = new UtenteDAO();
+
 
 
     @FXML public void initialize() {
@@ -55,12 +58,18 @@ public class InserimentoController {
 
             Transazione tx = new Transazione();
 
+            tx.setId(1L);
             tx.setImporto(inserisciImporto.getText().isEmpty() ? 0 : Double.parseDouble(inserisciImporto.getText()));
             tx.setCausale(causale.getText());
             tx.setNomeCategoria(categoriaList.getValue());
             tx.setData(data.getValue());
             tx.setCategoria(cdao.cercaCategoria(categoriaList.getValue()));
             tx.setUtente(SessionManager.getInstance().getUtente());
+
+            //Aggiorna saldo utente
+            utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), Double.parseDouble(inserisciImporto.getText()) );
+
+
             System.out.println(tx);
 
             if(tdao.save(tx)){

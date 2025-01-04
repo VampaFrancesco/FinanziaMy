@@ -19,7 +19,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="Gestione account">
                <items>
-                  <MenuItem fx:id="logoutHome" mnemonicParsing="false" text="Logout" />
+                  <MenuItem fx:id="logoutHome" mnemonicParsing="false" onAction="#handleLogoutClick" text="Logout" />
                   <MenuItem fx:id="modificaAccount" mnemonicParsing="false" text="Modifica Account" />
                </items>
             </Menu>
@@ -78,6 +78,5 @@
             <Image url="@../img/logoAuth.png" />
          </image>
       </ImageView>
-      <Button fx:id="logoutButton" layoutX="529.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleLogoutClick" prefHeight="25.0" prefWidth="61.0" text="Logout" />
    </children>
 </AnchorPane>

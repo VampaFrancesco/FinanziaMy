@@ -2,6 +2,7 @@ package it.univaq.cdvd.test_logica_gui;
 
 
 import it.univaq.cdvd.controller.LoginController;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -65,6 +66,14 @@ public class LoginControllerGuiTest extends ApplicationTest {
 
         // Compare the roots
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
+    }
+    @Test
+    public void testSession () {
+        //aggiungi che mocki il salvataggio al db
+        clickOn(controller.usernameTextField).write("prova3");
+        clickOn(controller.passwordPasswordField).write("p");
+        clickOn(controller.loginButton);
+        assertEquals(SessionManager.getInstance().getUtente().getUsername(),"prova3");
     }
 }
 
