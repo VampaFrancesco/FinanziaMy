@@ -27,7 +27,7 @@
                <items>
                   <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
                   <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elimina transazione" />
-                  <MenuItem fx:id="elencoTransazioni" mnemonicParsing="false" onAction="#modificaTransazione" text="Modifica transazione" />
+                  <MenuItem fx:id="modificaTransazione" mnemonicParsing="false" onAction="#modificaTransazione" text="Modifica transazione" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Categoria">
@@ -39,7 +39,7 @@
                   <MenuItem fx:id="motoriTrasposti" mnemonicParsing="false" text="Motori e Trasporti" />
                   <MenuItem fx:id="varie" mnemonicParsing="false" text="Varie" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" text="Aggiungi Categoria" />
+                  <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" onAction="#aggiuntaCategoriaOnAction" text="Aggiungi Categoria" />
                   <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" text="Elimina Categoria" />
                </items>
             </Menu>

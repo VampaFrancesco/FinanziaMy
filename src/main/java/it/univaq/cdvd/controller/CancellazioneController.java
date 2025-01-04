@@ -35,6 +35,7 @@ public class CancellazioneController {
 
     private ObservableList<Transazione> transazioniUtente;
 
+
     @FXML
     public void initialize() {
         try {

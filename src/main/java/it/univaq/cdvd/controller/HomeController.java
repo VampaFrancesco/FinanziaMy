@@ -80,8 +80,9 @@ public class HomeController {
     @FXML
     private TableColumn<Transazione, String> causaleColumn;
 
-SessionManager session = SessionManager.getInstance();
-TransazioneDAO transazioneDAO = new TransazioneDAO();
+
+    SessionManager session = SessionManager.getInstance();
+    TransazioneDAO transazioneDAO = new TransazioneDAO();
 
 
     @FXML
@@ -104,55 +105,56 @@ TransazioneDAO transazioneDAO = new TransazioneDAO();
         nuovaTransazione.setOnAction(this::nuovaTransazioneOnAction);
         eliminaTransazione.setOnAction(this::eliminaTransazione);
         modificaTransazione.setOnAction(this::eliminaTransazione);
+        aggiungiCategoria.setOnAction(this::aggiuntaCategoriaOnAction);
+        eliminaCategoria.setOnAction(this::eliminaCategoriaOnAction);
     }
+
     @FXML
     public void nuovaTransazioneOnAction(ActionEvent event) {
-            System.out.println("nuovaTransazione");
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
-                Parent root = loader.load();
-
-                Dialog<Void> dialog = new Dialog<>();
-                dialog.setTitle("Nuova Transazione");
-                dialog.getDialogPane().setContent(root);
-                dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
-                dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
-                dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-                dialog.showAndWait();
-
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-    }
-
-    @FXML
-    public void eliminaTransazione(ActionEvent event)  {
-        System.out.println("eliminaTransazione");
-
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/cancellazione.fxml"));
-                Parent root = loader.load();
-
-                Dialog<Void> dialog = new Dialog<>();
-                dialog.setTitle("Elimina Transazione");
-                dialog.getDialogPane().setContent(root);
-                dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
-                dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
-                dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-                dialog.showAndWait();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-    }
-
-    @FXML
-    public void modificaTransazione(ActionEvent event) {
+        System.out.println("nuovaTransazione");
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifica.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
+            Parent root = loader.load();
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Nuova Transazione");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void aggiuntaCategoriaOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/aggiuntacategoria.fxml"));
             Parent root = loader.load();
 
             Dialog<Void> dialog = new Dialog<>();
-            dialog.setTitle("Modifica Transazione");
+            dialog.setTitle("Nuova Categoria");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void eliminaCategoriaOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/eliminaCategoria.fxml"));
+            Parent root = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Elimina Categoria");
             dialog.getDialogPane().setContent(root);
             dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
             dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
@@ -161,11 +163,31 @@ TransazioneDAO transazioneDAO = new TransazioneDAO();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @FXML
-    public void handleLogoutClick (ActionEvent event) {
+    public void eliminaTransazione(ActionEvent event) {
+        System.out.println("eliminaTransazione");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/cancellazione.fxml"));
+            Parent root = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Elimina Transazione");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @FXML
+    public void handleLogoutClick(ActionEvent event) {
         System.out.println("utente logout" + session.getUtente());
         session.clearSession();
         try {
@@ -177,13 +199,14 @@ TransazioneDAO transazioneDAO = new TransazioneDAO();
             stage.setScene(new Scene(root));
             stage.setTitle("Login");
             stage.show();
+
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
-    public void showSaldo () {
+    public void showSaldo() {
         Utente utente = session.getUtente();
         String saldoUtente = Double.toString(utente.getSaldo());
         saldo.setText("$ " + saldoUtente);
@@ -224,4 +247,25 @@ TransazioneDAO transazioneDAO = new TransazioneDAO();
         }
     }
 
+
+    @FXML
+    public void modificaTransazione(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifica.fxml"));
+            Parent root = loader.load();
+
+            Dialog<Void> dialog = new Dialog<>();
+            dialog.setTitle("Modifica Transazione");
+            dialog.getDialogPane().setContent(root);
+            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+            dialog.showAndWait();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
 }
+

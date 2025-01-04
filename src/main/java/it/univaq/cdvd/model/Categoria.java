@@ -36,9 +36,15 @@ public class Categoria {
     @JoinColumn(name = "fk_utente")
     private Utente utente;
 
+
     /** @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
      @JoinColumn(name = "fk_utente", referencedColumnName = "username")
      private Utente utente;*/
+
+   /** @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_utente", referencedColumnName = "username")
+    private Utente utente;*/
+
 
     // Getters e Setters
     public Long getId() {
