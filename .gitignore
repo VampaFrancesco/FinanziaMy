@@ -10,6 +10,7 @@ finanziamy.iml
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+*.pdf
 
 # AWS User-specific
 .idea/**/aws.xml

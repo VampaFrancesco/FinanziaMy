@@ -61,7 +61,7 @@ public class ModificaController {
         try {
             // Recupera le transazioni legate all'utente dal DAO
             TransazioneDAO transazioneDAO = new TransazioneDAO();
-            List<Transazione> transazioni = transazioneDAO.findAll();
+            List<Transazione> transazioni = transazioneDAO.findTransactionByUser(SessionManager.getInstance().getUtente());
 
             // Converte la lista in un ObservableList
             ObservableList<Transazione> transazioniUtente = FXCollections.observableArrayList(transazioni);
@@ -79,7 +79,7 @@ public class ModificaController {
         try {
             Transazione transazioneSelezionata = lista.getSelectionModel().getSelectedItem();
             if (transazioneSelezionata == null) {
-                sa.showAlert("Errore", "Nessuna transazione selezionada", Alert.AlertType.WARNING);
+                sa.showAlert("Errore", "Nessuna transazione selezionata", Alert.AlertType.WARNING);
                 return;
             }
             if (nuovoImporto.getText().isEmpty() || nuovoCausale.getText().isEmpty() || nuovoData.getValue() == null) {

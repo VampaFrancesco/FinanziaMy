@@ -104,7 +104,7 @@ public class HomeController {
         popolaTabellaTransazioni();
         nuovaTransazione.setOnAction(this::nuovaTransazioneOnAction);
         eliminaTransazione.setOnAction(this::eliminaTransazione);
-        modificaTransazione.setOnAction(this::eliminaTransazione);
+        modificaTransazione.setOnAction(this::modificaTransazione);
         aggiungiCategoria.setOnAction(this::aggiuntaCategoriaOnAction);
         eliminaCategoria.setOnAction(this::eliminaCategoriaOnAction);
     }

@@ -66,7 +66,7 @@ public class CancellazioneController {
         try {
             // Recupera le transazioni legate all'utente dal DAO
             TransazioneDAO transazioneDAO = new TransazioneDAO();
-            List<Transazione> transazioni = transazioneDAO.findAll();
+            List<Transazione> transazioni = transazioneDAO.findTransactionByUser(SessionManager.getInstance().getUtente());
 
             // Converte la lista in un ObservableList
             transazioniUtente = FXCollections.observableArrayList(transazioni);

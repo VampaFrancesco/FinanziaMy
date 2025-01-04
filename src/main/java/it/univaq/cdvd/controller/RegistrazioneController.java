@@ -85,7 +85,7 @@ public class RegistrazioneController {
             return false;
         }
 
-        Double saldoIniziale = new Double(saldo);
+        double saldoIniziale = Double.parseDouble(saldo);
 
         // Controlla se l'utente esiste già
         Utente utenteEsistente = utenteDAO.findUserByUsername(username);
