@@ -1,7 +1,9 @@
 package it.univaq.cdvd.model;
 
 import it.univaq.cdvd.dao.TransazioneDAO;
+import it.univaq.cdvd.util.SessionManager;
 import jakarta.persistence.*;
+import org.hibernate.query.sqm.function.SelfRenderingSqmOrderedSetAggregateFunction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,8 +63,7 @@ public class Utente {
 
     public List<Transazione> getTransazioni() {
         TransazioneDAO dao = new TransazioneDAO();
-        List<Transazione> list = dao.findAll();
-        return list;
+        return dao.findTransactionByUser(SessionManager.getInstance().getUtente());
     }
 
     public void setTransazioni(List<Transazione> transazioni) {

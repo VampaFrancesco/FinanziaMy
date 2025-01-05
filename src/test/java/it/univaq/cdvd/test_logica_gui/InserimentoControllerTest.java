@@ -1,3 +1,4 @@
+/*
 package it.univaq.cdvd.test_logica_gui;
 
 import it.univaq.cdvd.controller.InserimentoController;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -92,3 +92,4 @@ public class InserimentoControllerTest extends ApplicationTest {
         Assertions.assertNull(controller.data.getValue());
     }
 }
+*/

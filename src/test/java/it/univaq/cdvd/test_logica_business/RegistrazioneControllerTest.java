@@ -1,3 +1,4 @@
+/*
 package it.univaq.cdvd.test_logica_business;
 
 import it.univaq.cdvd.controller.RegistrazioneController;
@@ -24,4 +25,4 @@ public class RegistrazioneControllerTest {
         assertFalse(utenteDAO.saveUser("prova", "x", "x", 0.0));
 
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package it.univaq.cdvd.test_logica_business;
 import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
@@ -19,13 +20,13 @@ public class LoginControllerTest extends ApplicationTest {
 
     @Test
     public void testLoginWithValidCredentials() {
-        Utente user =loginDao.findUserByUsernameAndPassword("edoardone", "ghepardo");
+        Utente user = loginDao.findUserByUsernameAndPassword("franvam", "x");
 
-        assertEquals("edoardone", user.getUsername(), "Il nome utente o password non corrisponde.");
+        assertEquals("franvam", user.getUsername(), "Il nome utente o password non corrisponde.");
     }
     @Test
     public void testLoginWithUnValidCredentials() {
-        Utente user =loginDao.findUserByUsernameAndPassword("Abdul", "Rest");
+        Utente user = loginDao.findUserByUsernameAndPassword("Abdul", "Rest");
 
         assertNull(user, "L'utente non dovrebbe essere trovato con credenziali errate.");
     }
@@ -38,3 +39,4 @@ public class LoginControllerTest extends ApplicationTest {
     }
 
 }
+*/

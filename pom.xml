@@ -85,6 +85,13 @@
             <scope>test</scope>
         </dependency>
 
+<!--        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.15.5</version> &lt;!&ndash; Verifica l'ultima versione disponibile &ndash;&gt;
+            <scope>test</scope>
+        </dependency>-->
+
         <!--IText PDF-->
         <dependency>
             <groupId>com.itextpdf</groupId>
@@ -134,4 +141,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>

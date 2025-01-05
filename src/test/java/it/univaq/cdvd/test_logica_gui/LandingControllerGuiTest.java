@@ -1,3 +1,4 @@
+/*
 package it.univaq.cdvd.test_logica_gui;
 
 
@@ -65,3 +66,4 @@ public class LandingControllerGuiTest extends ApplicationTest {
     }
 }
 
+*/

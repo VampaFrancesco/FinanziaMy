@@ -45,7 +45,7 @@ public class TransazioneDAO {
         return false;
     }
 
-    public List<Transazione> findAll() {
+    /*public List<Transazione> findAll() {
         List<Transazione> transazioni = new ArrayList<>();
 
 
@@ -63,7 +63,7 @@ public class TransazioneDAO {
             e.printStackTrace();
         }
         return transazioni;
-    }
+    }*/
 
     public boolean eliminaTransazione(long idTransazione) {
         Transaction transaction = null;

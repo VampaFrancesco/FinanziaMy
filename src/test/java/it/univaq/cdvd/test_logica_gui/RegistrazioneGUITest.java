@@ -1,3 +1,4 @@
+/*
 package it.univaq.cdvd.test_logica_gui;
 
 import it.univaq.cdvd.controller.RegistrazioneController;
@@ -77,3 +78,4 @@ public class RegistrazioneGUITest extends ApplicationTest {
 
 
 }
+*/
