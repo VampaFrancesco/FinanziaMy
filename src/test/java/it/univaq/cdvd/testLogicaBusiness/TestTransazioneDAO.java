@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestTransazioneDAO extends ApplicationTest {
 
     private TransazioneDAOTest transazioneDAOTest;
-    private Transazione transazione = new Transazione();
+    public Transazione transazione = new Transazione();
     private UtenteDAOTest utenteDAOTest = new UtenteDAOTest();
     private CategoriaDAOTest categoriaDAOTest = new CategoriaDAOTest();
 
@@ -63,7 +63,7 @@ public class TestTransazioneDAO extends ApplicationTest {
 
 
     @Test
-    public void testSave() {
+    public void testSalva() {
         // Salva la transazione nel database
        boolean result = transazioneDAOTest.save(transazione);
 
@@ -79,5 +79,17 @@ public class TestTransazioneDAO extends ApplicationTest {
         assertNotNull(transazione);
         assertEquals(1L, transazione.getId(), "Sono due transazioni diverse, non viene eliminata quella del test");
         assertTrue(result, "La transazione non viene eliminata correttamente.");
+    }
+
+    @Test
+    public void testModifica(){
+
+        transazione.setCausale("Causale modificata");
+        System.out.println(transazione.getCausale());
+        boolean result = transazioneDAOTest.modifica(transazione);
+
+        assertNotNull(transazione);
+        assertNotEquals("Test causale", transazione.getCausale(), "La transazione non viene modificata");
+        assertTrue(result, "La transazione viene salvata correttamente.");
     }
 }
