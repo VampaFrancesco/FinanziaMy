@@ -1,4 +1,4 @@
-/*
+
 package it.univaq.cdvd.test_logica_gui;
 
 import it.univaq.cdvd.controller.RegistrazioneController;
@@ -27,24 +27,26 @@ public class RegistrazioneGUITest extends ApplicationTest {
         stage.setScene(scene);
         stage.show();
     }
-    @Test
-    void registerButtonTest() throws Exception {
 
-        clickOn(controller.usernameTextField).write("Paola");
+    @Test
+    void registerUnvalidCredentialButtonTest() throws Exception {
+
+        clickOn(controller.usernameTextField).write("");
         clickOn(controller.passwordPasswordField).write("p");
         clickOn(controller.emailTextField).write("esempio@gmail.com");
         clickOn(controller.saldoTextField).write("0.00");
         clickOn(controller.registratiButton);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
-        Parent expectedRoot = loader.load();
+       // FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
+       // Parent expectedRoot = loader.load();
 
         // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
+        //Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
 
         // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
+        assertEquals("Username, email o password non validi.", controller.registerMessage.getText(), "The auth.fxml page should be displayed.");
     }
+
 
 
     @Test
@@ -64,7 +66,7 @@ public class RegistrazioneGUITest extends ApplicationTest {
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
     }
 
-    //verifica che l'utente corretto sia nella sessione corrente
+    /*
     @Test
     public void testSession () {
         clickOn(controller.usernameTextField).write("prova3");
@@ -76,6 +78,8 @@ public class RegistrazioneGUITest extends ApplicationTest {
         assertEquals(SessionManager.getInstance().getUtente().getUsername(),"prova3");
     }
 
+     */
+
 
 }
-*/
+
