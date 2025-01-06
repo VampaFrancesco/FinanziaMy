@@ -1,32 +1,30 @@
-package it.univaq.cdvd.test_logica_business;
+package it.univaq.cdvd.testLogicaBusiness;
 
 import it.univaq.cdvd.TestDAO.CategoriaDAOTest;
 import it.univaq.cdvd.TestDAO.TransazioneDAOTest;
 import it.univaq.cdvd.TestDAO.UtenteDAOTest;
-import it.univaq.cdvd.dao.CategoriaDAO;
-import it.univaq.cdvd.dao.TransazioneDAO;
-import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
-import it.univaq.cdvd.util.HibernateUtil;
 import it.univaq.cdvd.utilTest.HibernateUtilTest;
+
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class TestTransazioneDAO extends ApplicationTest {
 
-    private TransazioneDAOTest transazioneDAO;
+    private TransazioneDAOTest transazioneDAOTest;
+    private Transazione transazione = new Transazione();
+    private UtenteDAOTest utenteDAOTest = new UtenteDAOTest();
+    private CategoriaDAOTest categoriaDAOTest = new CategoriaDAOTest();
 
     @BeforeAll
     public void setup() {
@@ -36,16 +34,7 @@ public class TestTransazioneDAO extends ApplicationTest {
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         HibernateUtilTest.setSessionFactory(sessionFactory);
 
-        transazioneDAO = new TransazioneDAOTest();
-
-    }
-
-    @Test
-    public void testTransazione() {
-
-        Transazione transazione = new Transazione();
-        UtenteDAOTest utenteDAOTest = new UtenteDAOTest();
-        CategoriaDAOTest categoriaDAOTest = new CategoriaDAOTest();
+        transazioneDAOTest = new TransazioneDAOTest();
 
         // Crea un'istanza di Utente
         Utente utente = new Utente();
@@ -70,11 +59,25 @@ public class TestTransazioneDAO extends ApplicationTest {
         transazione.setUtente(utente); // Associa l'utente salvato
         transazione.setCategoria(categoria);
         transazione.setNomeCategoria(categoria.getNome());
+    }
 
+
+    @Test
+    public void testSave() {
         // Salva la transazione nel database
-       boolean result = transazioneDAO.save(transazione);
+       boolean result = transazioneDAOTest.save(transazione);
 
+       assertNotNull(transazione);
        assertTrue(result, "La transazione non viene salvata correttamente.");
+    }
 
+    @Test
+    public void testElimina(){
+        // Salva la transazione nel database
+        boolean result = transazioneDAOTest.eliminaTransazione(transazione.getId());
+
+        assertNotNull(transazione);
+        assertEquals(1L, transazione.getId(), "Sono due transazioni diverse, non viene eliminata quella del test");
+        assertTrue(result, "La transazione non viene eliminata correttamente.");
     }
 }
