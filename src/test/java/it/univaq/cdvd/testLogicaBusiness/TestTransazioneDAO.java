@@ -59,6 +59,7 @@ public class TestTransazioneDAO extends ApplicationTest {
         transazione.setUtente(utente); // Associa l'utente salvato
         transazione.setCategoria(categoria);
         transazione.setNomeCategoria(categoria.getNome());
+        transazioneDAOTest.save(transazione);
     }
 
 
