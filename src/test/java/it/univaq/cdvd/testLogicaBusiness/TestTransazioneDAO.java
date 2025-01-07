@@ -113,4 +113,29 @@ public class TestTransazioneDAO extends ApplicationTest {
         assertEquals(200.0, result.get(0).getImporto());
 
     }
+
+    @Test
+    void testUpdateSaldo(){
+        Utente utenteP = new Utente("ciaoo","a","a", 900.0);
+        utenteDAOTest.save(utenteP);
+        Transazione transazioneP = new Transazione();
+
+        Categoria categoria = new Categoria();
+        categoria.setNome("Test1");
+        categoriaDAOTest.save(categoria);
+
+
+        transazioneP.setId(1L);
+        transazioneP.setCausale("Test causale");
+        transazioneP.setData(LocalDate.now());
+        transazioneP.setImporto(300.0);
+        transazioneP.setUtente(utenteP); // Associa l'utente salvato
+        transazioneP.setCategoria(categoria);
+        transazioneP.setNomeCategoria(categoria.getNome());
+        transazioneP.setUtente(utenteP);
+        transazioneDAOTest.save(transazioneP);
+
+        utenteDAOTest.updateSaldo(utenteP, transazioneP.getImporto());
+        assertEquals(1200.0, utenteDAOTest.findUserByUsername("ciaoo").getSaldo());
+    }
 }
