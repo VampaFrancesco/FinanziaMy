@@ -10,7 +10,7 @@
       <TableView fx:id="tabellaCategorie" layoutX="49.0" layoutY="64.0" onMouseClicked="#gestisciClick" prefHeight="167.0" prefWidth="239.0">
         <columns>
           <TableColumn fx:id="nomeCategoriaTabella" prefWidth="86.40002822875977" text="Nome" />
-            <TableColumn fx:id="descCategoria" prefWidth="151.99998474121094" text="Descrizione" />
+            <TableColumn fx:id="descCategoriaTabella" prefWidth="151.99998474121094" text="Descrizione" />
         </columns>
       </TableView>
       <Label fx:id="titoloEliminaCategoria" layoutX="123.0" layoutY="28.0" text="Elimina Categoria" />
