@@ -14,6 +14,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import org.hibernate.cfg.Configuration;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,6 +26,7 @@ public class TestTransazioneDAO extends ApplicationTest {
     public Transazione transazione = new Transazione();
     private UtenteDAOTest utenteDAOTest = new UtenteDAOTest();
     private CategoriaDAOTest categoriaDAOTest = new CategoriaDAOTest();
+    public Utente utente;
 
     @BeforeAll
     public void setup() {
@@ -37,7 +39,7 @@ public class TestTransazioneDAO extends ApplicationTest {
         transazioneDAOTest = new TransazioneDAOTest();
 
         // Crea un'istanza di Utente
-        Utente utente = new Utente();
+        utente = new Utente();
         utente.setUsername("Test1");
         utente.setEmail("test1@example.com");
         utente.setPassword("password");
@@ -60,6 +62,7 @@ public class TestTransazioneDAO extends ApplicationTest {
         transazione.setCategoria(categoria);
         transazione.setNomeCategoria(categoria.getNome());
         transazioneDAOTest.save(transazione);
+
     }
 
 
@@ -92,5 +95,22 @@ public class TestTransazioneDAO extends ApplicationTest {
         assertNotNull(transazione);
         assertNotEquals("Test causale", transazione.getCausale(), "La transazione non viene modificata");
         assertTrue(result, "La transazione viene salvata correttamente.");
+    }
+
+    @Test
+    void testGetTransazioni() {
+
+        String categoria = "Test1";
+        LocalDate dataInizio = LocalDate.of(2023, 1, 1);
+        LocalDate dataFine = LocalDate.now();
+
+
+        List<Transazione> result = transazioneDAOTest.getTransazioni(categoria, dataInizio, dataFine,utente);
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals("Causale modificata", result.get(0).getCausale());
+        assertEquals(200.0, result.get(0).getImporto());
+
     }
 }

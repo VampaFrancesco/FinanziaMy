@@ -1,9 +1,6 @@
-/*
-package it.univaq.cdvd.test_logica_gui;
-
+package it.univaq.cdvd.testLogicaGui;
 
 import it.univaq.cdvd.controller.LoginController;
-import it.univaq.cdvd.util.SessionManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -36,24 +33,6 @@ public class LoginControllerGuiTest extends ApplicationTest {
 
 
     @Test
-    void testLoginButtonDisplaysHomePage() throws Exception {
-
-        clickOn(controller.usernameTextField).write("MarioRossi");
-        clickOn(controller.passwordPasswordField).write("esempio@gmail.com");
-
-        clickOn(controller.loginButton);
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
-        Parent expectedRoot = loader.load();
-
-        // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
-
-        // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The home.fxml page should be displayed.");
-    }
-
-    @Test
     void testAnnulButtonDisplaysLandingPage() throws Exception {
         // Click the annulButton
         clickOn(controller.annulButton);
@@ -68,14 +47,6 @@ public class LoginControllerGuiTest extends ApplicationTest {
         // Compare the roots
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
     }
-    @Test
-    public void testSession () {
-        //aggiungi che mocki il salvataggio al db
-        clickOn(controller.usernameTextField).write("prova3");
-        clickOn(controller.passwordPasswordField).write("p");
-        clickOn(controller.loginButton);
-        assertEquals("prova3", SessionManager.getInstance().getUtente().getUsername());
-    }
 }
 
-*/
+
