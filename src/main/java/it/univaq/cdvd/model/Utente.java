@@ -96,4 +96,5 @@ public class Utente {
     public Utente getUtente() {
         return this;
     }
+
 }
