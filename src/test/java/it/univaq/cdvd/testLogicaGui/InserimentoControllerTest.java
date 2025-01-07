@@ -1,5 +1,4 @@
-/*
-package it.univaq.cdvd.test_logica_gui;
+package it.univaq.cdvd.testLogicaGui;
 
 import it.univaq.cdvd.controller.InserimentoController;
 import javafx.fxml.FXMLLoader;
@@ -92,4 +91,3 @@ public class InserimentoControllerTest extends ApplicationTest {
         Assertions.assertNull(controller.data.getValue());
     }
 }
-*/

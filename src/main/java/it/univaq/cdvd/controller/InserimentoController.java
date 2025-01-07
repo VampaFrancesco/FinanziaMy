@@ -40,7 +40,17 @@ public class InserimentoController {
         text.setAlignment(Pos.CENTER);
         labelCausale.setAlignment(Pos.CENTER);
         importo.setAlignment(Pos.CENTER);
-        categoriaList.setItems(cdao.listaCategoria());
+        if (System.getProperty("MYAPP_ENV").equals("test")) {
+            Categoria c1 = new Categoria();
+            Categoria c2 = new Categoria();
+            Categoria c3 = new Categoria();
+            c1.setNome("Cibo");
+            c2.setNome("Svago");
+            c3.setNome("Lavoro");
+            categoriaList.setItems(FXCollections.observableArrayList(c1.getNome(), c2.getNome(), c3.getNome()));
+        }else{
+            categoriaList.setItems(cdao.listaCategoria());
+        }
     }
 
     /**

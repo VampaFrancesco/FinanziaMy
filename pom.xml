@@ -8,6 +8,7 @@
     <name>finanziamy</name>
     <url>https://maven.apache.org</url>
     <properties>
+        <myapp.env>test</myapp.env>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
@@ -138,9 +139,17 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <!-- Qui esporti la property come System Property -->
+                        <MYAPP_ENV>${myapp.env}</MYAPP_ENV>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
+
 
 
 </project>

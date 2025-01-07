@@ -1,5 +1,5 @@
 
-package it.univaq.cdvd.test_logica_gui;
+package it.univaq.cdvd.testLogicaGui;
 
 import it.univaq.cdvd.controller.RegistrazioneController;
 import it.univaq.cdvd.util.SessionManager;
@@ -23,7 +23,7 @@ public class RegistrazioneGUITest extends ApplicationTest {
         Parent root = loader.load();
         controller = loader.getController();
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
