@@ -1,6 +1,7 @@
 package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.dao.TransazioneDAO;
+import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.SessionManager;
@@ -22,7 +23,8 @@ import java.util.List;
 
 public class CancellazioneController {
 
-    @FXML private TableView<Transazione> lista;
+    @FXML
+    public TableView<Transazione> lista;
     @FXML private TableColumn<Transazione, String> codiceTr;
     @FXML private TableColumn<Transazione, Double> importo;
     @FXML private TableColumn<Transazione, String> causale;
@@ -38,18 +40,33 @@ public class CancellazioneController {
 
     @FXML
     public void initialize() {
-        try {
-            // Recupera l'utente corrente dalla sessione
-            utente = SessionManager.getInstance().getUtente();
-
-            // Configura le colonne della TableView
+        if (System.getProperty("MYAPP_ENV").equals("test")) {
             configuraColonne();
+            Categoria categoria = new Categoria();
+            categoria.setNome("Svago");
 
-            // Carica le transazioni dal database
-            caricaTransazioni();
-        } catch (Exception e) {
-            e.printStackTrace();
-            sa.showAlert("Errore", "Errore durante l'inizializzazione: " + e.getMessage(), Alert.AlertType.ERROR);
+            Transazione transazione = new Transazione();
+            transazione.setId(2L);
+            transazione.setCausale("Causale di test");
+            transazione.setImporto(100.0);
+            transazione.setData(LocalDate.now());
+            transazione.setCategoria(categoria);
+            lista.setItems(FXCollections.observableArrayList(transazione));
+
+        }else{
+            try {
+                // Recupera l'utente corrente dalla sessione
+                utente = SessionManager.getInstance().getUtente();
+
+                // Configura le colonne della TableView
+                configuraColonne();
+
+                // Carica le transazioni dal database
+                caricaTransazioni();
+            } catch (Exception e) {
+                e.printStackTrace();
+                sa.showAlert("Errore", "Errore durante l'inizializzazione: " + e.getMessage(), Alert.AlertType.ERROR);
+            }
         }
     }
 

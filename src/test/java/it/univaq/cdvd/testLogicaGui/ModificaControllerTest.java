@@ -67,7 +67,7 @@ public class ModificaControllerTest extends ApplicationTest {
             controller.nuovoData.setValue(LocalDate.now());
         });
 
-        clickOn("#modifica"); // Simula il clic sul pulsante "modifica"
+        clickOn(controller.modifica); // Simula il clic sul pulsante "modifica"
 
         // Verifica che i dati siano stati aggiornati
         assertEquals(200.0, controller.lista.getItems().get(0).getImporto(), "L'importo dovrebbe essere aggiornato.");
@@ -83,7 +83,7 @@ public class ModificaControllerTest extends ApplicationTest {
             controller.nuovoData.setValue(null);
         });
 
-        clickOn("#modifica"); // Simula clic sul pulsante "modifica"
+        clickOn(controller.modifica); // Simula clic sul pulsante "modifica"
 
         // Verifica che venga mostrato un alert di errore
         assertTrue(ShowAlert.lastAlert.getAlertType() == Alert.AlertType.WARNING, "Dovrebbe mostrare un alert di errore per campi vuoti.");
@@ -96,7 +96,7 @@ public class ModificaControllerTest extends ApplicationTest {
             controller.lista.getSelectionModel().clearSelection();
         });
 
-        clickOn("#modifica"); // Simula clic sul pulsante "modifica"
+        clickOn(controller.modifica); // Simula clic sul pulsante "modifica"
 
         // Verifica che venga mostrato un alert di errore
         assertTrue(ShowAlert.lastAlert.getAlertType() == Alert.AlertType.WARNING, "Dovrebbe mostrare un alert di errore per nessuna transazione selezionata.");
