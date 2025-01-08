@@ -18,6 +18,8 @@ public class AggiuntaCategoriaController {
     @FXML
     public TextField nomeCategoria = new TextField();
     @FXML
+    public Label desc = new Label();
+    @FXML
     public TextField descCategoria = new TextField();
     @FXML
     public Button aggiungiCategoria = new Button();

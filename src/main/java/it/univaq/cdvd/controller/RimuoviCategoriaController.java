@@ -19,13 +19,14 @@ import java.util.List;
 
 public class RimuoviCategoriaController {
 
-    @FXML private TableView<Categoria> tabellaCategorie;
+    @FXML
+    public TableView<Categoria> tabellaCategorie;
     @FXML private TableColumn<Categoria, String> nomeCategoriaTabella;
     @FXML private TableColumn<Categoria, String> descCategoriaTabella;
 
     private ObservableList<Categoria> listaCategorie;
 
-    ShowAlert sa = new ShowAlert();
+    public ShowAlert sa = new ShowAlert();
 
     @FXML
     public void initialize() {

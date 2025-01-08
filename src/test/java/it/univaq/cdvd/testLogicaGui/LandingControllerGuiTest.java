@@ -2,10 +2,12 @@ package it.univaq.cdvd.testLogicaGui;
 
 
 import it.univaq.cdvd.controller.LandingController;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -17,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class LandingControllerGuiTest extends ApplicationTest {
 
     LandingController controller = new LandingController();
+
+
 
     @Override
     public void start(Stage stage) throws IOException {
