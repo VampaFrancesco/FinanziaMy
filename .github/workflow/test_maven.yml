@@ -12,9 +12,11 @@ on:
   workflow_dispatch:
     
   push:
-    branches: Sprint2
+    branches:
+             -Sprint2
   pull_request:
-    branches: Sprint2
+    branches:
+        -Sprint2
 
 jobs:
   build:
