@@ -1,45 +1,4 @@
 package it.univaq.cdvd.testLogicaGui;
-/*
-import it.univaq.cdvd.controller.HomeController;
-import it.univaq.cdvd.controller.LandingController;
-import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.testfx.api.FxToolkit;
-import org.testfx.framework.junit5.ApplicationTest;
-import org.testfx.service.query.PointQuery;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class HomeControllerTest extends ApplicationTest {
-
-    HomeController controller = new HomeController();
-
-    @BeforeAll
-    public static void setUp() {
-        // Avvia la piattaforma JavaFX prima dell'esecuzione dei test
-        Platform.startup(() -> {});
-    }
-
-    @Test
-    void testLogoutButtonDisplaysByHomePage() throws Exception {
-
-        clickOn((PointQuery) controller.logout);
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
-        Parent expectedRoot = loader.load();
-
-        // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
-
-        // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The login.fxml page should be displayed.");
-    }
-
-
-}*/
 
 import it.univaq.cdvd.controller.AggiuntaCategoriaController;
 import it.univaq.cdvd.controller.HomeController;
