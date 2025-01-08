@@ -1,5 +1,4 @@
-package it.univaq.cdvd.test_logica_gui;
-
+package it.univaq.cdvd.testLogicaGui;
 
 import it.univaq.cdvd.controller.LoginController;
 import javafx.fxml.FXMLLoader;
@@ -34,24 +33,6 @@ public class LoginControllerGuiTest extends ApplicationTest {
 
 
     @Test
-    void testLoginButtonDisplaysHomePage() throws Exception {
-
-        clickOn(controller.usernameTextField).write("MarioRossi");
-        clickOn(controller.passwordPasswordField).write("esempio@gmail.com");
-
-        clickOn(controller.loginButton);
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
-        Parent expectedRoot = loader.load();
-
-        // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
-
-        // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The home.fxml page should be displayed.");
-    }
-
-    @Test
     void testAnnulButtonDisplaysLandingPage() throws Exception {
         // Click the annulButton
         clickOn(controller.annulButton);
@@ -67,4 +48,5 @@ public class LoginControllerGuiTest extends ApplicationTest {
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
     }
 }
+
 

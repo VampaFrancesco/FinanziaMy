@@ -1,6 +1,8 @@
-package it.univaq.cdvd.test_logica_gui;
+
+package it.univaq.cdvd.testLogicaGui;
 
 import it.univaq.cdvd.controller.RegistrazioneController;
+import it.univaq.cdvd.util.SessionManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,30 +23,32 @@ public class RegistrazioneGUITest extends ApplicationTest {
         Parent root = loader.load();
         controller = loader.getController();
 
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-   /* @Test
-    void registerButtonTest() throws Exception {
 
-        clickOn(controller.usernameTextField).write("Paola");
+    @Test
+    void registerUnvalidCredentialButtonTest() throws Exception {
+
+        clickOn(controller.usernameTextField).write("");
         clickOn(controller.passwordPasswordField).write("p");
         clickOn(controller.emailTextField).write("esempio@gmail.com");
-
+        clickOn(controller.saldoTextField).write("0.00");
         clickOn(controller.registratiButton);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
-        Parent expectedRoot = loader.load();
+       // FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
+       // Parent expectedRoot = loader.load();
 
         // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
+        //Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
 
         // Compare the roots
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The auth.fxml page should be displayed.");
+        assertEquals("Username, email o password non validi.", controller.registerMessage.getText(), "The auth.fxml page should be displayed.");
     }
 
-    */
+
+
     @Test
 
     void testAnnulButtonDisplaysLandingPage() throws Exception {
@@ -62,4 +66,20 @@ public class RegistrazioneGUITest extends ApplicationTest {
         assertEquals(expectedRoot.getId(), actualRoot.getId(), "The landing.fxml page should be displayed.");
     }
 
+    /*
+    @Test
+    public void testSession () {
+        clickOn(controller.usernameTextField).write("prova3");
+        clickOn(controller.passwordPasswordField).write("p");
+        clickOn(controller.emailTextField).write("esempio@gmail.com");
+        clickOn(controller.saldoTextField).write("0.00");
+        clickOn(controller.registratiButton);
+
+        assertEquals(SessionManager.getInstance().getUtente().getUsername(),"prova3");
+    }
+
+     */
+
+
 }
+

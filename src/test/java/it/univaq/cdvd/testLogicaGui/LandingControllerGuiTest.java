@@ -1,4 +1,4 @@
-package it.univaq.cdvd.test_logica_gui;
+package it.univaq.cdvd.testLogicaGui;
 
 
 import it.univaq.cdvd.controller.LandingController;

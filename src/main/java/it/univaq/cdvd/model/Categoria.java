@@ -12,13 +12,14 @@ public class Categoria {
     public Categoria() {
     }
 
-    public Categoria(String nome) {
-        this.nome = nome;
+    public Categoria(Long id, String nome) {
+        this.id = id; this.nome = nome;
     }
 
-    public Categoria(Long id, String nome) {
+    public Categoria(Long id, String nome, String descrizione) {
         this.id = id;
         this.nome = nome;
+        this.descrizione = descrizione;
     }
 
 
@@ -29,8 +30,27 @@ public class Categoria {
     @Column(nullable = false)
     private String nome;
 
+
+
+    @Column(nullable = true)
+    private String descrizione;
+
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transazione> transazioni = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "fk_utente")
+    private Utente utente;
+
+
+    /** @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+     @JoinColumn(name = "fk_utente", referencedColumnName = "username")
+     private Utente utente;*/
+
+   /** @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_utente", referencedColumnName = "username")
+    private Utente utente;*/
+
 
     // Getters e Setters
     public Long getId() {
@@ -47,6 +67,21 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+    public Utente getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public List<Transazione> getTransazioni() {

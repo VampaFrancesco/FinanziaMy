@@ -10,10 +10,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorInserimento" prefHeight="460.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.InserimentoController">
+<AnchorPane fx:id="anchorInserimento" prefHeight="460.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.InserimentoController">
    <children>
-      <Label fx:id="importo" layoutX="120.0" layoutY="91.0" prefHeight="29.0" prefWidth="96.0" text="Importo" />
-      <Label fx:id="text" layoutX="87.0" layoutY="14.0" prefHeight="59.0" prefWidth="167.0" text="Inserimento Transazione" wrapText="true">
+      <Label fx:id="importo" layoutX="122.0" layoutY="91.0" prefHeight="29.0" prefWidth="96.0" text="Importo" />
+      <Label fx:id="text" layoutX="89.0" layoutY="14.0" prefHeight="59.0" prefWidth="167.0" text="Inserimento Transazione" wrapText="true">
          <font>
             <Font size="15.0" />
          </font>
@@ -25,11 +25,11 @@
             </ContextMenu>
          </contextMenu>
       </Label>
-      <TextField fx:id="inserisciImporto" layoutX="83.0" layoutY="133.0" prefHeight="25.0" prefWidth="174.0" promptText="inserisci importo" />
-      <ComboBox fx:id="categoriaList" layoutX="81.0" layoutY="253.0" prefHeight="25.0" prefWidth="174.0" promptText="Categoria" />
-      <Button fx:id="inserisci" layoutX="93.0" layoutY="389.0" mnemonicParsing="false" onAction="#inserisciTransazione" prefHeight="25.0" prefWidth="149.0" text="Inserisci" />
-      <TextField fx:id="causale" layoutX="81.0" layoutY="206.0" prefHeight="25.0" prefWidth="174.0" promptText="causale" />
-      <Label fx:id="labelCausale" layoutX="100.0" layoutY="167.0" prefHeight="29.0" prefWidth="135.0" text="causale" />
-      <DatePicker fx:id="data" layoutX="81.0" layoutY="317.0" />
+      <TextField fx:id="inserisciImporto" layoutX="85.0" layoutY="133.0" prefHeight="25.0" prefWidth="174.0" promptText="inserisci importo" />
+      <TextField fx:id="causale" layoutX="83.0" layoutY="218.0" prefHeight="25.0" prefWidth="174.0" promptText="causale" />
+      <ComboBox fx:id="categoriaList" layoutX="82.0" layoutY="270.0" prefHeight="25.0" prefWidth="174.0" promptText="Categoria" />
+      <DatePicker fx:id="data" layoutX="83.0" layoutY="325.0" />
+      <Button fx:id="inserisci" layoutX="82.0" layoutY="387.0" mnemonicParsing="false" onAction="#inserisciTransazione" prefHeight="25.0" prefWidth="174.0" text="Inserisci" />
+      <Label fx:id="labelCausale" layoutX="102.0" layoutY="175.0" prefHeight="29.0" prefWidth="135.0" text="Causale" />
    </children>
 </AnchorPane>

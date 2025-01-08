@@ -1,27 +1,24 @@
-package it.univaq.cdvd.dao;
+package it.univaq.cdvd.TestDAO;
 
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
-import it.univaq.cdvd.util.HibernateUtil;
+import it.univaq.cdvd.utilTest.HibernateUtilTest;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-
 import java.util.Collections;
 import java.util.List;
 
-public class TransazioneDAO {
-
+public class TransazioneDAOTest {
 
     public boolean save(Transazione transazione) {
         Transaction tx = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtilTest.getSessionFactory().openSession();
             tx = session.beginTransaction();
 
             // Salva l'entità Categoria se necessario
@@ -45,30 +42,11 @@ public class TransazioneDAO {
         return false;
     }
 
-    /*public List<Transazione> findAll() {
-        List<Transazione> transazioni = new ArrayList<>();
-
-
-        Session session = null;
-
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Transazione");
-            for (Object o : query.list()) {
-                System.out.println(o.toString());
-                transazioni.add((Transazione) o);
-            }
-
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-        return transazioni;
-    }*/
 
     public boolean eliminaTransazione(long idTransazione) {
         Transaction transaction = null;
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtilTest.getSessionFactory().openSession()) {
             // Inizia una transazione
             transaction = session.beginTransaction();
 
@@ -95,7 +73,7 @@ public class TransazioneDAO {
 
     public boolean modifica(Transazione transazione) {
         Transaction tx = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtilTest.getSessionFactory().openSession()) {
             tx = session.beginTransaction();
             session.update(transazione);
             tx.commit();
@@ -110,7 +88,7 @@ public class TransazioneDAO {
 
 
     public List<Transazione> findTransactionByUser(Utente utente) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtilTest.getSessionFactory().openSession()) {
             String hql = "FROM Transazione t WHERE t.utente = :utente";
             Query<Transazione> query = session.createQuery(hql, Transazione.class);
             query.setParameter("utente", utente);
@@ -122,7 +100,7 @@ public class TransazioneDAO {
     }
 
     public List<Transazione> getTransazioni(String categoria, LocalDate dataInizio, LocalDate dataFine, Utente utenteCorrente) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateUtilTest.getSessionFactory().openSession()) {
 
             return session.createQuery(
                             "FROM Transazione WHERE nome_categoria = :categoria AND data >= :dataInizio AND data <= :dataFine AND utente = :utenteId",

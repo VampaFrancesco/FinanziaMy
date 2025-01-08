@@ -1,4 +1,4 @@
-package it.univaq.cdvd.test_logica_gui;
+package it.univaq.cdvd.testLogicaGui;
 
 import it.univaq.cdvd.controller.InserimentoController;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

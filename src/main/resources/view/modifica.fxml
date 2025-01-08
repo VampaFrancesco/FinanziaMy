@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.5820476858345021" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.ModificaController">
+   <TableView fx:id="lista" prefHeight="627.0" prefWidth="404.0">
+      <columns>
+         <TableColumn fx:id="codiceTr" prefWidth="75.0" text="Codice Tr." />
+         <TableColumn fx:id="importo" prefWidth="87.0" text="Importo" />
+         <TableColumn fx:id="causale" prefWidth="96.0" text="Causale" />
+         <TableColumn fx:id="data" prefWidth="73.0" text="Data" />
+         <TableColumn fx:id="categoria" prefWidth="83.0" text="Categoria" />
+      </columns>
+   </TableView>
+   <AnchorPane fx:id="anchorModifica" prefHeight="627.0" prefWidth="207.0">
+      <children>
+         <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="627.0" prefWidth="295.0">
+            <children>
+               <Button fx:id="modifica" layoutX="57.0" layoutY="468.0" mnemonicParsing="false" onAction="#modificaTransazione" prefHeight="25.0" prefWidth="174.0" text="Inserisci" />
+               <DatePicker fx:id="nuovoData" layoutX="51.0" layoutY="367.0" />
+               <ComboBox fx:id="categoriaList" layoutX="51.0" layoutY="289.0" prefHeight="25.0" prefWidth="174.0" promptText="Categoria" />
+               <TextField fx:id="nuovoImporto" layoutX="51.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" promptText="nuovo importo" />
+               <Label fx:id="text" layoutX="61.0" layoutY="49.0" prefHeight="59.0" prefWidth="167.0" text="Modifica Transazione" wrapText="true">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+                  <contextMenu>
+                     <ContextMenu>
+                        <items>
+                           <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                        </items>
+                     </ContextMenu>
+                  </contextMenu>
+               </Label>
+               <TextField fx:id="nuovoCausale" layoutX="51.0" layoutY="230.0" prefHeight="25.0" prefWidth="174.0" promptText="nuova causale" />
+            </children>
+         </AnchorPane>
+      </children></AnchorPane>
+</SplitPane>
