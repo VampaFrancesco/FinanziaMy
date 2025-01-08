@@ -21,6 +21,7 @@ public class RimuoviCategoriaController {
 
     @FXML private TableView<Categoria> tabellaCategorie;
     @FXML private TableColumn<Categoria, String> nomeCategoriaTabella;
+    @FXML private TableColumn<Categoria, String> descCategoriaTabella;
 
     private ObservableList<Categoria> listaCategorie;
 
@@ -44,6 +45,7 @@ public class RimuoviCategoriaController {
     private void configuraColonne() {
         // Collega le colonne ai campi del modello Categoria
         nomeCategoriaTabella.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        descCategoriaTabella.setCellValueFactory(new PropertyValueFactory<>("descrizione"));
     }
 
     private void caricaCategoria() {

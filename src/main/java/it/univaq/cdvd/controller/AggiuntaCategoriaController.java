@@ -39,6 +39,8 @@ public class AggiuntaCategoriaController {
 
             if (cdao.save(c)) {
                sa.showAlert("Categoria inserita", "Categoria inserita con successo", Alert.AlertType.INFORMATION);
+                nomeCategoria.clear();
+                descCategoria.clear();
             } else {
                sa.showAlert("Categoria non inserita", "Categoria non inserita", Alert.AlertType.ERROR);
             }
