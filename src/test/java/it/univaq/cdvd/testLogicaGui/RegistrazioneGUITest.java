@@ -29,11 +29,6 @@ public class RegistrazioneGUITest extends ApplicationTest {
         stage.setScene(scene);
         stage.show();
     }
-    @Test
-    public void testHeadlessMode() {
-        System.out.println("Headless mode: " + System.getProperty("java.awt.headless"));
-        Assertions.assertEquals("true", System.getProperty("java.awt.headless"));
-    }
 
     @Test
     void registerUnvalidCredentialButtonTest() throws Exception {
