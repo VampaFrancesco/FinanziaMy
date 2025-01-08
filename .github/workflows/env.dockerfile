@@ -19,10 +19,7 @@ RUN apt-get update && apt-get install -y \
 ENV JAVA_HOME=/usr/lib/jvm/java-23-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
 ENV DISPLAY=:99
-ENV MAVEN_OPTS="-Djava.awt.headless=true"
-
-# Avvia Xvfb in background
-RUN Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+ENV MAVEN_OPTS="-Djava.awt.headless=true -Xmx2048m"
 
 # Crea una directory di lavoro per l'app
 WORKDIR /app
@@ -30,5 +27,8 @@ WORKDIR /app
 # Copia tutto il progetto nel container
 COPY . .
 
-# Esegui i test
-CMD ["mvn", "clean", "verify"]
+# Debug del display
+RUN echo "Verifica configurazione Xvfb: DISPLAY=$DISPLAY"
+
+# Avvia Xvfb e i test Maven
+CMD Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 && mvn clean verify

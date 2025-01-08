@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -16,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RegistrazioneGUITest extends ApplicationTest {
 
     RegistrazioneController controller = new RegistrazioneController();
+
     @Override
     public void start(Stage stage) throws Exception {
         // Carica l'FXML direttamente
@@ -26,6 +28,11 @@ public class RegistrazioneGUITest extends ApplicationTest {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    @Test
+    public void testHeadlessMode() {
+        System.out.println("Headless mode: " + System.getProperty("java.awt.headless"));
+        Assertions.assertEquals("true", System.getProperty("java.awt.headless"));
     }
 
     @Test

@@ -9,23 +9,25 @@
     <url>https://maven.apache.org</url>
     <properties>
         <myapp.env>test</myapp.env>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <dependencies>
 
-        <!--JavaFX Controls -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>23.0.1</version>
         </dependency>
-
-        <!--JavaFX FXML-->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
+            <version>23.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
             <version>23.0.1</version>
         </dependency>
 
@@ -145,7 +147,6 @@
                 <configuration>
                     <systemPropertyVariables>
                         <java.awt.headless>true</java.awt.headless>
-                        <!-- Qui esporti la property come System Property -->
                         <MYAPP_ENV>${myapp.env}</MYAPP_ENV>
                     </systemPropertyVariables>
                 </configuration>
