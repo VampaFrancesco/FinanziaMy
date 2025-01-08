@@ -18,6 +18,8 @@ public class AggiuntaCategoriaController {
     @FXML
     public TextField nomeCategoria = new TextField();
     @FXML
+    public TextField descCategoria = new TextField();
+    @FXML
     public Button aggiungiCategoria = new Button();
 
     ShowAlert sa = new ShowAlert();
@@ -30,6 +32,7 @@ public class AggiuntaCategoriaController {
             Categoria c = new Categoria();
             c.setId(1L);
             c.setNome(nomeCategoria.getText());
+            c.setDescrizione(descCategoria.getText());
             c.setUtente(SessionManager.getInstance().getUtente());
 
             System.out.println(c);
