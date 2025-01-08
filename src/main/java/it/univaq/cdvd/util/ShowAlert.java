@@ -6,6 +6,8 @@ public class ShowAlert {
 
     private static Alert alert = new Alert(Alert.AlertType.NONE);
 
+    public static Alert lastAlert;
+
     /**
      * Mostra un alert in caso di errore o informazione.
      *
@@ -19,6 +21,8 @@ public class ShowAlert {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+
+        lastAlert = alert;
     }
 
 }
