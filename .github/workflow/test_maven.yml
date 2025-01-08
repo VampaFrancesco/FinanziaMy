@@ -9,6 +9,8 @@
 name: Java CI test with Maven
 
 on:
+  workflow_dispatch:
+    
   push:
     branches: [ "Sprint2-test" ]
   pull_request:
