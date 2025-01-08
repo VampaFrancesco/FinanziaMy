@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class LoginControllerTest extends ApplicationTest {
+public class LoginControllerTest{
 
     public UtenteDAOTest utenteDAOTest = new UtenteDAOTest();
     public UtenteDAOTest loginDao = new UtenteDAOTest();

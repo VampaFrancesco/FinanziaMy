@@ -19,8 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-
-public class TestTransazioneDAO extends ApplicationTest {
+public class TestTransazioneDAO {
 
     private TransazioneDAOTest transazioneDAOTest;
     public Transazione transazione = new Transazione();
