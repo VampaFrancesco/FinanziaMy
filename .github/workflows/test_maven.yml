@@ -19,7 +19,7 @@ jobs:
       # Installazione di Docker
       - name: Build and Test in Docker
         run: |
-          docker build -t javafx-ci .
+          docker build -t javafx-ci --file .github/workflows/env.dockerfile .
           docker run --rm javafx-ci
 
       # Report dei risultati
