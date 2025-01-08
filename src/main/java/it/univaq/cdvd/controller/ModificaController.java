@@ -4,6 +4,7 @@ import it.univaq.cdvd.dao.CategoriaDAO;
 import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.util.HibernateUtil;
 import it.univaq.cdvd.util.SessionManager;
 import it.univaq.cdvd.util.ShowAlert;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,31 +22,40 @@ import java.util.List;
 public class ModificaController {
 
     @FXML AnchorPane anchorModifica = new AnchorPane();
-    @FXML private TableView<Transazione> lista;
-    @FXML private TableColumn<Transazione, String> codiceTr;
-    @FXML private TableColumn<Transazione, Double> importo;
-    @FXML private TableColumn<Transazione, String> causale;
-    @FXML private TableColumn<Transazione, LocalDate> data;
-    @FXML private TableColumn<Transazione, String> categoria;
-    @FXML private ComboBox<String> categoriaList = new ComboBox<>();
-    @FXML private TextField nuovoImporto = new TextField();
-    @FXML private TextField nuovoCausale = new TextField();
-    @FXML private DatePicker nuovoData = new DatePicker();
-    @FXML private Button modifica = new Button();
-    @FXML private Label modificaTransazionelabel = new Label();
+    @FXML public TableView<Transazione> lista;
+    @FXML public TableColumn<Transazione, String> codiceTr;
+    @FXML public TableColumn<Transazione, Double> importo;
+    @FXML public TableColumn<Transazione, String> causale;
+    @FXML public TableColumn<Transazione, LocalDate> data;
+    @FXML public TableColumn<Transazione, String> categoria;
+    @FXML public ComboBox<String> categoriaList = new ComboBox<>();
+    @FXML public TextField nuovoImporto = new TextField();
+    @FXML public TextField nuovoCausale = new TextField();
+    @FXML public DatePicker nuovoData = new DatePicker();
+    @FXML public Button modifica = new Button();
+    @FXML public Label modificaTransazionelabel = new Label();
 
-    CategoriaDAO categoriaDAO = new CategoriaDAO();
-
-
-
+    CategoriaDAO cdao = new CategoriaDAO();
     ShowAlert sa = new ShowAlert();
 
 
     @FXML public void initialize() {
         modificaTransazionelabel.setAlignment(Pos.CENTER);
-        configuraColonne();
-        caricaTransazioni();
-        categoriaList.setItems(categoriaDAO.listaCategoria());
+        if (System.getProperty("MYAPP_ENV").equals("test")) {
+            Categoria c1 = new Categoria();
+            Categoria c2 = new Categoria();
+            Categoria c3 = new Categoria();
+            c1.setNome("Cibo");
+            c2.setNome("Svago");
+            c3.setNome("Lavoro");
+            categoriaList.setItems(FXCollections.observableArrayList(c1.getNome(), c2.getNome(), c3.getNome()));
+
+            configuraColonne();
+        }else{
+            configuraColonne();
+            caricaTransazioni();
+            categoriaList.setItems(cdao.listaCategoria());
+        }
     }
 
     private void configuraColonne() {
