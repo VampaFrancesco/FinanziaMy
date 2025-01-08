@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 ENV JAVA_HOME=/usr/lib/jvm/java-23-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
 ENV DISPLAY=:99
+ENV MAVEN_OPTS="-Djava.awt.headless=true"
 
 # Avvia Xvfb in background
 RUN Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
