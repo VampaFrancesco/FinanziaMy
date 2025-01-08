@@ -18,6 +18,8 @@ public class AggiuntaCategoriaController {
     @FXML
     public TextField nomeCategoria = new TextField();
     @FXML
+    public Label desc = new Label();
+    @FXML
     public TextField descCategoria = new TextField();
     @FXML
     public Button aggiungiCategoria = new Button();
@@ -39,6 +41,8 @@ public class AggiuntaCategoriaController {
 
             if (cdao.save(c)) {
                sa.showAlert("Categoria inserita", "Categoria inserita con successo", Alert.AlertType.INFORMATION);
+                nomeCategoria.clear();
+                descCategoria.clear();
             } else {
                sa.showAlert("Categoria non inserita", "Categoria non inserita", Alert.AlertType.ERROR);
             }
