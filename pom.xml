@@ -4,7 +4,7 @@
     <groupId>cdvd</groupId>
     <artifactId>finanziamy</artifactId>
     <packaging>jar</packaging>
-    <version>2.6.4</version>
+    <version>3.0.0</version>
     <name>finanziamy</name>
     <url>https://maven.apache.org</url>
     <properties>
@@ -160,8 +160,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
-
 </project>

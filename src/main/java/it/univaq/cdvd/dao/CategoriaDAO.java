@@ -38,11 +38,12 @@ public class CategoriaDAO {
     }
 
 
-    public ObservableList<String> listaCategoria() {
+    public ObservableList<String> listaCategoria(String username) {
         ObservableList<String> categorieList = FXCollections.observableArrayList();
         try{
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query<Categoria> query = session.createQuery("from Categoria");
+            Query query = session.createQuery("from Categoria where utente.username = :username");
+            query.setParameter("username", username);
             List<Categoria> categorie = query.list();
             for(Categoria c : categorie){
                 categorieList.add(c.getNome());

@@ -6,13 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.testfx.framework.junit5.ApplicationTest;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class AggiuntaCategoriaControllerTest extends ApplicationTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class AggiuntaCategoriaControllerTest extends ApplicationTest {
 
     AggiuntaCategoriaController aggiungicontroller;
 

@@ -49,7 +49,7 @@ public class InserimentoController {
             c3.setNome("Lavoro");
             categoriaList.setItems(FXCollections.observableArrayList(c1.getNome(), c2.getNome(), c3.getNome()));
         }else{
-            categoriaList.setItems(cdao.listaCategoria());
+            categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
         }
     }
 

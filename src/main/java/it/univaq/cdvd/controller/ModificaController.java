@@ -15,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.hibernate.Session;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -54,7 +55,7 @@ public class ModificaController {
         }else{
             configuraColonne();
             caricaTransazioni();
-            categoriaList.setItems(cdao.listaCategoria());
+            categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
         }
     }
 
