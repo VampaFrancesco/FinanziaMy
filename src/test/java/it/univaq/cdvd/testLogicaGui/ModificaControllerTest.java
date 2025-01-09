@@ -23,7 +23,6 @@ public class ModificaControllerTest extends ApplicationTest {
 
     private ModificaController controller;
     private Transazione transazione;
-    private Categoria categoria;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -40,7 +39,7 @@ public class ModificaControllerTest extends ApplicationTest {
     @BeforeEach
     public void setup() {
         // Crea la categoria e la transazione
-        categoria = new Categoria();
+        Categoria categoria = new Categoria();
         categoria.setNome("Svago");
 
         transazione = new Transazione();
@@ -86,7 +85,7 @@ public class ModificaControllerTest extends ApplicationTest {
         clickOn(controller.modifica); // Simula clic sul pulsante "modifica"
 
         // Verifica che venga mostrato un alert di errore
-        assertTrue(ShowAlert.lastAlert.getAlertType() == Alert.AlertType.WARNING, "Dovrebbe mostrare un alert di errore per campi vuoti.");
+        assertSame(Alert.AlertType.WARNING, ShowAlert.lastAlert.getAlertType(), "Dovrebbe mostrare un alert di errore per campi vuoti.");
     }
 
     @Test
@@ -99,6 +98,6 @@ public class ModificaControllerTest extends ApplicationTest {
         clickOn(controller.modifica); // Simula clic sul pulsante "modifica"
 
         // Verifica che venga mostrato un alert di errore
-        assertTrue(ShowAlert.lastAlert.getAlertType() == Alert.AlertType.WARNING, "Dovrebbe mostrare un alert di errore per nessuna transazione selezionata.");
+        assertSame(Alert.AlertType.WARNING, ShowAlert.lastAlert.getAlertType(), "Dovrebbe mostrare un alert di errore per nessuna transazione selezionata.");
     }
 }
