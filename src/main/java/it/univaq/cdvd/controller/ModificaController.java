@@ -42,21 +42,10 @@ public class ModificaController {
 
     @FXML public void initialize() {
         modificaTransazionelabel.setAlignment(Pos.CENTER);
-        if (System.getProperty("MYAPP_ENV").equals("test")) {
-            Categoria c1 = new Categoria();
-            Categoria c2 = new Categoria();
-            Categoria c3 = new Categoria();
-            c1.setNome("Cibo");
-            c2.setNome("Svago");
-            c3.setNome("Lavoro");
-            categoriaList.setItems(FXCollections.observableArrayList(c1.getNome(), c2.getNome(), c3.getNome()));
-
-            configuraColonne();
-        }else{
             configuraColonne();
             caricaTransazioni();
             categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
-        }
+
     }
 
     private void configuraColonne() {

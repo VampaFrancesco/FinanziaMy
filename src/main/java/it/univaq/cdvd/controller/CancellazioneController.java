@@ -40,20 +40,7 @@ public class CancellazioneController {
 
     @FXML
     public void initialize() {
-        if (System.getProperty("MYAPP_ENV").equals("test")) {
-            configuraColonne();
-            Categoria categoria = new Categoria();
-            categoria.setNome("Svago");
 
-            Transazione transazione = new Transazione();
-            transazione.setId(2L);
-            transazione.setCausale("Causale di test");
-            transazione.setImporto(100.0);
-            transazione.setData(LocalDate.now());
-            transazione.setCategoria(categoria);
-            lista.setItems(FXCollections.observableArrayList(transazione));
-
-        }else{
             try {
                 // Recupera l'utente corrente dalla sessione
                 utente = SessionManager.getInstance().getUtente();
@@ -67,7 +54,6 @@ public class CancellazioneController {
                 e.printStackTrace();
                 sa.showAlert("Errore", "Errore durante l'inizializzazione: " + e.getMessage(), Alert.AlertType.ERROR);
             }
-        }
     }
 
     private void configuraColonne() {
@@ -122,7 +108,4 @@ public class CancellazioneController {
             cancella(event);
         }
     }
-
-
-
 }

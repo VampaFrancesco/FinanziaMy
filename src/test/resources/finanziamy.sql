@@ -31,10 +31,10 @@ CREATE TABLE transazione (
 
 -- Inserimento dati
 INSERT INTO utente (email, password, username, saldo)
-VALUES ('testuser@example.com', 'hashedpassword', 'Test1', 1000.0);
+VALUES ('test', 'test', 'test', 100.0);
 
 INSERT INTO categoria (nome, fk_utente)
-VALUES ('categoria', 'Test1');
+VALUES ('categoria', 'test'), ('fgrsg', 'test'),('dbfdb', 'test');
 
 INSERT INTO transazione (causale, data, importo, nome_categoria, fk_categoria, fk_utente)
-VALUES ('Test causale', '2025-01-06', 200.0, 'categoria', 1, 'Test1');
+VALUES ('Test causale', '2025-01-06', 200.0, 'categoria', 1, 'test');

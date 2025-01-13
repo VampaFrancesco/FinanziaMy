@@ -4,6 +4,8 @@ import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
 import it.univaq.cdvd.util.SessionManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -136,16 +138,19 @@ public class UtenteDAO {
             e.printStackTrace();
         }
     }
+
+    public ObservableList<Transazione> getTransazioni(Utente utente) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            ObservableList<Transazione> transazioni = FXCollections.observableArrayList();
+            String hql = "FROM Transazione t WHERE t.utente = :utente";
+            Query<Transazione> query = session.createQuery(hql, Transazione.class);
+            query.setParameter("utente", utente);
+            transazioni.addAll(query.list());
+            return transazioni;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
 
-
-//    public ArrayList<Transazione> getTransazione() {
-//        Session session = null;
-//        Utente utente = SessionManager.getInstance().getUtente();
-//        try {
-//
-//
-//        }
-//    }
-
-// }

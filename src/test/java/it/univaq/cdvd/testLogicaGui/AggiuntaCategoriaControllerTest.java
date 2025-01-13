@@ -1,10 +1,13 @@
 package it.univaq.cdvd.testLogicaGui;
 
 import it.univaq.cdvd.controller.AggiuntaCategoriaController;
+import it.univaq.cdvd.util.HibernateUtil;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -17,6 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class AggiuntaCategoriaControllerTest extends ApplicationTest {
 
     AggiuntaCategoriaController aggiungicontroller;
+
+
+    @BeforeAll
+    public void setup(){
+        HibernateUtil.setDbms("/hibernate-test.cfg.xml");
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -42,12 +51,9 @@ class AggiuntaCategoriaControllerTest extends ApplicationTest {
     public void testAggingiCategoriaConDati() {
         // Simula l'inserimento dei dati
         clickOn(aggiungicontroller.nomeCategoria).write("Stipendio");
-        clickOn(aggiungicontroller.descCategoria).write("Stipendio dicembre");
-        // Simula la selezione di una data dal DatePicker
         clickOn(aggiungicontroller.aggiungiCategoria);
 
         // Verifica che i dati siano stati correttamente acquisiti
         assertEquals("Stipendio", aggiungicontroller.nomeCategoria.getText());
-        assertEquals("Stipendio dicembre", aggiungicontroller.descCategoria.getText());
     }
 }

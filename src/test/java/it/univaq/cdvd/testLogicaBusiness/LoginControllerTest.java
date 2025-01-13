@@ -1,40 +1,31 @@
 package it.univaq.cdvd.testLogicaBusiness;
 
-import it.univaq.cdvd.TestDAO.UtenteDAOTest;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Utente;
-import it.univaq.cdvd.utilTest.HibernateUtilTest;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.junit.jupiter.api.BeforeEach;
+import it.univaq.cdvd.util.HibernateUtil;
+import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.testfx.framework.junit5.ApplicationTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class LoginControllerTest{
 
-public class LoginControllerTest{
-
-    public UtenteDAOTest utenteDAOTest = new UtenteDAOTest();
-    public UtenteDAOTest loginDao = new UtenteDAOTest();
+    public UtenteDAO utenteDAOTest = new UtenteDAO();
+    public UtenteDAO loginDao = new UtenteDAO();
     public Utente utente;
-    @BeforeEach
-    public void setUp() {
-        // Configura Hibernate con un database in memoria (H2)
-        Configuration configuration = new Configuration()
-                .configure("/hibernate-test.cfg.xml");// Specifica il file di configurazione di Hibernate
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        HibernateUtilTest.setSessionFactory(sessionFactory);
 
-        // Crea un'istanza di Utente
+    @BeforeAll
+    public void setUp() {
+        HibernateUtil.setDbms("/hibernate-test.cfg.xml");
+
         utente = new Utente();
         utente.setUsername("franvam");
         utente.setEmail("test1@example.com");
         utente.setPassword("x");
         utente.setSaldo(0.0);
-
-        // Salva l'utente nel database
         utenteDAOTest.save(utente);
 
     }

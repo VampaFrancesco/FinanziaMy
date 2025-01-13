@@ -21,7 +21,6 @@ public class ShowAlert {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-
         lastAlert = alert;
     }
 

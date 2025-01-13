@@ -1,18 +1,16 @@
 package it.univaq.cdvd.testLogicaBusiness;
 
-import it.univaq.cdvd.TestDAO.CategoriaDAOTest;
-import it.univaq.cdvd.TestDAO.TransazioneDAOTest;
-import it.univaq.cdvd.TestDAO.UtenteDAOTest;
+
+import it.univaq.cdvd.dao.CategoriaDAO;
+import it.univaq.cdvd.dao.TransazioneDAO;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
-import it.univaq.cdvd.utilTest.HibernateUtilTest;
-
-import org.hibernate.SessionFactory;
+import it.univaq.cdvd.util.HibernateUtil;
+import it.univaq.cdvd.util.SessionManager;
+import org.hibernate.Session;
 import org.junit.jupiter.api.*;
-import org.testfx.framework.junit5.ApplicationTest;
-import org.hibernate.cfg.Configuration;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -21,21 +19,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class TestTransazioneDAO {
 
-    private TransazioneDAOTest transazioneDAOTest;
+    private TransazioneDAO transazioneDAOTest;
     public Transazione transazione = new Transazione();
-    private UtenteDAOTest utenteDAOTest = new UtenteDAOTest();
-    private CategoriaDAOTest categoriaDAOTest = new CategoriaDAOTest();
+    private UtenteDAO utenteDAOTest = new UtenteDAO();
+    private CategoriaDAO categoriaDAOTest = new CategoriaDAO();
     public Utente utente;
 
     @BeforeAll
     public void setup() {
-        // Configura Hibernate con un database in memoria (H2)
-        Configuration configuration = new Configuration()
-                .configure("/hibernate-test.cfg.xml");// Specifica il file di configurazione di Hibernate
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        HibernateUtilTest.setSessionFactory(sessionFactory);
+        HibernateUtil.setDbms("/hibernate-test.cfg.xml");
 
-        transazioneDAOTest = new TransazioneDAOTest();
+
+        transazioneDAOTest = new TransazioneDAO();
 
         // Crea un'istanza di Utente
         utente = new Utente();

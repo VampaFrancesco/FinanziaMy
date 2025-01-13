@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -16,11 +17,10 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LandingControllerGuiTest extends ApplicationTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class LandingControllerGuiTest extends ApplicationTest {
 
     LandingController controller = new LandingController();
-
-
 
     @Override
     public void start(Stage stage) throws IOException {

@@ -40,8 +40,8 @@ public class CategoriaDAO {
 
     public ObservableList<String> listaCategoria(String username) {
         ObservableList<String> categorieList = FXCollections.observableArrayList();
-        try{
-            Session session = HibernateUtil.getSessionFactory().openSession();
+        try(Session session = HibernateUtil.getSessionFactory().openSession();){
+
             Query query = session.createQuery("from Categoria where utente.username = :username");
             query.setParameter("username", username);
             List<Categoria> categorie = query.list();
@@ -56,8 +56,7 @@ public class CategoriaDAO {
 
     public Categoria cercaCategoria(String nome){
         Categoria categoria = null;
-        try{
-            Session session = HibernateUtil.getSessionFactory().openSession();
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
             Query<Categoria> query = session.createQuery("from Categoria where nome = :nome");
             query.setParameter("nome", nome);
             categoria = query.uniqueResult();

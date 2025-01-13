@@ -22,7 +22,6 @@ public class Categoria {
         this.descrizione = descrizione;
     }
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,21 +34,12 @@ public class Categoria {
     @Column(nullable = true)
     private String descrizione;
 
-    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<Transazione> transazioni = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "fk_utente")
     private Utente utente;
-
-
-    /** @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-     @JoinColumn(name = "fk_utente", referencedColumnName = "username")
-     private Utente utente;*/
-
-   /** @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "fk_utente", referencedColumnName = "username")
-    private Utente utente;*/
 
 
     // Getters e Setters

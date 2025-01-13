@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -13,9 +14,10 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LoginControllerGuiTest extends ApplicationTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class LoginControllerGuiTest extends ApplicationTest {
 
-    LoginController controller = new LoginController();
+    LoginController controller;
 
     @Override
     public void start(Stage stage) throws IOException {

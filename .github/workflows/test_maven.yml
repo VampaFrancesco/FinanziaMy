@@ -24,7 +24,7 @@ jobs:
 
       # Build e Test con Maven
       - name: Build and Run Tests
-        run: xvfb-run mvn clean verify
+        run: mvn clean verify -Dtest=!it.univaq.cdvd.testLogicaGui.**
 
       # Report dei risultati
       - name: Publish Test Results

@@ -6,6 +6,7 @@
         <datasource-map>
           <unit-entry name="config:hibernate-h2.cfg.xml" />
           <unit-entry name="config:hibernate.cfg.xml" />
+          <unit-entry name="hibernate-test.cfg.xml" />
           <unit-entry name="src:main:resources:config:hibernate.cfg.xml" value="919da4e7-faa0-44c6-952e-98760fa64d0e" />
         </datasource-map>
         <naming-strategy-map />
