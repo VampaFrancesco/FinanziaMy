@@ -40,7 +40,7 @@ public class InserimentoController {
         text.setAlignment(Pos.CENTER);
         labelCausale.setAlignment(Pos.CENTER);
         importo.setAlignment(Pos.CENTER);
-        //categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
+        categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
 
     }
 
