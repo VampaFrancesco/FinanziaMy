@@ -138,6 +138,10 @@ public class UtenteDAO {
             e.printStackTrace();
         }
     }
+    public void updateSaldo(Utente utente, Double vecchioImporto, Double nuovoImporto) {
+        double variazioneSaldo = nuovoImporto - vecchioImporto;
+        updateSaldo(utente, variazioneSaldo); // Riutilizza il metodo base
+    }
 
     public ObservableList<Transazione> getTransazioni(Utente utente) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

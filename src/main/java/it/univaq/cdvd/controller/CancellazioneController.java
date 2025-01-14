@@ -1,6 +1,7 @@
 package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.dao.TransazioneDAO;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
@@ -91,6 +92,8 @@ public class CancellazioneController {
         }
 
         TransazioneDAO transazioneDAO = new TransazioneDAO();
+        UtenteDAO utenteDAO = new UtenteDAO();
+        utenteDAO.updateSaldo(utente, -transazione.getImporto());
 
         boolean eliminata = transazioneDAO.eliminaTransazione(transazione.getId());
         if(eliminata){

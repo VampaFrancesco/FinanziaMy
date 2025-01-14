@@ -2,8 +2,10 @@ package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.dao.CategoriaDAO;
 import it.univaq.cdvd.dao.TransazioneDAO;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.HibernateUtil;
 import it.univaq.cdvd.util.SessionManager;
 import it.univaq.cdvd.util.ShowAlert;
@@ -88,6 +90,8 @@ public class ModificaController {
             }
 
             TransazioneDAO transazioneDAO = new TransazioneDAO();
+            UtenteDAO utenteDAO = new UtenteDAO();
+            double vecchioImporto = transazioneSelezionata.getImporto();
 
             transazioneSelezionata.setId(lista.getSelectionModel().getSelectedItem().getId());
             transazioneSelezionata.setUtente(SessionManager.getInstance().getUtente());
@@ -95,8 +99,11 @@ public class ModificaController {
             transazioneSelezionata.setCausale(nuovoCausale.getText().trim());
             transazioneSelezionata.setData(nuovoData.getValue());
             transazioneSelezionata.setCategoria(lista.getSelectionModel().getSelectedItem().getCategoria());
+            double nuovoImporto = transazioneSelezionata.getImporto();
 
+            utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), vecchioImporto, nuovoImporto);
             transazioneDAO.modifica(transazioneSelezionata);
+
             sa.showAlert("Successo", "Transazione modificata con successo", Alert.AlertType.INFORMATION);
             caricaTransazioni();
         } catch (NumberFormatException e) {
