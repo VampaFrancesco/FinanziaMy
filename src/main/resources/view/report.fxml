@@ -26,6 +26,6 @@
       <ChoiceBox fx:id="categoryChoiceBox" layoutX="128.0" layoutY="99.0" prefWidth="150.0" AnchorPane.rightAnchor="21.600000000000023" />
       <Button fx:id="annullaButton" layoutX="177.0" layoutY="297.0" mnemonicParsing="false" onAction="#annullaButtonOnAction" text="Annulla" />
       <Button fx:id="creaButton" layoutX="82.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleCreatePDF" text="Crea" />
-      <Label fx:id="reportMessageLabel" layoutX="62.0" layoutY="66.0" prefHeight="18.0" prefWidth="175.0" textAlignment="CENTER" />
+      <Label fx:id="reportMessageLabel" layoutX="61.0" layoutY="66.0" prefHeight="18.0" prefWidth="237.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>
