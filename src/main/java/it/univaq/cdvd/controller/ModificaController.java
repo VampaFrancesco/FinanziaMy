@@ -12,41 +12,62 @@ import it.univaq.cdvd.util.ShowAlert;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.hibernate.Session;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
 public class ModificaController {
 
-    @FXML AnchorPane anchorModifica = new AnchorPane();
-    @FXML public TableView<Transazione> lista;
-    @FXML public TableColumn<Transazione, String> codiceTr;
-    @FXML public TableColumn<Transazione, Double> importo;
-    @FXML public TableColumn<Transazione, String> causale;
-    @FXML public TableColumn<Transazione, LocalDate> data;
-    @FXML public TableColumn<Transazione, String> categoria;
-    @FXML public ComboBox<String> categoriaList = new ComboBox<>();
-    @FXML public TextField nuovoImporto = new TextField();
-    @FXML public TextField nuovoCausale = new TextField();
-    @FXML public DatePicker nuovoData = new DatePicker();
-    @FXML public Button modifica = new Button();
-    @FXML public Label modificaTransazionelabel = new Label();
+    @FXML
+    AnchorPane anchorModifica = new AnchorPane();
+    @FXML
+    public TableView<Transazione> lista;
+    @FXML
+    public TableColumn<Transazione, String> codiceTr;
+    @FXML
+    public TableColumn<Transazione, Double> importo;
+    @FXML
+    public TableColumn<Transazione, String> causale;
+    @FXML
+    public TableColumn<Transazione, LocalDate> data;
+    @FXML
+    public TableColumn<Transazione, String> categoria;
+    @FXML
+    public ComboBox<String> categoriaList = new ComboBox<>();
+    @FXML
+    public TextField nuovoImporto = new TextField();
+    @FXML
+    public TextField nuovoCausale = new TextField();
+    @FXML
+    public DatePicker nuovoData = new DatePicker();
+    @FXML
+    public Button modifica = new Button();
+    @FXML
+    public Label modificaTransazionelabel = new Label();
 
     CategoriaDAO cdao = new CategoriaDAO();
     ShowAlert sa = new ShowAlert();
 
 
-    @FXML public void initialize() {
+    @FXML
+    public void initialize() {
         modificaTransazionelabel.setAlignment(Pos.CENTER);
-            configuraColonne();
-            caricaTransazioni();
-            categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
+        configuraColonne();
+        caricaTransazioni();
+        categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
 
     }
 
@@ -76,7 +97,8 @@ public class ModificaController {
         }
     }
 
-    @FXML public void modificaTransazione() {
+    @FXML
+    public void modificaTransazione() {
 
         try {
             Transazione transazioneSelezionata = lista.getSelectionModel().getSelectedItem();
@@ -107,10 +129,28 @@ public class ModificaController {
             sa.showAlert("Successo", "Transazione modificata con successo", Alert.AlertType.INFORMATION);
             caricaTransazioni();
         } catch (NumberFormatException e) {
-            sa.showAlert("Errore","Il campo importo deve contenere un valore numerico: "+e.getMessage(), Alert.AlertType.ERROR);
-        }catch (Exception e) {
+            sa.showAlert("Errore", "Il campo importo deve contenere un valore numerico: " + e.getMessage(), Alert.AlertType.ERROR);
+        } catch (Exception e) {
             sa.showAlert("Errore", "Errore durante la modifica della transazione: " + e.getMessage(), Alert.AlertType.ERROR);
         }
 
     }
+
+    public void handleAnnulClick(ActionEvent actionEvent) {
+        try {
+            // Carica il file auth.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
+            Parent root = loader.load();
+
+            // Ottieni la finestra corrente e imposta la nuova scena
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pagina Home");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
+

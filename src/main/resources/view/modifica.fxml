@@ -27,7 +27,7 @@
       <children>
          <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="627.0" prefWidth="295.0">
             <children>
-               <Button fx:id="modifica" layoutX="57.0" layoutY="468.0" mnemonicParsing="false" onAction="#modificaTransazione" prefHeight="25.0" prefWidth="174.0" text="Inserisci" />
+               <Button fx:id="modifica" layoutX="57.0" layoutY="468.0" mnemonicParsing="false" onAction="#modificaTransazione" prefHeight="26.0" prefWidth="66.0" text="Inserisci" />
                <DatePicker fx:id="nuovoData" layoutX="51.0" layoutY="367.0" />
                <ComboBox fx:id="categoriaList" layoutX="51.0" layoutY="289.0" prefHeight="25.0" prefWidth="174.0" promptText="Categoria" />
                <TextField fx:id="nuovoImporto" layoutX="51.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" promptText="nuovo importo" />
@@ -44,6 +44,7 @@
                   </contextMenu>
                </Label>
                <TextField fx:id="nuovoCausale" layoutX="51.0" layoutY="230.0" prefHeight="25.0" prefWidth="174.0" promptText="nuova causale" />
+               <Button fx:id="annulButton" layoutX="160.0" layoutY="469.0" mnemonicParsing="false" onAction="#handleAnnulClick" prefHeight="26.0" prefWidth="66.0" text="Annulla" />
             </children>
          </AnchorPane>
       </children></AnchorPane>

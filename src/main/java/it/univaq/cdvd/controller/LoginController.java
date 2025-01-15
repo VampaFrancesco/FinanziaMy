@@ -84,10 +84,10 @@ public class LoginController {
                 Parent root = loader.load();
 
                 // Ottieni il controller della home
-                HomeController homeController = loader.getController();
+               // HomeController homeController = loader.getController();
 
                 // Imposta i dati iniziali della home
-                homeController.showSaldo(); // Aggiorna il saldo dell'utente
+                //homeController.showSaldo(); // Aggiorna il saldo dell'utente
 
                 // Ottieni la finestra corrente e imposta la nuova scena
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
