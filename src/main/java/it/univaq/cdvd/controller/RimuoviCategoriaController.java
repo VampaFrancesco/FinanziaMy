@@ -66,28 +66,23 @@ public class RimuoviCategoriaController {
         }
     }
 
-    public void rimuoviCategoria(MouseEvent event) {
-
-        Categoria categorie = tabellaCategorie.getSelectionModel().getSelectedItem();
-        if( categorie == null){
+    @FXML
+        public void eliminaCategoriaTabella(ActionEvent event) {
+        Categoria categoriaSelezionata = tabellaCategorie.getSelectionModel().getSelectedItem();
+        if (categoriaSelezionata == null) {
             sa.showAlert("Errore", "Seleziona una categoria", Alert.AlertType.WARNING);
+            return;
         }
 
         CategoriaDAO categoriaDAO = new CategoriaDAO();
+        boolean eliminata = categoriaDAO.eliminaCategoria(categoriaSelezionata.getId());
 
-        boolean eliminata = categoriaDAO.eliminaCategoria(categorie.getId());
-        if(eliminata){
-            listaCategorie.remove(categorie);
+        if (eliminata) {
+            listaCategorie.remove(categoriaSelezionata);
             sa.showAlert("Successo", "Categoria eliminata", Alert.AlertType.INFORMATION);
-        }else{
+        } else {
             sa.showAlert("Errore", "Errore durante l'eliminazione della categoria", Alert.AlertType.ERROR);
         }
     }
-    @FXML
-    private void gestisciClick(MouseEvent event) {
-        // Verifica che l'evento sia un doppio clic
-        if (event.getClickCount() == 2) {
-            rimuoviCategoria(event);
-        }
-    }
+
 }

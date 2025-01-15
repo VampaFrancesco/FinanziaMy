@@ -39,6 +39,11 @@ public class AggiuntaCategoriaController {
 
             System.out.println(c);
 
+            if(nomeCategoria.getText().isEmpty()){
+                sa.showAlert("Errore", "Compila tutti i campi obbligatoriamente", Alert.AlertType.ERROR);
+                return;
+            }
+
             if (cdao.save(c)) {
                sa.showAlert("Categoria inserita", "Categoria inserita con successo", Alert.AlertType.INFORMATION);
                 nomeCategoria.clear();

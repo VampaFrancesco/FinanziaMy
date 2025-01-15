@@ -32,15 +32,8 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Categoria">
                <items>
-                  <MenuItem fx:id="casa" mnemonicParsing="false" text="Casa" />
-                  <MenuItem fx:id="saluteBenessere" mnemonicParsing="false" text="Salute e benessere" />
-                  <MenuItem fx:id="ciboSpesa" mnemonicParsing="false" text="Cibo e Spesa" />
-                  <MenuItem fx:id="bancaFinanza" mnemonicParsing="false" text="Banca e finanza" />
-                  <MenuItem fx:id="motoriTrasposti" mnemonicParsing="false" text="Motori e Trasporti" />
-                  <MenuItem fx:id="varie" mnemonicParsing="false" text="Varie" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" onAction="#aggiuntaCategoriaOnAction" text="Aggiungi Categoria" />
-                  <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" text="Elimina Categoria" />
+                  <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" onAction="#eliminaCategoriaOnAction" text="Elimina Categoria" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Statistiche">
