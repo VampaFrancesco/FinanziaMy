@@ -79,15 +79,17 @@ public class TransazioneDAO {
                 session.delete(transazione);
                 // Conferma la transazione
                 transaction.commit();
+                System.out.println("Transazione eliminata con successo.");
                 return true;
             } else {
                 System.out.println("Transazione non trovata con ID: " + idTransazione);
                 return false;
             }
         } catch (Exception e) {
-            if (transaction != null) {
+            if (transaction != null && transaction.getStatus().canRollback()) {
                 transaction.rollback(); // Rollback in caso di errore
             }
+            System.err.println("Errore durante l'eliminazione della transazione: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
