@@ -126,6 +126,18 @@ public class TransazioneDAO {
     public List<Transazione> getTransazioni(String categoria, LocalDate dataInizio, LocalDate dataFine, Utente utenteCorrente) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
+            if (categoria == null) {
+                // Recupera tutte le transazioni associate all'utente
+                return session.createQuery(
+                                "FROM Transazione WHERE data >= :dataInizio AND data <= :dataFine AND utente = :utenteId",
+                                Transazione.class
+                        )
+                        .setParameter("dataInizio", dataInizio)
+                        .setParameter("dataFine", dataFine)
+                        .setParameter("utenteId", utenteCorrente)
+                        .list();
+            }
+
             return session.createQuery(
                             "FROM Transazione WHERE nome_categoria = :categoria AND data >= :dataInizio AND data <= :dataFine AND utente = :utenteId",
                             Transazione.class

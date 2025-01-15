@@ -46,6 +46,9 @@ public class ReportController {
 
     @FXML
     public void initialize() {
+
+        categoryChoiceBox.getItems().add("generale");
+
         // Recupera le categorie dal database
         CategoriaDAO categoriaDAO = new CategoriaDAO();
         for (Categoria categoria : categoriaDAO.getAllCategorie()) {
@@ -61,20 +64,32 @@ public class ReportController {
         LocalDate dataFine = datafinePicker.getValue();
 
         if (categoria == null || dataInizio == null || dataFine == null) {
-            reportMessageLabel.setText("Tutti i campi devono essere compilati.");
+            reportMessageLabel.setText("Tutti i campi devono essere compilati");
+            return;
+        }
+
+        if (dataFine.isBefore(dataInizio)) {
+            reportMessageLabel.setText("La data finale è prima di quella iniziale");
             return;
         }
 
         // Chiama il metodo DAO per recuperare le transazioni
         TransazioneDAO dao = new TransazioneDAO();
         Utente utenteCorrente = SessionManager.getInstance().getUtente();
-        List<Transazione> transazioni = dao.getTransazioni(categoria, dataInizio, dataFine,utenteCorrente);
-        
+        List<Transazione> transazioni;
+
+        // Controlla se la categoria è "Generale"
+        if ("Generale".equalsIgnoreCase(categoria)) {
+            transazioni = dao.getTransazioni(null,dataInizio, dataFine, utenteCorrente);
+        } else {
+            transazioni = dao.getTransazioni(categoria, dataInizio, dataFine, utenteCorrente);
+        }
+
         // Genera il PDF con le transazioni
         PDFGenerator pdfGenerator = new PDFGenerator();
         pdfGenerator.generatePDF(transazioni, categoria, dataInizio, dataFine);
 
-        reportMessageLabel.setText("Report genearto con successo");
+        reportMessageLabel.setText("Report generato con successo");
     }
 
     @FXML
@@ -93,6 +108,5 @@ public class ReportController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
