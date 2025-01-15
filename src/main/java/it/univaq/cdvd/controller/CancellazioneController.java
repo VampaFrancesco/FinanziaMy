@@ -1,13 +1,11 @@
 package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.dao.TransazioneDAO;
-import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
+import it.univaq.cdvd.util.HibernateUtil;
 import it.univaq.cdvd.util.SessionManager;
 import it.univaq.cdvd.util.ShowAlert;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,8 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import org.hibernate.query.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,11 +21,18 @@ public class CancellazioneController {
 
     @FXML
     public TableView<Transazione> lista;
-    @FXML private TableColumn<Transazione, String> codiceTr;
-    @FXML private TableColumn<Transazione, Double> importo;
-    @FXML private TableColumn<Transazione, String> causale;
-    @FXML private TableColumn<Transazione, LocalDate> data;
-    @FXML private TableColumn<Transazione, String> categoria;
+    @FXML
+    private TableColumn<Transazione, String> codiceTr;
+    @FXML
+    private TableColumn<Transazione, Double> importo;
+    @FXML
+    private TableColumn<Transazione, String> causale;
+    @FXML
+    private TableColumn<Transazione, LocalDate> data;
+    @FXML
+    private TableColumn<Transazione, String> categoria;
+    @FXML
+    private Button elimina;
 
     private ShowAlert sa = new ShowAlert();
 
@@ -41,19 +44,20 @@ public class CancellazioneController {
     @FXML
     public void initialize() {
 
-            try {
-                // Recupera l'utente corrente dalla sessione
-                utente = SessionManager.getInstance().getUtente();
 
-                // Configura le colonne della TableView
-                configuraColonne();
+        try {
+            // Recupera l'utente corrente dalla sessione
+            utente = SessionManager.getInstance().getUtente();
 
-                // Carica le transazioni dal database
-                caricaTransazioni();
-            } catch (Exception e) {
-                e.printStackTrace();
-                sa.showAlert("Errore", "Errore durante l'inizializzazione: " + e.getMessage(), Alert.AlertType.ERROR);
-            }
+            // Configura le colonne della TableView
+            configuraColonne();
+
+            // Carica le transazioni dal database
+            caricaTransazioni();
+        } catch (Exception e) {
+            e.printStackTrace();
+            sa.showAlert("Errore", "Errore durante l'inizializzazione: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     private void configuraColonne() {
@@ -83,29 +87,33 @@ public class CancellazioneController {
     }
 
     @FXML
-    public void cancella(MouseEvent event) {
-
-        Transazione transazione = lista.getSelectionModel().getSelectedItem();
-        if(transazione == null){
-            sa.showAlert("Errore", "Seleziona una transazione", Alert.AlertType.WARNING);
-        }
-
+    public void cancella(ActionEvent event) {
         TransazioneDAO transazioneDAO = new TransazioneDAO();
 
-        boolean eliminata = transazioneDAO.eliminaTransazione(transazione.getId());
-        if(eliminata){
-            transazioniUtente.remove(transazione);
-            sa.showAlert("Successo", "Transazione eliminata", Alert.AlertType.INFORMATION);
-        }else{
-            sa.showAlert("Errore", "Errore durante l'eliminazione della transazione", Alert.AlertType.ERROR);
-        }
-    }
+        Transazione transazione = lista.getSelectionModel().getSelectedItem();
+        System.out.println("Transazione selezionata: " + transazione);
 
-    @FXML
-    private void gestisciClick(MouseEvent event) {
-        // Verifica che l'evento sia un doppio clic
-        if (event.getClickCount() == 2) {
-            cancella(event);
+        if (transazione == null) {
+            sa.showAlert("Errore", "Seleziona una transazione", Alert.AlertType.WARNING);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Conferma eliminazione");
+            alert.setHeaderText("Conferma eliminazione");
+            alert.setContentText("Sei sicuro di voler eliminare la transazione selezionata?");
+            ButtonType buttonTypeSi = new ButtonType("Si");
+            ButtonType buttonTypeNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeSi, buttonTypeNo);
+            alert.showAndWait().ifPresent(buttonType -> {
+                if (buttonType == buttonTypeSi) {
+                    boolean eliminata = transazioneDAO.eliminaTransazione(transazione.getId());
+                    if (eliminata) {
+                        transazioniUtente.remove(transazione);
+                        sa.showAlert("Successo", "Transazione eliminata", Alert.AlertType.INFORMATION);
+                    } else {
+                        sa.showAlert("Errore", "Errore durante l'eliminazione della transazione", Alert.AlertType.ERROR);
+                    }
+                }
+            });
         }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,7 +15,7 @@
               <Font size="15.0" />
             </font>
         </Text>
-      <TableView fx:id="lista" layoutY="85.0" onMouseClicked="#gestisciClick" prefHeight="455.0" prefWidth="484.0">
+      <TableView fx:id="lista" layoutY="85.0" prefHeight="455.0" prefWidth="484.0">
         <columns>
           <TableColumn fx:id="codiceTr" prefWidth="75.0" text="Codice Tr." />
           <TableColumn fx:id="importo" prefWidth="100.0" text="Importo" />
@@ -23,5 +24,6 @@
             <TableColumn fx:id="categoria" prefWidth="112.0" text="Categoria" />
         </columns>
       </TableView>
+      <Button fx:id="elimina" layoutX="341.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancella" prefHeight="25.0" prefWidth="100.0" text="Eilimina" />
     </AnchorPane>
 </SplitPane>

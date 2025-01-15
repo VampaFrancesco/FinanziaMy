@@ -5,6 +5,7 @@ import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
+import it.univaq.cdvd.util.HibernateUtil;
 import it.univaq.cdvd.util.SessionManager;
 import it.univaq.cdvd.util.ShowAlert;
 import javafx.collections.FXCollections;
@@ -13,10 +14,8 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import org.hibernate.Session;
 
 public class InserimentoController {
-
 
     @FXML public AnchorPane anchorInserimento = new AnchorPane();
     @FXML public Label text = new Label();
@@ -28,67 +27,62 @@ public class InserimentoController {
     @FXML public ComboBox<String> categoriaList = new ComboBox<>();
     @FXML public DatePicker data = new DatePicker();
 
+    private final TransazioneDAO tdao = new TransazioneDAO();
+    private final CategoriaDAO cdao = new CategoriaDAO();
+    private final ShowAlert sa = new ShowAlert();
+    private final UtenteDAO utenteDAO = new UtenteDAO();
 
-    TransazioneDAO tdao = new TransazioneDAO();
-    CategoriaDAO cdao = new CategoriaDAO();
-    ShowAlert sa = new ShowAlert();
-    UtenteDAO utenteDAO = new UtenteDAO();
-
-
-
-    @FXML public void initialize() {
+    @FXML
+    public void initialize() {
+        importo.setAlignment(Pos.CENTER);
         text.setAlignment(Pos.CENTER);
         labelCausale.setAlignment(Pos.CENTER);
-        importo.setAlignment(Pos.CENTER);
-        categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
 
+        // Carica la lista delle categorie per l'utente
+        categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
     }
 
     /**
-     * Metodo che, al click del pulsante sul bottone "Inserisci", permette di salvare una transazione all'interno del database richiamando il metodo save in TransazioneDAO
-     * @param event
-     * @throws Exception
+     * Metodo che permette di salvare una transazione nel database
+     * @param event L'evento scatenato dall'interazione con l'interfaccia grafica
      */
-    @FXML public void inserisciTransazione(ActionEvent event) throws Exception{
+    @FXML
+    public void inserisciTransazione(ActionEvent event) {
         try {
-
-            if(importo.getText().isEmpty() || causale.getText().isEmpty() || categoriaList.getValue() == null || data.getValue() == null){
+            // Controllo dei campi obbligatori
+            if (inserisciImporto.getText().isEmpty() || causale.getText().isEmpty() ||
+                    categoriaList.getValue() == null || data.getValue() == null) {
                 sa.showAlert("Errore", "Compila tutti i campi obbligatoriamente", Alert.AlertType.ERROR);
                 return;
             }
 
-            Transazione tx = new Transazione();
+            // Parsing dell'importo
+            double importo = Double.parseDouble(inserisciImporto.getText());
 
-            tx.setId(1L);
-            tx.setImporto(inserisciImporto.getText().isEmpty() ? 0 : Double.parseDouble(inserisciImporto.getText()));
+            // Creazione della transazione
+            Transazione tx = new Transazione();
+            tx.setImporto(importo);
             tx.setCausale(causale.getText());
             tx.setNomeCategoria(categoriaList.getValue());
             tx.setData(data.getValue());
             tx.setCategoria(cdao.cercaCategoria(categoriaList.getValue()));
             tx.setUtente(SessionManager.getInstance().getUtente());
 
-            //Aggiorna saldo utente
-            utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), Double.parseDouble(inserisciImporto.getText()) );
+            // Aggiorna il saldo dell'utente
+            utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), importo);
 
-
-            System.out.println(tx);
-
-            if(tdao.save(tx)){
+            // Salva la transazione nel database
+            if (tdao.save(tx)) {
                 sa.showAlert("Transazione inserita", "Transazione inserita con successo", Alert.AlertType.INFORMATION);
-            }else{
+            } else {
                 sa.showAlert("Transazione non inserita", "Transazione non inserita", Alert.AlertType.ERROR);
             }
         } catch (NumberFormatException e) {
-            sa.showAlert("Errore","Importo non valido", Alert.AlertType.ERROR);
+            // Gestione dell'errore nel parsing dell'importo
+            sa.showAlert("Errore", "Inserisci un importo valido (numero)", Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            // Gestione generale delle eccezioni
+            sa.showAlert("Errore", "Si è verificato un errore: " + e.getMessage(), Alert.AlertType.ERROR);
         }
-        catch (Exception e){
-            sa.showAlert("Si è verificato un errore", e.getMessage(), Alert.AlertType.ERROR);
-        }
-
     }
-
-
 }
-
-
-
