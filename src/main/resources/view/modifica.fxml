@@ -27,7 +27,7 @@
       <children>
          <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="627.0" prefWidth="295.0">
             <children>
-               <Button fx:id="modifica" layoutX="57.0" layoutY="450.0" mnemonicParsing="false" onAction="#modificaTransazione" prefHeight="25.0" prefWidth="174.0" text="Inserisci" />
+               <Button fx:id="modifica" layoutX="57.0" layoutY="450.0" mnemonicParsing="false" onAction="#modificaTransazione" prefHeight="26.0" prefWidth="66.0" text="Inserisci" />
                <DatePicker fx:id="nuovoData" layoutX="57.0" layoutY="367.0" />
                <ComboBox fx:id="categoriaList" layoutX="57.0" layoutY="301.0" prefHeight="25.0" prefWidth="174.0" promptText="Categoria" />
                <TextField fx:id="nuovoImporto" layoutX="61.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" promptText="nuovo importo" />
@@ -47,7 +47,7 @@
                <Label layoutX="103.0" layoutY="122.0" text="Nuovo importo" />
                <Label layoutX="106.0" layoutY="200.0" text="Nuova causale" />
                <Label layoutX="117.0" layoutY="338.0" text="Nuova data" />
-               <Button fx:id="annulButton" layoutX="160.0" layoutY="469.0" mnemonicParsing="false" onAction="#handleAnnulClick" prefHeight="26.0" prefWidth="66.0" text="Annulla" />
+               <Button fx:id="annulButton" layoutX="165.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleAnnulClick" prefHeight="26.0" prefWidth="66.0" text="Annulla" />
             </children>
          </AnchorPane>
       </children></AnchorPane>
