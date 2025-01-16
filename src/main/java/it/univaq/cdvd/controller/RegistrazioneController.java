@@ -85,6 +85,14 @@ public class RegistrazioneController {
             return false;
         }
 
+        if (email.isEmpty() || !email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            registerMessage.setText("Email non valida.");
+            return false;
+        }
+        if (password.isEmpty() || password.length() < 4) {
+            registerMessage.setText("La password deve essere lunga almeno 4 caratteri.");
+            return false;
+        }
         double saldoIniziale = Double.parseDouble(saldo);
 
         // Controlla se l'utente esiste già
@@ -107,13 +115,6 @@ public class RegistrazioneController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
             Parent root = loader.load();
-
-            // Ottieni il controller della home
-            HomeController homeController = loader.getController();
-
-            // Imposta i dati iniziali della home
-            homeController.showSaldo(); // Aggiorna il saldo dell'utente
-
             // Ottieni la finestra corrente e imposta la nuova scena
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

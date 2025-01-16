@@ -11,9 +11,17 @@ import it.univaq.cdvd.util.ShowAlert;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import org.hibernate.Session;
+
+import java.io.IOException;
 
 public class InserimentoController {
 
@@ -85,4 +93,24 @@ public class InserimentoController {
             sa.showAlert("Errore", "Si è verificato un errore: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
+
+
+    public void handleAnnulclick(ActionEvent actionEvent) {
+        try {
+            // Carica il file auth.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
+            Parent root = loader.load();
+
+            // Ottieni la finestra corrente e imposta la nuova scena
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Pagina Home");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+
+

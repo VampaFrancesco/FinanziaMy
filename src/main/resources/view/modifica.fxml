@@ -47,6 +47,7 @@
                <Label layoutX="103.0" layoutY="122.0" text="Nuovo importo" />
                <Label layoutX="106.0" layoutY="200.0" text="Nuova causale" />
                <Label layoutX="117.0" layoutY="338.0" text="Nuova data" />
+               <Button fx:id="annulButton" layoutX="160.0" layoutY="469.0" mnemonicParsing="false" onAction="#handleAnnulClick" prefHeight="26.0" prefWidth="66.0" text="Annulla" />
             </children>
          </AnchorPane>
       </children></AnchorPane>

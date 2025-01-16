@@ -25,5 +25,6 @@
         </columns>
       </TableView>
       <Button fx:id="elimina" layoutX="341.0" layoutY="14.0" mnemonicParsing="false" onAction="#cancella" prefHeight="25.0" prefWidth="100.0" text="Eilimina" />
+      <Button fx:id="annulButton" layoutX="417.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleAnnulClick" text="Annulla" />
     </AnchorPane>
 </SplitPane>

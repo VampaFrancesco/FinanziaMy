@@ -20,7 +20,6 @@
             <Menu mnemonicParsing="false" text="Gestione account">
                <items>
                   <MenuItem fx:id="logoutHome" mnemonicParsing="false" onAction="#handleLogoutClick" text="Logout" />
-                  <MenuItem fx:id="modificaAccount" mnemonicParsing="false" text="Modifica Account" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Transazioni">

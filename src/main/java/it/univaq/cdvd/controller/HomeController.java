@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -100,7 +101,6 @@ public class HomeController {
         causaleColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCausale()));
 
-        // Popola la tabella con i dati dell'utente corrente
         popolaTabellaTransazioni();
         nuovaTransazione.setOnAction(this::nuovaTransazioneOnAction);
         eliminaTransazione.setOnAction(this::eliminaTransazione);
@@ -111,21 +111,7 @@ public class HomeController {
 
     @FXML
     public void nuovaTransazioneOnAction(ActionEvent event) {
-        System.out.println("nuovaTransazione");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
-            Parent root = loader.load();
-            Dialog<Void> dialog = new Dialog<>();
-            dialog.setTitle("Nuova Transazione");
-            dialog.getDialogPane().setContent(root);
-            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
-            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-            dialog.showAndWait();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        caricaPagina("/view/inserimento.fxml", "Inserimento Transazione", event);
     }
 
     @FXML
@@ -167,22 +153,7 @@ public class HomeController {
 
     @FXML
     public void eliminaTransazione(ActionEvent event) {
-        System.out.println("eliminaTransazione");
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/cancellazione.fxml"));
-            Parent root = loader.load();
-
-            Dialog<Void> dialog = new Dialog<>();
-            dialog.setTitle("Elimina Transazione");
-            dialog.getDialogPane().setContent(root);
-            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
-            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-            dialog.showAndWait();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        caricaPagina("/view/cancellazione.fxml", "Eliminazione Transazione", event);
     }
 
 
@@ -204,14 +175,7 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
-
-    @FXML
-    public void showSaldo() {
-        Utente utente = session.getUtente();
-        String saldoUtente = Double.toString(utente.getSaldo());
-        saldo.setText("$ " + saldoUtente);
-    }
-
+    
     private void popolaTabellaTransazioni() {
         // Ottieni l'utente dalla sessione
         Utente utenteCorrente = SessionManager.getInstance().getUtente();
@@ -219,6 +183,13 @@ public class HomeController {
         if (utenteCorrente != null) {
             // Ottieni le transazioni dal database per l'utente
             List<Transazione> transazioni = transazioneDAO.findTransactionByUser(utenteCorrente);
+            double nuovoSaldo = transazioni.stream()
+                    .mapToDouble(Transazione::getImporto)
+                    .sum();
+            utenteCorrente.setSaldo(nuovoSaldo); // Aggiorna il saldo dell'utente nel modello
+
+            // Aggiorna la label del saldo
+            saldo.setText("$ " + nuovoSaldo);
             // Converti la lista in ObservableList e imposta nella tabella
             ObservableList<Transazione> transazioniObservable = FXCollections.observableArrayList(transazioni);
             tabellaTransazioni.setItems(transazioniObservable);
@@ -250,22 +221,35 @@ public class HomeController {
 
     @FXML
     public void modificaTransazione(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifica.fxml"));
-            Parent root = loader.load();
-
-            Dialog<Void> dialog = new Dialog<>();
-            dialog.setTitle("Modifica Transazione");
-            dialog.getDialogPane().setContent(root);
-            dialog.getDialogPane().setMinHeight(Region.USE_COMPUTED_SIZE);
-            dialog.getDialogPane().setMinWidth(Region.USE_COMPUTED_SIZE);
-            dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-            dialog.showAndWait();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        caricaPagina("/view/modifica.fxml", "Modifica Transazione", event);
     }
 
+
+
+    private void caricaPagina(String percorsoFXML, String titolo, ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(percorsoFXML));
+            Parent root = loader.load();
+
+            // Recupera lo stage corrente
+            Stage stage;
+            if (event.getSource() instanceof MenuItem) {
+                // Ottieni lo stage dal MenuItem
+                stage = (Stage) saldo.getScene().getWindow(); // Usa un nodo visibile della scena corrente
+            } else if (event.getSource() instanceof Control) {
+                // Ottieni lo stage da un nodo Control
+                stage = (Stage) ((Control) event.getSource()).getScene().getWindow();
+            } else {
+                throw new IllegalArgumentException("Impossibile determinare lo stage dall'evento");
+            }
+
+            // Cambia scena
+            stage.setScene(new Scene(root));
+            stage.setTitle(titolo);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Errore durante il caricamento della pagina " + percorsoFXML, e);
+        }
+    }
 }
 
