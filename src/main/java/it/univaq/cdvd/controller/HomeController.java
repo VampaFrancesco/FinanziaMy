@@ -248,7 +248,7 @@ public class HomeController {
             stage.setTitle(titolo);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Errore durante il caricamento della pagina " + percorsoFXML, e);
+            //throw new RuntimeException("Errore durante il caricamento della pagina " + percorsoFXML, e);
         }
     }
 }

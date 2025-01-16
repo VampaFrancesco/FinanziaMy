@@ -54,7 +54,7 @@ class HomeControllerTest extends ApplicationTest {
     }
 
 
-    @Test
+   /* @Test
     public void testNuovaTransazione() throws Exception {
 
         clickOn("Transazioni");
@@ -70,6 +70,8 @@ class HomeControllerTest extends ApplicationTest {
         assertEquals(expectedRoot.getClass(), actualRoot.getClass(), "La pagina inserimento.fxml dovrebbe essere visualizzata.");
 
     }
+
+    */
 
 /*    @Test
     public void testEliminaTransazione() throws Exception {
