@@ -101,7 +101,7 @@ public class HomeController {
         causaleColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCausale()));
 
-        popolaTabellaTransazioni();
+        render();
         nuovaTransazione.setOnAction(this::nuovaTransazioneOnAction);
         eliminaTransazione.setOnAction(this::eliminaTransazione);
         modificaTransazione.setOnAction(this::modificaTransazione);
@@ -175,17 +175,17 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
-    
-    private void popolaTabellaTransazioni() {
+
+    private void render() {
         // Ottieni l'utente dalla sessione
         Utente utenteCorrente = SessionManager.getInstance().getUtente();
-
+        double nuovoSaldo = utenteCorrente.getSaldo();
         if (utenteCorrente != null) {
             // Ottieni le transazioni dal database per l'utente
             List<Transazione> transazioni = transazioneDAO.findTransactionByUser(utenteCorrente);
-            double nuovoSaldo = transazioni.stream()
-                    .mapToDouble(Transazione::getImporto)
-                    .sum();
+                nuovoSaldo += transazioni.stream()
+                        .mapToDouble(Transazione::getImporto)
+                        .sum();
             utenteCorrente.setSaldo(nuovoSaldo); // Aggiorna il saldo dell'utente nel modello
 
             // Aggiorna la label del saldo
@@ -223,7 +223,6 @@ public class HomeController {
     public void modificaTransazione(ActionEvent event) {
         caricaPagina("/view/modifica.fxml", "Modifica Transazione", event);
     }
-
 
 
     private void caricaPagina(String percorsoFXML, String titolo, ActionEvent event) {
