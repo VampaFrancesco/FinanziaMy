@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.RegistrazioneController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="anchorPage" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.RegistrazioneController">
     <children>
         <Label layoutX="253.0" layoutY="86.0" prefHeight="18.0" prefWidth="94.0" text="REGISTRAZIONE" />
         <Label layoutX="134.0" layoutY="206.0" text="Password" />
@@ -18,7 +18,7 @@
         <PasswordField fx:id="passwordPasswordField" layoutX="224.0" layoutY="202.0" promptText="Password" />
       <TextField fx:id="saldoTextField" layoutX="224.0" layoutY="238.0" promptText="0.00" />
       <Label layoutX="134.0" layoutY="242.0" prefHeight="18.0" prefWidth="78.0" text="Saldo iniziale" />
-        <Button fx:id="registratiButton" layoutX="225.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleRegistrazioneClick" prefHeight="26.0" prefWidth="150.0" text="Registrati" />
-        <Button fx:id="annullaButton" layoutX="225.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleAnnullaClick" prefHeight="26.0" prefWidth="150.0" text="Annulla" />
+        <Button fx:id="registratiButton" layoutX="225.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleRegistrazioneClick" prefHeight="26.0" prefWidth="150.0" styleClass="botton" stylesheets="@grafica.css" text="Registrati" />
+        <Button fx:id="annullaButton" layoutX="225.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleAnnullaClick" prefHeight="26.0" prefWidth="150.0" styleClass="botton" stylesheets="@grafica.css" text="Annulla" />
     </children>
 </AnchorPane>
