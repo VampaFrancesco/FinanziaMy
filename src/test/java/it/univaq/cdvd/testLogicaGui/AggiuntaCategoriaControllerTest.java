@@ -51,8 +51,18 @@ class AggiuntaCategoriaControllerTest extends ApplicationTest {
     public void testAggingiCategoriaConDati() {
         // Simula l'inserimento dei dati
         clickOn(aggiungicontroller.nomeCategoria).write("Stipendio");
+        clickOn(aggiungicontroller.descCategoria).write("Mese Gennaio2025");
         clickOn(aggiungicontroller.aggiungiCategoria);
 
+        // Verifica che i dati siano stati correttamente acquisiti
+        assertEquals("Stipendio", aggiungicontroller.nomeCategoria.getText());
+        assertEquals("Mese Gennaio2025", aggiungicontroller.descCategoria.getText());
+    }
+    @Test
+    public void testAggingiCategoriaSoloNome() {
+        // Simula l'inserimento dei dati
+        clickOn(aggiungicontroller.nomeCategoria).write("Stipendio");
+        clickOn(aggiungicontroller.aggiungiCategoria);
         // Verifica che i dati siano stati correttamente acquisiti
         assertEquals("Stipendio", aggiungicontroller.nomeCategoria.getText());
     }
