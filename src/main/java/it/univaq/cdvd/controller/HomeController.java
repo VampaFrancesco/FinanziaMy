@@ -1,6 +1,7 @@
 package it.univaq.cdvd.controller;
 
 import it.univaq.cdvd.dao.TransazioneDAO;
+import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.SessionManager;
@@ -84,7 +85,7 @@ public class HomeController {
 
     SessionManager session = SessionManager.getInstance();
     TransazioneDAO transazioneDAO = new TransazioneDAO();
-
+    UtenteDAO utenteDAO = new UtenteDAO();
 
     @FXML
     public void initialize() {
@@ -102,6 +103,8 @@ public class HomeController {
                 new SimpleStringProperty(cellData.getValue().getCausale()));
 
         render();
+        Utente utenteCorrente = SessionManager.getInstance().getUtente();
+        double nuovoSaldo = utenteCorrente.getSaldo();
         nuovaTransazione.setOnAction(this::nuovaTransazioneOnAction);
         eliminaTransazione.setOnAction(this::eliminaTransazione);
         modificaTransazione.setOnAction(this::modificaTransazione);
@@ -177,23 +180,12 @@ public class HomeController {
     }
 
     private void render() {
-        // Ottieni l'utente dalla sessione
         Utente utenteCorrente = SessionManager.getInstance().getUtente();
-        double nuovoSaldo = utenteCorrente.getSaldo();
-        if (utenteCorrente != null) {
-            // Ottieni le transazioni dal database per l'utente
-            List<Transazione> transazioni = transazioneDAO.findTransactionByUser(utenteCorrente);
-                nuovoSaldo += transazioni.stream()
-                        .mapToDouble(Transazione::getImporto)
-                        .sum();
-            utenteCorrente.setSaldo(nuovoSaldo); // Aggiorna il saldo dell'utente nel modello
-
-            // Aggiorna la label del saldo
-            saldo.setText("$ " + nuovoSaldo);
-            // Converti la lista in ObservableList e imposta nella tabella
-            ObservableList<Transazione> transazioniObservable = FXCollections.observableArrayList(transazioni);
-            tabellaTransazioni.setItems(transazioniObservable);
-        }
+        double nuovoSaldo = utenteDAO.findSaldoByUsername(utenteCorrente.getUsername());
+        saldo.setText("$ " + nuovoSaldo);
+        List<Transazione> transazioni = transazioneDAO.findTransactionByUser(utenteCorrente);
+        ObservableList<Transazione> transazioniObservable = FXCollections.observableArrayList(transazioni);
+        tabellaTransazioni.setItems(transazioniObservable);
     }
 
     @FXML

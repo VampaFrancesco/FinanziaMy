@@ -19,7 +19,7 @@ public class UtenteDAO {
     /**
      * Metodo che verifica le credenziali dell'utente nel database.
      *
-     * @param username il nome utente fornito.
+     * @param username      il nome utente fornito.
      * @param plainPassword la password fornita.
      * @return l'oggetto Utente se trovato, altrimenti null.
      */
@@ -115,22 +115,34 @@ public class UtenteDAO {
         saveUser(username, email, password, saldo);
     }
 
+    /*FONDAMENTALE sincronizzare l'utente ogetto java con l'utente nel DB, in alternativa fai una
+     query come in questo caso, cosichhe prendi esplicitamente l'utente con quell'username
+     */
     public void updateSaldo(Utente utente, Double transazione) {
-        // Calcola il nuovo saldo
-        double nuovoSaldo = utente.getSaldo() + transazione;
-
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
-            // Aggiorna il saldo utilizzando lo username
-            String hql = "UPDATE Utente SET saldo = :nuovoSaldo WHERE username = :username";
-            Query query = session.createQuery(hql);
-            query.setParameter("nuovoSaldo", nuovoSaldo);
-            query.setParameter("username", utente.getUsername());
+            // Recupera il saldo corrente dal database
+            String fetchHql = "SELECT saldo FROM Utente WHERE username = :username";
+            Query<Double> fetchQuery = session.createQuery(fetchHql, Double.class);
+            fetchQuery.setParameter("username", utente.getUsername());
+            Double saldoCorrente = fetchQuery.uniqueResult();
 
-            int rowsAffected = query.executeUpdate(); // Ritorna il numero di righe aggiornate
+            // Calcola il nuovo saldo
+            if (saldoCorrente == null) {
+                saldoCorrente = 0.0; // Default nel caso l'utente non abbia un saldo iniziale
+            }
+            double nuovoSaldo = saldoCorrente + transazione;
+
+            // Aggiorna il saldo nel database
+            String updateHql = "UPDATE Utente SET saldo = :nuovoSaldo WHERE username = :username";
+            Query updateQuery = session.createQuery(updateHql);
+            updateQuery.setParameter("nuovoSaldo", nuovoSaldo);
+            updateQuery.setParameter("username", utente.getUsername());
+
+            int rowsAffected = updateQuery.executeUpdate();
             if (rowsAffected > 0) {
-                utente.setSaldo(nuovoSaldo); // Aggiorna il saldo anche nell'oggetto in memoria
+                utente.setSaldo(nuovoSaldo); // Aggiorna il saldo nell'oggetto in memoria
             }
 
             tx.commit();
@@ -138,9 +150,22 @@ public class UtenteDAO {
             e.printStackTrace();
         }
     }
+
     public void updateSaldo(Utente utente, Double vecchioImporto, Double nuovoImporto) {
         double variazioneSaldo = nuovoImporto - vecchioImporto;
         updateSaldo(utente, variazioneSaldo); // Riutilizza il metodo base
+    }
+
+    public double findSaldoByUsername(String username) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "SELECT u.saldo FROM Utente u WHERE u.username = :username";
+            Query<Double> query = session.createQuery(hql, Double.class);
+            query.setParameter("username", username);
+            return query.uniqueResult(); // Restituisce il saldo o null se non trovato
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0.0; // Valore di default in caso di errore
+        }
     }
 
     public ObservableList<Transazione> getTransazioni(Utente utente) {

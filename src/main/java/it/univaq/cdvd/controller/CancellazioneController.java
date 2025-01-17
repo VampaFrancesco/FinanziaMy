@@ -49,7 +49,7 @@ public class CancellazioneController {
     private Utente utente;
 
     private ObservableList<Transazione> transazioniUtente;
-
+UtenteDAO utenteDAO = new UtenteDAO();
 
     @FXML
     public void initialize() {
@@ -118,6 +118,7 @@ public class CancellazioneController {
                     boolean eliminata = transazioneDAO.eliminaTransazione(transazione.getId());
                     if (eliminata) {
                         transazioniUtente.remove(transazione);
+                        utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), -transazione.getImporto());
                         sa.showAlert("Successo", "Transazione eliminata", Alert.AlertType.INFORMATION);
                     } else {
                         sa.showAlert("Errore", "Errore durante l'eliminazione della transazione", Alert.AlertType.ERROR);
