@@ -1,10 +1,12 @@
 package it.univaq.cdvd.controller;
 
+import it.univaq.cdvd.dao.CategoriaDAO;
 import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.dao.UtenteDAO;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.SessionManager;
+import it.univaq.cdvd.util.ShowAlert;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -86,6 +88,8 @@ public class HomeController {
     SessionManager session = SessionManager.getInstance();
     TransazioneDAO transazioneDAO = new TransazioneDAO();
     UtenteDAO utenteDAO = new UtenteDAO();
+    CategoriaDAO cdao = new CategoriaDAO();
+    ShowAlert sa = new ShowAlert();
 
     @FXML
     public void initialize() {
@@ -114,7 +118,10 @@ public class HomeController {
 
     @FXML
     public void nuovaTransazioneOnAction(ActionEvent event) {
+        if(cdao.esistonoCategorie())
         caricaPagina("/view/inserimento.fxml", "Inserimento Transazione", event);
+        else
+            sa.showAlert("Errore", "Non ci sono categorie presenti. Aggiungene almeno una", Alert.AlertType.ERROR);
     }
 
     @FXML

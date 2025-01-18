@@ -34,6 +34,7 @@ public class InserimentoController {
     @FXML public Button inserisci = new Button();
     @FXML public ComboBox<String> categoriaList = new ComboBox<>();
     @FXML public DatePicker data = new DatePicker();
+    @FXML public Button annulla = new Button();
 
     private final TransazioneDAO tdao = new TransazioneDAO();
     private final CategoriaDAO cdao = new CategoriaDAO();
@@ -94,8 +95,8 @@ public class InserimentoController {
         }
     }
 
-
-    public void handleAnnulclick(ActionEvent actionEvent) {
+    @FXML
+    public void annulla(ActionEvent actionEvent) {
         try {
             // Carica il file auth.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));

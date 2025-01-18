@@ -4,16 +4,23 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: left top, center;
 }
-.botton {
-
+.button {
     -fx-background-color: #d8ebc2;
     -fx-text-fill: BLACK;  /* Colore del testo */
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+    -fx-border-color: transparent; /* Default: nessun bordo visibile */
+    -fx-border-width: 2px;
 }
 
-.botton:hover {
+.button:hover {
     -fx-background-color: #bbe944;
+}
+
+
+/* Quando il pulsante è selezionato (focus tramite Tab o click) */
+.button:focused {
+    -fx-border-color: darkgreen; /* Bordino verde scuro */
 }
 
 .menu-item {

@@ -1,5 +1,7 @@
 package it.univaq.cdvd.controller;
 
+import it.univaq.cdvd.dao.UtenteDAO;
+import it.univaq.cdvd.util.ShowAlert;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,22 +26,29 @@ public class LandingController {
     @FXML public ImageView imgCategorie = new ImageView();
     @FXML public ImageView imgReport = new ImageView();
 
+    UtenteDAO udao = new UtenteDAO();
+    ShowAlert sa = new ShowAlert();
+
 
     @FXML
     public void landingLoginButtonOnAction(ActionEvent event) {
 
-        try {
-            // Carica il file auth.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
-            Parent root = loader.load();
+        if (udao.esistonoUtenti()) {
+            try {
+                // Carica il file auth.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
+                Parent root = loader.load();
 
-            // Ottieni la finestra corrente e imposta la nuova scena
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Login");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+                // Ottieni la finestra corrente e imposta la nuova scena
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Login");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            sa.showAlert("Errore", "Non ci sono utenti registrati. Registrane almeno uno", Alert.AlertType.ERROR);
         }
 
     }
