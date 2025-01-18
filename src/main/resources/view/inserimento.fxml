@@ -13,9 +13,9 @@
 <AnchorPane fx:id="anchorInserimento" prefHeight="460.0" prefWidth="330.0" styleClass="anchorPage" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.InserimentoController">
    <children>
       <Label fx:id="importo" layoutX="147.0" layoutY="84.0" prefHeight="30.0" prefWidth="46.0" text="Importo" />
-      <Label fx:id="text" layoutX="81.0" layoutY="14.0" prefHeight="59.0" prefWidth="167.0" text="Inserimento Transazione" wrapText="true">
+      <Label fx:id="text" layoutX="58.0" layoutY="14.0" prefHeight="59.0" prefWidth="213.0" text="Inserimento Transazione" textFill="#bbe944" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
          <contextMenu>
             <ContextMenu>
@@ -27,7 +27,7 @@
       </Label>
       <TextField fx:id="inserisciImporto" layoutX="82.0" layoutY="115.0" prefHeight="25.0" prefWidth="174.0" promptText="inserisci importo" />
       <TextField fx:id="causale" layoutX="83.0" layoutY="193.0" prefHeight="25.0" prefWidth="174.0" promptText="causale" />
-      <ComboBox fx:id="categoriaList" layoutX="83.0" layoutY="239.0" prefHeight="26.0" prefWidth="174.0" promptText="Categoria" />
+      <ComboBox fx:id="categoriaList" layoutX="83.0" layoutY="239.0" prefHeight="26.0" prefWidth="174.0" promptText="Categoria" styleClass="botton" stylesheets="@grafica.css" />
       <DatePicker fx:id="data" layoutX="83.0" layoutY="295.0" prefHeight="26.0" prefWidth="174.0" />
       <Button fx:id="inserisci" layoutX="82.0" layoutY="369.0" mnemonicParsing="false" onAction="#inserisciTransazione" prefHeight="26.0" prefWidth="174.0" styleClass="botton" stylesheets="@grafica.css" text="Inserisci" />
       <Label fx:id="labelCausale" layoutX="147.0" layoutY="162.0" prefHeight="30.0" prefWidth="46.0" text="Causale" />

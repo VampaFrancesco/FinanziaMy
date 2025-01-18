@@ -42,9 +42,8 @@
     -fx-background-color: #bbe944;
     -fx-text-fill: BLACK;
 }
-.table-view {
-    border: 2px solid #bbe944;
-}
-.td, th {
-    border: 1px solid #bbe944;
+
+.table-view .column-header {
+    -fx-background-color: #d8ebc2;
+    -fx-text-fill: #bbe944;
 }
