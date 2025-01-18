@@ -17,8 +17,8 @@
       <Label layoutX="290.0" layoutY="163.0" text="Password" />
       <TextField fx:id="usernameTextField" layoutX="241.0" layoutY="124.0" promptText="Username" />
       <PasswordField fx:id="passwordPasswordField" layoutX="240.0" layoutY="193.0" promptText="Password" />
-      <Button fx:id="loginButton" layoutX="241.0" layoutY="262.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="150.0" styleClass="button" stylesheets="@grafica.css" text="Login" />
-      <Button fx:id="annulButton" layoutX="241.0" layoutY="308.0" mnemonicParsing="false" onAction="#annulButtonOnAction" prefHeight="26.0" prefWidth="150.0" styleClass="button" stylesheets="@grafica.css" text="Annulla" />
+      <Button fx:id="loginButton" layoutX="241.0" layoutY="262.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="26.0" prefWidth="150.0" styleClass="botton" stylesheets="@grafica.css" text="Login" />
+      <Button fx:id="annulButton" layoutX="241.0" layoutY="308.0" mnemonicParsing="false" onAction="#annulButtonOnAction" prefHeight="26.0" prefWidth="150.0" styleClass="botton" stylesheets="@grafica.css" text="Annulla" />
       <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="119.0" layoutY="79.0" prefHeight="18.0" prefWidth="394.0" />
    </children>
 </AnchorPane>

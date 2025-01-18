@@ -22,7 +22,7 @@
         <PasswordField fx:id="passwordPasswordField" layoutX="225.0" layoutY="194.0" promptText="Password" />
       <TextField fx:id="saldoTextField" layoutX="225.0" layoutY="245.0" promptText="0.00" />
       <Label layoutX="259.0" layoutY="226.0" prefHeight="18.0" prefWidth="78.0" text="Saldo iniziale" />
-        <Button fx:id="registratiButton" layoutX="225.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleRegistrazioneClick" prefHeight="26.0" prefWidth="150.0" styleClass="button" stylesheets="@grafica.css" text="Registrati" />
-        <Button fx:id="annullaButton" layoutX="225.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleAnnullaClick" prefHeight="26.0" prefWidth="150.0" styleClass="button" stylesheets="@grafica.css" text="Annulla" />
+        <Button fx:id="registratiButton" layoutX="225.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleRegistrazioneClick" prefHeight="26.0" prefWidth="150.0" styleClass="botton" stylesheets="@grafica.css" text="Registrati" />
+        <Button fx:id="annullaButton" layoutX="225.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleAnnullaClick" prefHeight="26.0" prefWidth="150.0" styleClass="botton" stylesheets="@grafica.css" text="Annulla" />
     </children>
 </AnchorPane>

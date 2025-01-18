@@ -28,11 +28,10 @@
 
       <TextField fx:id="inserisciImporto" layoutX="82.0" layoutY="115.0" prefHeight="25.0" prefWidth="174.0" promptText="inserisci importo" />
       <TextField fx:id="causale" layoutX="83.0" layoutY="193.0" prefHeight="25.0" prefWidth="174.0" promptText="causale" />
-      <ComboBox fx:id="categoriaList" layoutX="83.0" layoutY="239.0" prefHeight="26.0" prefWidth="174.0" promptText="Categoria" styleClass="button" stylesheets="@grafica.css" />
+      <ComboBox fx:id="categoriaList" layoutX="83.0" layoutY="239.0" prefHeight="26.0" prefWidth="174.0" promptText="Categoria" styleClass="botton" stylesheets="@grafica.css" />
       <DatePicker fx:id="data" layoutX="83.0" layoutY="295.0" prefHeight="26.0" prefWidth="174.0" />
-      <Button fx:id="inserisci" layoutX="82.0" layoutY="369.0" mnemonicParsing="false" onAction="#inserisciTransazione" prefHeight="26.0" prefWidth="174.0" styleClass="button" stylesheets="@grafica.css" text="Inserisci" />
+      <Button fx:id="inserisci" layoutX="82.0" layoutY="369.0" mnemonicParsing="false" onAction="#inserisciTransazione" prefHeight="26.0" prefWidth="174.0" styleClass="botton" stylesheets="@grafica.css" text="Inserisci" />
       <Label fx:id="labelCausale" layoutX="147.0" layoutY="162.0" prefHeight="30.0" prefWidth="46.0" text="Causale" />
-      <Button fx:id="annulla" layoutX="83.0" layoutY="403.0" mnemonicParsing="false" onAction="#annullaOnAction" prefHeight="26.0" prefWidth="174.0" styleClass="button" stylesheets="@grafica.css" text="Annulla" />
 
    </children>
 </AnchorPane>

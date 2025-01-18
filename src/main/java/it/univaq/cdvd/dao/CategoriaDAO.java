@@ -152,19 +152,4 @@ public class CategoriaDAO {
        }
        return categorieList;
    }
-    public boolean esistonoCategorie() {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Transaction tx = session.beginTransaction();
-
-            // Aggiorna il saldo utilizzando lo username
-            String hql = "FROM Categoria";
-            Query query = session.createQuery(hql);
-            if (query.list().isEmpty()) {
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
 }

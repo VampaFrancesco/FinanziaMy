@@ -24,9 +24,9 @@
          </font>
       </Label>
 
-      <ChoiceBox fx:id="categoryChoiceBox" layoutX="79.0" layoutY="112.0" prefWidth="150.0" styleClass="button" stylesheets="@grafica.css" AnchorPane.rightAnchor="70.6" />
-      <Button fx:id="annullaButton" layoutX="160.0" layoutY="297.0" mnemonicParsing="false" onAction="#annullaButtonOnAction" styleClass="button" stylesheets="@grafica.css" text="Annulla" />
-      <Button fx:id="creaButton" layoutX="100.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleCreatePDF" styleClass="button" stylesheets="@grafica.css" text="Crea" />
+      <ChoiceBox fx:id="categoryChoiceBox" layoutX="79.0" layoutY="112.0" prefWidth="150.0" styleClass="botton" stylesheets="@grafica.css" AnchorPane.rightAnchor="70.6" />
+      <Button fx:id="annullaButton" layoutX="160.0" layoutY="297.0" mnemonicParsing="false" onAction="#annullaButtonOnAction" styleClass="botton" stylesheets="@grafica.css" text="Annulla" />
+      <Button fx:id="creaButton" layoutX="100.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleCreatePDF" styleClass="botton" stylesheets="@grafica.css" text="Crea" />
       <Label fx:id="reportMessageLabel" layoutX="62.0" layoutY="66.0" prefHeight="18.0" prefWidth="175.0" textAlignment="CENTER" />
 
    </children>
