@@ -12,24 +12,20 @@ public class Categoria {
     public Categoria() {
     }
 
-    public Categoria(Long id, String nome) {
-        this.id = id; this.nome = nome;
-    }
 
-    public Categoria(Long id, String nome, String descrizione) {
-        this.id = id;
+    public Categoria(String nome, String descrizione) {
         this.nome = nome;
         this.descrizione = descrizione;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(nullable = false)
     private String nome;
 
-
+    @PrimaryKeyJoinColumn
+    @ManyToOne
+    @JoinColumn(name = "fk_utente")
+    private Utente utente;
 
     @Column(nullable = true)
     private String descrizione;
@@ -37,19 +33,9 @@ public class Categoria {
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     private List<Transazione> transazioni = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "fk_utente")
-    private Utente utente;
 
 
-    // Getters e Setters
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;

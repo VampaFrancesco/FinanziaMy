@@ -25,7 +25,7 @@ public class TransazioneDAO {
             tx = session.beginTransaction();
 
             // Salva l'entità Categoria se necessario
-            if (transazione.getCategoria() != null && transazione.getCategoria().getId() == null) {
+            if (transazione.getCategoria() != null && transazione.getCategoria().getNome() == null) {
                 session.save(transazione.getCategoria());
             }
 
@@ -45,25 +45,6 @@ public class TransazioneDAO {
         return false;
     }
 
-    /*public List<Transazione> findAll() {
-        List<Transazione> transazioni = new ArrayList<>();
-
-
-        Session session = null;
-
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("from Transazione");
-            for (Object o : query.list()) {
-                System.out.println(o.toString());
-                transazioni.add((Transazione) o);
-            }
-
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-        return transazioni;
-    }*/
 
     public boolean eliminaTransazione(long idTransazione) {
         Transaction transaction = null;
