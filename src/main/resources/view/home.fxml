@@ -19,36 +19,35 @@
          <menus>
             <Menu mnemonicParsing="false" text="Gestione account">
                <items>
-                  <MenuItem fx:id="logoutHome" mnemonicParsing="false" onAction="#handleLogoutClick" text="Logout" />
+                  <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#handleLogoutClick" styleClass="menu-item" text="Logout" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Transazioni">
                <items>
-                  <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
-                  <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elimina transazione" />
-                  <MenuItem fx:id="modificaTransazione" mnemonicParsing="false" onAction="#modificaTransazione" text="Modifica transazione" />
+
+                  <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" onAction="#nuovaTransazioneOnAction" styleClass="menu-item" text="Nuova transazione" />
+                  <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" onAction="#eliminaTransazione" styleClass="menu-item" text="Elimina transazione" />
+                  <MenuItem fx:id="modificaTransazione" mnemonicParsing="false" onAction="#modificaTransazione" styleClass="menu-item" text="Modifica transazione" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Categoria">
                <items>
-                  <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" onAction="#aggiuntaCategoriaOnAction" text="Aggiungi Categoria" />
-                  <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" onAction="#eliminaCategoriaOnAction" text="Elimina Categoria" />
+
+                  <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" onAction="#aggiuntaCategoriaOnAction" styleClass="menu-item" text="Aggiungi Categoria" />
+                  <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" onAction="#eliminaCategoriaOnAction" styleClass="menu-item" text="Elimina Categoria" />
+
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Statistiche">
                <items>
-                  <MenuItem fx:id="graficoTorta" mnemonicParsing="false" text="Grafico a torta" />
-                  <MenuItem fx:id="istogramma" mnemonicParsing="false" text="Istogramma" />
-                  <MenuItem fx:id="graficoBarre" mnemonicParsing="false" text="Grafico a barre" />
-                  <MenuItem fx:id="graficoLinee" mnemonicParsing="false" text="Grafico a linee" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="creaReport" mnemonicParsing="false" onAction="#reportButtonOnAction" text="Crea Report" />
+                  <MenuItem fx:id="creaReport" mnemonicParsing="false" onAction="#reportButtonOnAction" styleClass="menu-item" text="Crea Report" />
+
                </items>
             </Menu>
             <Menu fx:id="info" mnemonicParsing="false" text="Informazioni" />
          </menus>
       </MenuBar>
-      <Label fx:id="saldo" alignment="CENTER" contentDisplay="CENTER" layoutX="248.0" layoutY="38.0" prefHeight="56.0" prefWidth="117.0">
+      <Label fx:id="saldo" alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" layoutY="35.0" prefHeight="56.0" prefWidth="284.0">
          <font>
             <Font size="30.0" />
          </font>

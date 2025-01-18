@@ -13,6 +13,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,35 +100,41 @@ public class CategoriaDAO {
         return categorie;
     }
 
-    public boolean eliminaCategoria(long idCategoria) {
+    public boolean eliminaCategoria(String nome, Utente user) {
         Transaction transaction = null;
-
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // Inizia una transazione
             transaction = session.beginTransaction();
 
-            // Recupera l'entità da eliminare
-            Categoria categoria = session.get(Categoria.class, idCategoria);
-            if (categoria != null) {
-                // Elimina l'entità
-                session.delete(categoria);
-                // Conferma la transazione
-                transaction.commit();
-                return true;
-            } else {
-                System.out.println("Transazione non trovata con ID: " + idCategoria);
-                return false;
+            String hql = "DELETE FROM Categoria c WHERE c.nome = :nome AND c.utente = :utente";
+            int result = session.createQuery(hql)
+                    .setParameter("nome", nome)
+                    .setParameter("utente", user)
+                    .executeUpdate();
+
+            if (result == 0) {
+                // Se non ha eliminato nulla, puoi decidere cosa fare:
+                // lanciare eccezione personalizzata, restituire false, etc.
+                throw new RuntimeException("Nessuna categoria trovata con nome: " + nome
+                        + " e utente: " + user.getUsername());
             }
+
+            // Se arrivi qui, c’è stato almeno 1 record eliminato -> commit
+            transaction.commit();
+            return true;
+
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback(); // Rollback in caso di errore
+            // Rollback SOLO se la transazione è inizializzata e attiva
+            if (transaction != null && transaction.getStatus() == TransactionStatus.ACTIVE) {
+                transaction.rollback();
             }
             e.printStackTrace();
             return false;
         }
     }
 
-   public ObservableList<Categoria> findByUtente(String username) {
+
+
+    public ObservableList<Categoria> findByUtente(String username) {
        List<Categoria> categorie = new ArrayList<>();
        ObservableList<Categoria> categorieList = FXCollections.observableArrayList();
 
