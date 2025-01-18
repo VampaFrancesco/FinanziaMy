@@ -3,12 +3,9 @@ package it.univaq.cdvd.controller;
 import it.univaq.cdvd.dao.CategoriaDAO;
 import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.dao.UtenteDAO;
-import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
-import it.univaq.cdvd.util.HibernateUtil;
 import it.univaq.cdvd.util.SessionManager;
 import it.univaq.cdvd.util.ShowAlert;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.hibernate.Session;
 
 import java.io.IOException;
 
@@ -34,6 +30,7 @@ public class InserimentoController {
     @FXML public Button inserisci = new Button();
     @FXML public ComboBox<String> categoriaList = new ComboBox<>();
     @FXML public DatePicker data = new DatePicker();
+    @FXML public Button annulla = new Button();
 
     private final TransazioneDAO tdao = new TransazioneDAO();
     private final CategoriaDAO cdao = new CategoriaDAO();
@@ -95,7 +92,7 @@ public class InserimentoController {
     }
 
 
-    public void handleAnnulclick(ActionEvent actionEvent) {
+    public void annullaOnAction(ActionEvent actionEvent) {
         try {
             // Carica il file auth.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));

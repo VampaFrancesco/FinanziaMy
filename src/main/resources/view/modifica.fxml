@@ -25,12 +25,12 @@
    </TableView>
    <AnchorPane fx:id="anchorModifica" prefHeight="627.0" prefWidth="207.0">
       <children>
-         <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="627.0" prefWidth="295.0"  stylesheets="@grafica.css">
+         <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="627.0" prefWidth="295.0" stylesheets="@grafica.css">
             <children>
 
-               <Button fx:id="modifica" layoutX="51.0" layoutY="468.0" mnemonicParsing="false" onAction="#modificaTransazione" prefHeight="26.0" prefWidth="174.0" styleClass="botton" stylesheets="@grafica.css" text="Inserisci" />
-               <DatePicker fx:id="nuovoData" layoutX="51.0" layoutY="367.0" prefHeight="26.0" prefWidth="174.0" styleClass="botton" stylesheets="@grafica.css" />
-               <ComboBox fx:id="categoriaList" layoutX="51.0" layoutY="289.0" prefHeight="26.0" prefWidth="174.0" promptText="Categoria" styleClass="botton" stylesheets="@grafica.css" />
+               <Button fx:id="modifica" layoutX="51.0" layoutY="468.0" mnemonicParsing="false" onAction="#modificaTransazione" prefHeight="26.0" prefWidth="174.0" stylesheets="@grafica.css" text="Inserisci" />
+               <DatePicker fx:id="nuovoData" layoutX="51.0" layoutY="367.0" prefHeight="26.0" prefWidth="174.0" styleClass="button" stylesheets="@grafica.css" />
+               <ComboBox fx:id="categoriaList" layoutX="51.0" layoutY="289.0" prefHeight="26.0" prefWidth="174.0" promptText="Categoria" styleClass="button" stylesheets="@grafica.css" />
                <TextField fx:id="nuovoImporto" layoutX="51.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" promptText="nuovo importo" />
                <Label fx:id="text" layoutX="33.0" layoutY="42.0" prefHeight="59.0" prefWidth="222.0" text="MODIFICA TRANSAZIONE" textFill="#bbe944" wrapText="true">
 
@@ -45,11 +45,11 @@
                      </ContextMenu>
                   </contextMenu>
                </Label>
-               <TextField fx:id="nuovoCausale" layoutX="57.0" layoutY="230.0" prefHeight="25.0" prefWidth="174.0" promptText="nuova causale" />
-               <Label layoutX="103.0" layoutY="122.0" text="Nuovo importo" />
-               <Label layoutX="106.0" layoutY="200.0" text="Nuova causale" />
+               <TextField fx:id="nuovoCausale" layoutX="51.0" layoutY="230.0" prefHeight="25.0" prefWidth="174.0" promptText="nuova causale" styleClass="textfield" />
+               <Label layoutX="97.0" layoutY="121.0" text="Nuovo importo" />
+               <Label layoutX="100.0" layoutY="200.0" text="Nuova causale" />
                <Label layoutX="117.0" layoutY="338.0" text="Nuova data" />
-               <Button fx:id="annulButton" layoutX="165.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleAnnulClick" prefHeight="26.0" prefWidth="66.0" text="Annulla" />
+               <Button fx:id="annulButton" layoutX="51.0" layoutY="510.0" mnemonicParsing="false" onAction="#handleAnnulClick" prefHeight="26.0" prefWidth="174.0" stylesheets="@grafica.css" text="Annulla" />
             </children>
          </AnchorPane>
       </children></AnchorPane>

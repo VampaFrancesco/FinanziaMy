@@ -4,7 +4,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: left top, center;
 }
-.botton {
+.button {
 
     -fx-background-color: #d8ebc2;
     -fx-text-fill: BLACK;  /* Colore del testo */
@@ -12,8 +12,9 @@
     -fx-background-radius: 5px;
 }
 
-.botton:hover {
+.button:hover {
     -fx-background-color: #bbe944;
+
 }
 
 .menu-item {
