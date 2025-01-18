@@ -30,7 +30,7 @@
       </AnchorPane>
       <AnchorPane layoutX="212.0" layoutY="124.0" prefHeight="134.0" prefWidth="167.0">
          <children>
-            <ImageView fx:id="imgCategorie" fitHeight="107.0" fitWidth="114.0" layoutX="31.0" layoutY="23.0" onMouseClicked="#handleImageClickCategorie">
+            <ImageView fx:id="imgCategorie" fitHeight="107.0" fitWidth="114.0" layoutX="31.0" layoutY="26.0" onMouseClicked="#handleImageClickCategorie">
                <image>
                   <Image url="@../img/categorie.png" />
                </image>
@@ -40,7 +40,7 @@
       </AnchorPane>
       <AnchorPane layoutX="387.0" layoutY="124.0" prefHeight="134.0" prefWidth="167.0">
          <children>
-            <ImageView fx:id="imgReport" fitHeight="107.0" fitWidth="114.0" layoutX="27.0" layoutY="27.0" onMouseClicked="#handleImageClickReport">
+            <ImageView fx:id="imgReport" fitHeight="107.0" fitWidth="114.0" layoutX="31.0" layoutY="26.0" onMouseClicked="#handleImageClickReport">
                <image>
                   <Image url="@../img/report.png" />
                </image>
