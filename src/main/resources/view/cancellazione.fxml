@@ -24,7 +24,7 @@
             <TableColumn fx:id="categoria" prefWidth="112.0" text="Categoria" />
         </columns>
       </TableView>
-      <Button fx:id="elimina" layoutX="298.0" layoutY="21.0" mnemonicParsing="false" onAction="#cancella" prefHeight="26.0" prefWidth="66.0" text="Eilimina" />
-      <Button fx:id="annulButton" layoutX="385.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleAnnulClick" prefHeight="26.0" prefWidth="66.0" text="Annulla" />
+      <Button fx:id="elimina" layoutX="298.0" layoutY="21.0" mnemonicParsing="false" onAction="#cancella" prefHeight="26.0" prefWidth="66.0" styleClass="botton" stylesheets="@grafica.css" text="Eilimina" />
+      <Button fx:id="annulButton" layoutX="385.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleAnnulClick" prefHeight="26.0" prefWidth="66.0" styleClass="botton" stylesheets="@grafica.css" text="Annulla" />
     </AnchorPane>
 </SplitPane>
