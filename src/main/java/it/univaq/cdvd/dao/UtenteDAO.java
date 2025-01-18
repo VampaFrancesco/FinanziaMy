@@ -156,6 +156,7 @@ public class UtenteDAO {
         updateSaldo(utente, variazioneSaldo); // Riutilizza il metodo base
     }
 
+
     public double findSaldoByUsername(String username) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "SELECT u.saldo FROM Utente u WHERE u.username = :username";
@@ -168,18 +169,22 @@ public class UtenteDAO {
         }
     }
 
-    public ObservableList<Transazione> getTransazioni(Utente utente) {
+    public boolean esistonoUtenti() {
+
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            ObservableList<Transazione> transazioni = FXCollections.observableArrayList();
-            String hql = "FROM Transazione t WHERE t.utente = :utente";
-            Query<Transazione> query = session.createQuery(hql, Transazione.class);
-            query.setParameter("utente", utente);
-            transazioni.addAll(query.list());
-            return transazioni;
+            Transaction tx = session.beginTransaction();
+
+            // Aggiorna il saldo utilizzando lo username
+            String hql = "FROM Utente";
+            Query query = session.createQuery(hql);
+            if (query.list().isEmpty()) {
+                return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return true;
     }
+
 }
 

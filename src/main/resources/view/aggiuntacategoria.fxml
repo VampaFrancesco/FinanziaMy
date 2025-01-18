@@ -11,7 +11,7 @@
         <Label fx:id="nome" layoutX="150.0" layoutY="59.0" prefHeight="30.0" prefWidth="38.0" text="Nome " />
       <TextField fx:id="nomeCategoria" layoutX="111.0" layoutY="90.0" prefHeight="26.0" prefWidth="116.0" stylesheets="@grafica.css" />
       <TextField fx:id="descCategoria" layoutX="111.0" layoutY="153.0" prefHeight="26.0" prefWidth="116.0" />
-      <Button fx:id="aggiungiCategoria" layoutX="136.0" layoutY="199.0" mnemonicParsing="false" onAction="#aggiuntaCategoria" styleClass="botton" stylesheets="@grafica.css" text="Aggiungi" />
+      <Button fx:id="aggiungiCategoria" layoutX="136.0" layoutY="199.0" mnemonicParsing="false" onAction="#aggiuntaCategoria" styleClass="button" stylesheets="@grafica.css" text="Aggiungi" />
       <Label fx:id="titolo" layoutX="86.0" layoutY="32.0" text="Aggiungi Categoria" textFill="#bbe944">
          <font>
             <Font name="System Bold" size="18.0" />
