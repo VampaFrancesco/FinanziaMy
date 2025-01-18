@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -13,39 +11,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchor" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.HomeController">
    <children>
-      <MenuBar fx:id="menu" prefHeight="26.0" prefWidth="600.0">
+      <MenuBar fx:id="menu" prefHeight="26.0" prefWidth="600.0" styleClass="menu-bar" stylesheets="@grafica.css">
          <menus>
-            <Menu mnemonicParsing="false" text="Gestione account">
+            <Menu mnemonicParsing="false" styleClass="menu" text="Gestione account">
                <items>
-                  <MenuItem fx:id="logoutHome" mnemonicParsing="false" onAction="#handleLogoutClick" text="Logout" />
+
+                  <MenuItem fx:id="logout" mnemonicParsing="false" styleClass="menu-item" onAction="#handleLogoutClick" text="Logout" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Transazioni">
+            <Menu mnemonicParsing="false" styleClass="menu" text="Transazioni">
                <items>
-                  <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
-                  <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elimina transazione" />
-                  <MenuItem fx:id="modificaTransazione" mnemonicParsing="false" onAction="#modificaTransazione" text="Modifica transazione" />
+                  <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" styleClass="menu-item" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
+                  <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" styleClass="menu-item" onAction="#eliminaTransazione" text="Elimina transazione" />
+                  <MenuItem fx:id="modificaTransazione" mnemonicParsing="false" styleClass="menu-item" onAction="#modificaTransazione" text="Modifica transazione" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Categoria">
+            <Menu mnemonicParsing="false" styleClass="menu" text="Categoria">
                <items>
-                  <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" onAction="#aggiuntaCategoriaOnAction" text="Aggiungi Categoria" />
-                  <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" onAction="#eliminaCategoriaOnAction" text="Elimina Categoria" />
+                  <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" styleClass="menu-item" onAction="#aggiuntaCategoriaOnAction" text="Aggiungi Categoria" />
+                  <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" styleClass="menu-item" onAction="#eliminaCategoriaOnAction" text="Elimina Categoria" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Statistiche">
+            <Menu mnemonicParsing="false" styleClass="menu" text="Statistiche">
                <items>
-                  <MenuItem fx:id="graficoTorta" mnemonicParsing="false" text="Grafico a torta" />
-                  <MenuItem fx:id="istogramma" mnemonicParsing="false" text="Istogramma" />
-                  <MenuItem fx:id="graficoBarre" mnemonicParsing="false" text="Grafico a barre" />
-                  <MenuItem fx:id="graficoLinee" mnemonicParsing="false" text="Grafico a linee" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="creaReport" mnemonicParsing="false" onAction="#reportButtonOnAction" text="Crea Report" />
+                  <MenuItem fx:id="creaReport" mnemonicParsing="false" styleClass="menu-item" onAction="#reportButtonOnAction" text="Crea Report" />
                </items>
             </Menu>
-            <Menu fx:id="info" mnemonicParsing="false" text="Informazioni" />
+            <Menu fx:id="info" mnemonicParsing="false" styleClass="menu" text="Informazioni" />
          </menus>
       </MenuBar>
       <Label fx:id="saldo" alignment="CENTER" contentDisplay="CENTER" layoutX="248.0" layoutY="38.0" prefHeight="56.0" prefWidth="117.0">

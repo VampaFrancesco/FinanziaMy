@@ -6,37 +6,46 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.LandingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="383.0" prefWidth="593.0" styleClass="anchor" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.LandingController">
    <children>
+      <Label layoutX="37.0" layoutY="112.0" text="Gestisci le tue transazioni" />
+      <Label layoutX="233.0" layoutY="112.0" text="Gestisci le tue categorie" />
+      <Label layoutX="421.0" layoutY="112.0" prefHeight="18.0" prefWidth="100.0" text="Crea il tuo report" />
       <ImageView fitHeight="40.0" fitWidth="182.0" layoutX="14.0" layoutY="9.0">
          <image>
             <Image url="@../img/logoAuth.png" />
          </image>
       </ImageView>
-      <Button fx:id="loginInit" layoutX="442.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingLoginButtonOnAction" text=" LOGIN " />
-      <Button fx:id="signupInit" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingSignUpButtonOnAction" text="SIGN UP" />
-      <AnchorPane layoutX="21.0" layoutY="66.0" prefHeight="158.0" prefWidth="167.0">
+      <Button fx:id="loginInit" layoutX="442.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingLoginButtonOnAction" styleClass="botton" stylesheets="@grafica.css" text=" LOGIN " />
+      <Button fx:id="signupInit" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" onAction="#landingSignUpButtonOnAction" styleClass="botton" stylesheets="@grafica.css" text="SIGN UP" />
+      <AnchorPane layoutX="21.0" layoutY="121.0" prefHeight="134.0" prefWidth="167.0">
          <children>
-            <Button fx:id="leggiTransazioni" layoutX="45.0" layoutY="131.0" mnemonicParsing="false" text="Leggi di più" />
-            <Label layoutX="17.0" layoutY="5.0" text="Gestisci le tue transazioni" />
+            <ImageView fx:id="imgTransazioni" fitHeight="107.0" fitWidth="114.0" layoutX="31.0" layoutY="26.0" onMouseClicked="#handleImageClickTransazioni">
+               <image>
+                  <Image url="@../img/transazioni.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="infoTransazioni" layoutY="34.0" onMouseClicked="#handleLabelClickTransazioni" prefHeight="107.0" prefWidth="167.0" text="INFOTRANSAZIONI" visible="false" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="216.0" layoutY="66.0" prefHeight="158.0" prefWidth="167.0">
+      <AnchorPane layoutX="212.0" layoutY="124.0" prefHeight="134.0" prefWidth="167.0">
          <children>
-            <Button fx:id="leggiCategorie" layoutX="45.0" layoutY="131.0" mnemonicParsing="false" text="Leggi di più" />
-            <Label layoutX="6.0" layoutY="5.0" text="Controlla le singole categorie" />
+            <ImageView fx:id="imgCategorie" fitHeight="107.0" fitWidth="114.0" layoutX="31.0" layoutY="23.0" onMouseClicked="#handleImageClickCategorie">
+               <image>
+                  <Image url="@../img/categorie.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="infoCategoria" layoutX="4.0" layoutY="22.0" onMouseClicked="#handleLabelClickCategorie" prefHeight="107.0" prefWidth="167.0" text="INFOCATEGOIRIA" visible="false" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="416.0" layoutY="66.0" prefHeight="158.0" prefWidth="167.0">
+      <AnchorPane layoutX="387.0" layoutY="124.0" prefHeight="134.0" prefWidth="167.0">
          <children>
-            <Button fx:id="leggiStatistiche" layoutX="45.0" layoutY="131.0" mnemonicParsing="false" text="Leggi di più" />
-            <Label layoutX="25.0" layoutY="5.0" text="Controlla le statistiche" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="198.0" layoutY="231.0" prefHeight="158.0" prefWidth="167.0">
-         <children>
-            <Button fx:id="leggiReport" layoutX="65.0" layoutY="131.0" mnemonicParsing="false" text="Leggi di più" />
-            <Label layoutX="6.0" layoutY="5.0" text="Richiedi il report delle tue transazioni" />
+            <ImageView fx:id="imgReport" fitHeight="107.0" fitWidth="114.0" layoutX="27.0" layoutY="27.0" onMouseClicked="#handleImageClickReport">
+               <image>
+                  <Image url="@../img/report.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="infoReport" layoutY="26.0" onMouseClicked="#handleLabelClickReport" prefHeight="107.0" prefWidth="167.0" text="INFOREPORT" visible="false" />
          </children>
       </AnchorPane>
    </children>
