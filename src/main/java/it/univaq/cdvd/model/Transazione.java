@@ -26,7 +26,7 @@ public class Transazione {
     private String nome_categoria;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "fk_categoria", referencedColumnName = "id")
+    @JoinColumn(name = "fk_categoria", referencedColumnName = "nome")
     private Categoria categoria;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -17,7 +17,6 @@
          <menus>
             <Menu mnemonicParsing="false" styleClass="menu" text="Gestione account">
                <items>
-
                   <MenuItem fx:id="logout" mnemonicParsing="false" onAction="#handleLogoutClick" styleClass="menu-item" text="Logout" />
                </items>
             </Menu>
@@ -32,6 +31,7 @@
                <items>
                   <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" onAction="#aggiuntaCategoriaOnAction" styleClass="menu-item" text="Aggiungi Categoria" />
                   <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" onAction="#eliminaCategoriaOnAction" styleClass="menu-item" text="Elimina Categoria" />
+
                </items>
             </Menu>
             <Menu mnemonicParsing="false" styleClass="menu" text="Statistiche">
@@ -46,7 +46,7 @@
 
          </menus>
       </MenuBar>
-      <Label fx:id="saldo" alignment="CENTER" contentDisplay="CENTER" layoutX="248.0" layoutY="38.0" prefHeight="56.0" prefWidth="117.0">
+      <Label fx:id="saldo" alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" layoutY="35.0" prefHeight="56.0" prefWidth="284.0">
          <font>
             <Font size="30.0" />
          </font>

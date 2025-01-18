@@ -22,8 +22,10 @@ public class RimuoviCategoriaController {
 
     @FXML
     public TableView<Categoria> tabellaCategorie;
-    @FXML private TableColumn<Categoria, String> nomeCategoriaTabella;
-    @FXML private TableColumn<Categoria, String> descCategoriaTabella;
+    @FXML
+    private TableColumn<Categoria, String> nomeCategoriaTabella;
+    @FXML
+    private TableColumn<Categoria, String> descCategoriaTabella;
 
     private ObservableList<Categoria> listaCategorie;
 
@@ -66,25 +68,7 @@ public class RimuoviCategoriaController {
             sa.showAlert("Errore", "Errore durante il caricamento delle transazioni: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
-/*
-    @FXML
-        public void eliminaCategoriaTabella(ActionEvent event) {
-        Categoria categoriaSelezionata = tabellaCategorie.getSelectionModel().getSelectedItem();
-        if (categoriaSelezionata == null) {
-            sa.showAlert("Errore", "Seleziona una categoria", Alert.AlertType.WARNING);
-            return;
-        }
 
-        CategoriaDAO categoriaDAO = new CategoriaDAO();
-        boolean eliminata = categoriaDAO.eliminaCategoria(categoriaSelezionata.getId());
-
-        if (eliminata) {
-            listaCategorie.remove(categoriaSelezionata);
-            sa.showAlert("Successo", "Categoria eliminata", Alert.AlertType.INFORMATION);
-        } else {
-            sa.showAlert("Errore", "Errore durante l'eliminazione della categoria", Alert.AlertType.ERROR);
-        }
-    }*/
 
     @FXML
     public void eliminaCategoriaTabella(ActionEvent event) {
@@ -106,7 +90,7 @@ public class RimuoviCategoriaController {
         // Se l'utente conferma (clicca "OK"), procedi con l'eliminazione
         if (result.isPresent() && result.get() == ButtonType.OK) {
             CategoriaDAO categoriaDAO = new CategoriaDAO();
-            boolean eliminata = categoriaDAO.eliminaCategoria(categoriaSelezionata.getId());
+            boolean eliminata = categoriaDAO.eliminaCategoria(categoriaSelezionata.getNome(), SessionManager.getInstance().getUtente());
 
             if (eliminata) {
                 listaCategorie.remove(categoriaSelezionata);
@@ -119,6 +103,5 @@ public class RimuoviCategoriaController {
             sa.showAlert("Operazione annullata", "L'eliminazione della categoria è stata annullata.", Alert.AlertType.INFORMATION);
         }
     }
-
-
 }
+

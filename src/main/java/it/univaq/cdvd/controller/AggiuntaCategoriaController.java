@@ -32,7 +32,6 @@ public class AggiuntaCategoriaController {
         try {
 
             Categoria c = new Categoria();
-            c.setId(1L);
             c.setNome(nomeCategoria.getText());
             c.setDescrizione(descCategoria.getText());
             c.setUtente(SessionManager.getInstance().getUtente());
