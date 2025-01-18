@@ -25,7 +25,7 @@
                   <Image url="@../img/transazioni.png" />
                </image>
             </ImageView>
-            <Label fx:id="infoTransazioni" layoutY="34.0" onMouseClicked="#handleLabelClickTransazioni" prefHeight="107.0" prefWidth="167.0" text="INFOTRANSAZIONI" visible="false" />
+            <Label fx:id="infoTransazioni" layoutY="34.0" onMouseClicked="#handleLabelClickTransazioni" prefHeight="98.0" prefWidth="167.0" text="Inserisci, modifica e cancella le tue transazioni. Gestisci le tue spese e i tuoi guadagni creando le tue transazioni." textAlignment="CENTER" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="212.0" layoutY="124.0" prefHeight="134.0" prefWidth="167.0">
@@ -35,7 +35,7 @@
                   <Image url="@../img/categorie.png" />
                </image>
             </ImageView>
-            <Label fx:id="infoCategoria" layoutX="4.0" layoutY="22.0" onMouseClicked="#handleLabelClickCategorie" prefHeight="107.0" prefWidth="167.0" text="INFOCATEGOIRIA" visible="false" />
+            <Label fx:id="infoCategoria" layoutX="4.0" layoutY="22.0" onMouseClicked="#handleLabelClickCategorie" prefHeight="107.0" prefWidth="167.0" text="Organizza le tue transazioni raggruppandole per categorie. Crea la tua categoria in base al tuo stile di vita." textAlignment="CENTER" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="387.0" layoutY="124.0" prefHeight="134.0" prefWidth="167.0">
@@ -45,7 +45,7 @@
                   <Image url="@../img/report.png" />
                </image>
             </ImageView>
-            <Label fx:id="infoReport" layoutY="26.0" onMouseClicked="#handleLabelClickReport" prefHeight="107.0" prefWidth="167.0" text="INFOREPORT" visible="false" />
+            <Label fx:id="infoReport" layoutY="26.0" onMouseClicked="#handleLabelClickReport" prefHeight="107.0" prefWidth="167.0" text="Ottieni il report delle tue spese e dei tuoi guadagni scegliendo la categoria di tuo interesse." textAlignment="CENTER" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
    </children>
