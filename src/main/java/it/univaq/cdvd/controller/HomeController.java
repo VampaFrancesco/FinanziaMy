@@ -18,11 +18,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -40,41 +48,19 @@ public class HomeController {
     @FXML
     public MenuItem logout = new MenuItem();
     @FXML
-    public MenuItem modificaAccount = new MenuItem();
-    @FXML
     public MenuItem nuovaTransazione = new MenuItem();
     @FXML
     public MenuItem eliminaTransazione = new MenuItem();
     @FXML
     public MenuItem modificaTransazione = new MenuItem();
     @FXML
-    public MenuItem casa = new MenuItem();
-    @FXML
-    public MenuItem saluteBenessere = new MenuItem();
-    @FXML
-    public MenuItem ciboSpesa = new MenuItem();
-    @FXML
-    public MenuItem bancaFinanza = new MenuItem();
-    @FXML
-    public MenuItem motoriTrasporti = new MenuItem();
-    @FXML
-    public MenuItem varie = new MenuItem();
-    @FXML
     public MenuItem aggiungiCategoria = new MenuItem();
     @FXML
     public MenuItem eliminaCategoria = new MenuItem();
     @FXML
-    public MenuItem graficoTorta = new MenuItem();
-    @FXML
-    public MenuItem istogramma = new MenuItem();
-    @FXML
-    public MenuItem graficoBarre = new MenuItem();
-    @FXML
-    public MenuItem graficoLinee = new MenuItem();
-    @FXML
     public MenuItem creaReport = new MenuItem();
     @FXML
-    public MenuItem info = new MenuItem();
+    public MenuItem repository = new MenuItem();
     @FXML
     private TableColumn<Transazione, String> categoriaColumn;
     @FXML
@@ -114,6 +100,7 @@ public class HomeController {
         modificaTransazione.setOnAction(this::modificaTransazione);
         aggiungiCategoria.setOnAction(this::aggiuntaCategoriaOnAction);
         eliminaCategoria.setOnAction(this::eliminaCategoriaOnAction);
+        repository.setOnAction(this::informazioniOnAction);
     }
 
     @FXML
@@ -214,6 +201,31 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException("Errore durante il caricamento della pagina report.fxml", e);
+        }
+    }
+
+    private boolean isUrlOpened = false;
+
+    @FXML
+    public void informazioniOnAction(ActionEvent event) {
+        if (isUrlOpened) {
+            return; // Esce se l'URL è già stato aperto
+        }
+
+        try {
+ 
+            String url = "https://github.com/VampaFrancesco/FinanziaMy.git";
+
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                URI uri = new URI(url);
+                desktop.browse(uri);
+                isUrlOpened = true;
+            } else {
+                System.out.println("Desktop non supportato su questo sistema.");
+            }
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
         }
     }
 
