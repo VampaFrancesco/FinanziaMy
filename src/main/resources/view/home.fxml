@@ -13,29 +13,29 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="anchor" stylesheets="@grafica.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.HomeController">
    <children>
-      <MenuBar fx:id="menu" prefHeight="26.0" prefWidth="600.0" stylesheets="@grafica.css">
+      <MenuBar fx:id="menu" prefHeight="26.0" prefWidth="600.0" styleClass="menu-bar" stylesheets="@grafica.css">
          <menus>
             <Menu mnemonicParsing="false" styleClass="menu" text="Gestione account">
                <items>
-                  <MenuItem fx:id="logoutHome" mnemonicParsing="false" onAction="#handleLogoutClick" text="Logout" />
+                  <MenuItem fx:id="logoutHome" mnemonicParsing="false" styleClass="menu-item" onAction="#handleLogoutClick" text="Logout" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" styleClass="menu" text="Transazioni">
                <items>
-                  <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
-                  <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" onAction="#eliminaTransazione" text="Elimina transazione" />
-                  <MenuItem fx:id="modificaTransazione" mnemonicParsing="false" onAction="#modificaTransazione" text="Modifica transazione" />
+                  <MenuItem fx:id="nuovaTransazione" mnemonicParsing="false" styleClass="menu-item" onAction="#nuovaTransazioneOnAction" text="Nuova transazione" />
+                  <MenuItem fx:id="eliminaTransazione" mnemonicParsing="false" styleClass="menu-item" onAction="#eliminaTransazione" text="Elimina transazione" />
+                  <MenuItem fx:id="modificaTransazione" mnemonicParsing="false" styleClass="menu-item" onAction="#modificaTransazione" text="Modifica transazione" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" styleClass="menu" text="Categoria">
                <items>
-                  <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" onAction="#aggiuntaCategoriaOnAction" text="Aggiungi Categoria" />
-                  <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" onAction="#eliminaCategoriaOnAction" text="Elimina Categoria" />
+                  <MenuItem fx:id="aggiungiCategoria" mnemonicParsing="false" styleClass="menu-item" onAction="#aggiuntaCategoriaOnAction" text="Aggiungi Categoria" />
+                  <MenuItem fx:id="eliminaCategoria" mnemonicParsing="false" styleClass="menu-item" onAction="#eliminaCategoriaOnAction" text="Elimina Categoria" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" styleClass="menu" text="Statistiche">
                <items>
-                  <MenuItem fx:id="creaReport" mnemonicParsing="false" onAction="#reportButtonOnAction" text="Crea Report" />
+                  <MenuItem fx:id="creaReport" mnemonicParsing="false" styleClass="menu-item" onAction="#reportButtonOnAction" text="Crea Report" />
                </items>
             </Menu>
             <Menu fx:id="info" mnemonicParsing="false" styleClass="menu" text="Informazioni" />

@@ -5,9 +5,7 @@
     -fx-background-position: left top, center;
 }
 .botton {
-    /*-fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-padding: 10px 20px;*/
+
     -fx-background-color: #d8ebc2;
     -fx-text-fill: BLACK;  /* Colore del testo */
     -fx-border-radius: 5px;
@@ -17,35 +15,36 @@
 .botton:hover {
     -fx-background-color: #bbe944;
 }
-.anchorPage {
-    /*-fx-background-color: #fbf6f1;*/
-}
-.text-area {
-    -fx-background-color: #f0e0d1;
-}
-.menu-item {
-    -fx-text-fill: #d8ebc2; /* Imposta il colore del testo di base */
-    -fx-background-color: transparent; /* Colore di sfondo trasparente di base */
-}
 
+.menu-item {
+    -fx-background-color: #d8ebc2; /* Colore di sfondo */
+}
+.menu-item:focused {
+    -fx-background-color: #bbe944; /* Colore di sfondo quando un MenuItem è selezionato */
+}
 /* Modifica il colore di hover dei MenuItem */
 .menu-item:hover {
     -fx-background-color: #bbe944; /* Colore di sfondo quando il mouse è sopra */
-    -fx-text-fill: white; /* Colore del testo quando il mouse è sopra */
+    -fx-text-fill: black; /* Colore del testo quando il mouse è sopra */
 }
 .menu-bar {
     -fx-background-color: #d8ebc2; /* Colore di sfondo del MenuBar */
 }
 
-/* Modifica lo stile del MenuItem selezionato */
-.menu-item:focused {
-    -fx-background-color: #bbe944; /* Colore di sfondo quando un MenuItem è selezionato */
-}
 .menu {
     -fx-background-color: #d8ebc2;
 }
+.menu:hover {
+    -fx-background-color: #bbe944;
+}
 
-/* Modifica lo stile del MenuItem selezionato */
 .menu:focused {
     -fx-background-color: #bbe944;
+    -fx-text-fill: BLACK;
+}
+.table-view {
+    border: 2px solid #bbe944;
+}
+.td, th {
+    border: 1px solid #bbe944;
 }

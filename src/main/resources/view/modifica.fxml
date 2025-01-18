@@ -13,8 +13,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5820476858345021" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.ModificaController">
-   <TableView fx:id="lista" prefHeight="627.0" prefWidth="404.0">
+<SplitPane dividerPositions="0.5834034202410989" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="715.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.cdvd.controller.ModificaController">
+   <TableView fx:id="lista" prefHeight="627.0" prefWidth="404.0" styleClass="table-view" stylesheets="@grafica.css">
       <columns>
          <TableColumn fx:id="codiceTr" prefWidth="75.0" text="Codice Tr." />
          <TableColumn fx:id="importo" prefWidth="87.0" text="Importo" />
@@ -31,9 +31,9 @@
                <DatePicker fx:id="nuovoData" layoutX="51.0" layoutY="367.0" prefHeight="26.0" prefWidth="174.0" />
                <ComboBox fx:id="categoriaList" layoutX="51.0" layoutY="289.0" prefHeight="26.0" prefWidth="174.0" promptText="Categoria" />
                <TextField fx:id="nuovoImporto" layoutX="51.0" layoutY="155.0" prefHeight="25.0" prefWidth="174.0" promptText="nuovo importo" />
-               <Label fx:id="text" layoutX="61.0" layoutY="49.0" prefHeight="59.0" prefWidth="167.0" text="Modifica Transazione" wrapText="true">
+               <Label fx:id="text" layoutX="33.0" layoutY="42.0" prefHeight="59.0" prefWidth="222.0" text="MODIFICA TRANSAZIONE" textFill="#bbe944" wrapText="true">
                   <font>
-                     <Font size="15.0" />
+                     <Font name="System Bold" size="18.0" />
                   </font>
                   <contextMenu>
                      <ContextMenu>
