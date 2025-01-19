@@ -12,8 +12,9 @@ CREATE TABLE utente (
 CREATE TABLE categoria (
                            id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                            nome VARCHAR(255) NOT NULL,
-                            descrizione VARCHAR(255) NULL,
+                           descrizione VARCHAR(255) NULL,
                            fk_utente VARCHAR(255),
+                           UNIQUE (nome, fk_utente), -- Vincolo di unicità per nome e utente
                            FOREIGN KEY (fk_utente) REFERENCES utente (username)
 );
 
@@ -33,8 +34,10 @@ CREATE TABLE transazione (
 INSERT INTO utente (email, password, username, saldo)
 VALUES ('test', 'test', 'test', 100.0);
 
-INSERT INTO categoria (nome, fk_utente)
-VALUES ('categoria', 'test'), ('fgrsg', 'test'),('dbfdb', 'test');
+INSERT INTO categoria (nome, fk_utente, descrizione)
+VALUES ('categoria', 'test', 'Categoria Test'),
+       ('fgrsg', 'test', 'Altro Test'),
+       ('dbfdb', 'test', 'Ancora Test');
 
 INSERT INTO transazione (causale, data, importo, nome_categoria, fk_categoria, fk_utente)
 VALUES ('Test causale', '2025-01-06', 200.0, 'categoria', 1, 'test');

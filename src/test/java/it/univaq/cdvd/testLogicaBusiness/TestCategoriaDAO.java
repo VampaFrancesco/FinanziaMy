@@ -42,17 +42,34 @@ class TestCategoriaDAO {
     }
     @Test
     void testSaveCategoria() {
-        Categoria cat = categoriaDAO.cercaCategoria("Test 1");
+        // Crea una nuova categoria
+        Categoria newCategoria = new Categoria();
+        newCategoria.setNome("Francesco");
+        newCategoria.setDescrizione("Descrizione Francesco");
+        newCategoria.setUtente(SessionManager.getInstance().getUtente());
 
-        boolean salvata = categoriaDAO.save(cat);
+        // Salva la categoria nel database
+        boolean salvata = categoriaDAO.save(newCategoria);
         assertTrue(salvata, "La categoria dovrebbe essere salvata correttamente");
 
-        List<Categoria> fromDb = categoriaDAO.getAllCategorie();
-        assertNotNull(fromDb, "La categoria dovrebbe essere presente nel DB");
-        assertEquals("Test 1", fromDb.get(0).getNome());
-        assertEquals("Test 1", cat.getDescrizione());
+        // Recupera tutte le categorie dal database
+        List<Categoria> categorieDalDb = categoriaDAO.getAllCategorie();
 
+        // Verifica che la lista non sia vuota
+        assertNotNull(categorieDalDb, "La lista di categorie non dovrebbe essere nulla");
+        assertFalse(categorieDalDb.isEmpty(), "La lista di categorie non dovrebbe essere vuota");
+
+        // Verifica che la categoria appena salvata sia presente
+        Categoria categoriaSalvata = categorieDalDb.stream()
+                .filter(cat -> cat.getNome().equals("Francesco"))
+                .findFirst()
+                .orElse(null);
+
+        assertNotNull(categoriaSalvata, "La categoria 'Francesco' dovrebbe essere presente nel DB");
+        assertEquals("Francesco", categoriaSalvata.getNome(), "Il nome della categoria dovrebbe corrispondere");
+        assertEquals("Descrizione Francesco", categoriaSalvata.getDescrizione(), "La descrizione della categoria dovrebbe corrispondere");
     }
+
 
 
     @Test
@@ -65,7 +82,7 @@ class TestCategoriaDAO {
 
         // Controllo che effettivamente ci sia nel DB
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Categoria fromDb = session.get(Categoria.class, cat.getId());
+        Categoria fromDb = session.get(Categoria.class, cat.getNome());
         assertNotNull(fromDb, "La categoria dovrebbe essere presente nel DB");
         assertEquals("CategoriaTest", fromDb.getNome());
         session.close();
@@ -104,20 +121,6 @@ class TestCategoriaDAO {
         assertNotNull(categorieByUser, "La lista di categorie per l'utente 'testUser' non deve essere null");
     }
 
-/*    @Test
-    void testEliminaCategoria() {
-
-        Categoria cat = categoriaDAO.cercaCategoria("Test 1");
-
-        boolean eliminata = categoriaDAO.eliminaCategoria(cat.getId());
-        assertTrue(eliminata, "Dovrebbe eliminare la categoria correttamente");
-
-        // Verifichiamo che non esista più
-
-        Categoria fromDb = categoriaDAO.cercaCategoria("Test 1");
-        assertNull(fromDb, "La categoria non dovrebbe più essere presente nel DB");
-
-    }*/
 
 }
 
