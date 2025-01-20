@@ -80,7 +80,7 @@ public class InserimentoController {
             tx.setUtente(SessionManager.getInstance().getUtente());
 
             // Aggiorna il saldo dell'utente
-            utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), importo);
+            //utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), importo);
 
             // Salva la transazione nel database
             if (tdao.save(tx)) {
@@ -88,6 +88,7 @@ public class InserimentoController {
                         Objects.requireNonNull(getClass().getResource("/audio/suono_moneta.mp3")).toExternalForm()
                 );
                 clip.play();
+                utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), importo);
                 sa.showAlert("Transazione inserita", "Transazione inserita con successo", Alert.AlertType.INFORMATION);
             } else {
                 sa.showAlert("Transazione non inserita", "Transazione non inserita", Alert.AlertType.ERROR);

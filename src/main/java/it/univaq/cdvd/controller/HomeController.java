@@ -159,7 +159,7 @@ public class HomeController {
         System.out.println("utente logout" + session.getUtente());
         session.clearSession();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
             Parent root = loader.load();
 
             // Ottieni la finestra corrente
