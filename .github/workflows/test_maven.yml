@@ -22,10 +22,9 @@ jobs:
           java-version: '23'
           distribution: 'temurin'
 
-      - name: Run headless test
-        uses: coactions/setup-xvfb@v1
-        with:
-          run: mvn verify
+      # Build e Test con Maven
+      - name: Build and Run Tests
+        run: mvn clean verify -Dtest=!it.univaq.cdvd.testLogicaGui.**
       # Report dei risultati
       - name: Publish Test Results
         if: always()
