@@ -9,12 +9,19 @@ import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Classe SINGLETON che si occupa di inizializzare la session factory di hibernate
+ */
 public class HibernateUtil {
 
     private static SessionFactory sessionFactory;
 
     private static String dbms = "/config/hibernate.cfg.xml";
 
+
+    /**
+     * Inizializza la session factory di hibernate
+     */
     public static void initialize() {
         if (sessionFactory != null && !sessionFactory.isClosed()) {
             sessionFactory.close();
@@ -43,10 +50,6 @@ public class HibernateUtil {
             initialize();
         }
         return sessionFactory;
-    }
-
-    public static String getDbms() {
-        return dbms;
     }
 
     public static void setDbms(String dbms) {

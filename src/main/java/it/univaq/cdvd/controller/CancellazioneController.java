@@ -42,9 +42,9 @@ public class CancellazioneController {
     @FXML
     private TableColumn<Transazione, String> categoria;
     @FXML
-    private Button elimina;
+    private Button elimina = new Button();
 
-    private ShowAlert sa = new ShowAlert();
+    private final ShowAlert sa = new ShowAlert();
 
     private Utente utente;
 
@@ -53,16 +53,9 @@ UtenteDAO utenteDAO = new UtenteDAO();
 
     @FXML
     public void initialize() {
-
-
         try {
-            // Recupera l'utente corrente dalla sessione
             utente = SessionManager.getInstance().getUtente();
-
-            // Configura le colonne della TableView
             configuraColonne();
-
-            // Carica le transazioni dal database
             caricaTransazioni();
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,11 +77,7 @@ UtenteDAO utenteDAO = new UtenteDAO();
             // Recupera le transazioni legate all'utente dal DAO
             TransazioneDAO transazioneDAO = new TransazioneDAO();
             List<Transazione> transazioni = transazioneDAO.findTransactionByUser(SessionManager.getInstance().getUtente());
-
-            // Converte la lista in un ObservableList
             transazioniUtente = FXCollections.observableArrayList(transazioni);
-
-            // Associa i dati alla TableView
             lista.setItems(transazioniUtente);
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,6 +85,11 @@ UtenteDAO utenteDAO = new UtenteDAO();
         }
     }
 
+
+    /**
+     * Metodo per eliminare una transazione selezionata dalla tabella al click del mouse sul bottone elimina
+     * @param event
+     */
     @FXML
     public void cancella(ActionEvent event) {
         TransazioneDAO transazioneDAO = new TransazioneDAO();
@@ -128,13 +122,15 @@ UtenteDAO utenteDAO = new UtenteDAO();
         }
     }
 
+    /**
+     * Metodo che permette di annullare l'inserimento di una transazione.
+     * @param actionEvent
+     */
+    @FXML
     public void handleAnnulClick(ActionEvent actionEvent) {
         try {
-            // Carica il file auth.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
             Parent root = loader.load();
-
-            // Ottieni la finestra corrente e imposta la nuova scena
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Pagina Home");

@@ -33,7 +33,8 @@ public class Transazione {
     @JoinColumn(name = "fk_utente", nullable = false)
     private Utente utente;
 
-    // Getter e Setter
+
+    //*****************************************************Getters and Setters****************************************************//
     public Utente getUtente() {
         return utente;
     }
@@ -42,8 +43,6 @@ public class Transazione {
         this.utente = utente;
     }
 
-
-    // Getters e Setters
     public Long getId() {
         return id;
     }

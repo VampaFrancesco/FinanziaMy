@@ -42,14 +42,14 @@ public class CategoriaDAO {
 
     public ObservableList<String> listaCategoria(String username) {
         ObservableList<String> categorieList = FXCollections.observableArrayList();
-        try(Session session = HibernateUtil.getSessionFactory().openSession();){
+        try(Session session = HibernateUtil.getSessionFactory().openSession()){
 
             Query query = session.createQuery("from Categoria where utente.username = :username");
             query.setParameter("username", username);
             List<Categoria> categorie = query.list();
             for(Categoria c : categorie){
                 categorieList.add(c.getNome());
-            };
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

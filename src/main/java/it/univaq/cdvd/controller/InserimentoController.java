@@ -48,29 +48,22 @@ public class InserimentoController {
         importo.setAlignment(Pos.CENTER);
         text.setAlignment(Pos.CENTER);
         labelCausale.setAlignment(Pos.CENTER);
-
-        // Carica la lista delle categorie per l'utente
         categoriaList.setItems(cdao.listaCategoria(SessionManager.getInstance().getUtente().getUsername()));
     }
 
     /**
-     * Metodo che permette di salvare una transazione nel database
+     * Metodo che permette di salvare una transazione nel database, esegue dei controlli sui campi vuoto e sul formato dell'importo.
      * @param event L'evento scatenato dall'interazione con l'interfaccia grafica
      */
     @FXML
     public void inserisciTransazione(ActionEvent event) {
         try {
-            // Controllo dei campi obbligatori
             if (inserisciImporto.getText().isEmpty() || causale.getText().isEmpty() ||
                     categoriaList.getValue() == null || data.getValue() == null) {
                 sa.showAlert("Errore", "Compila tutti i campi obbligatoriamente", Alert.AlertType.ERROR);
                 return;
             }
-
-            // Parsing dell'importo
             double importo = Double.parseDouble(inserisciImporto.getText());
-
-            // Creazione della transazione
             Transazione tx = new Transazione();
             tx.setImporto(importo);
             tx.setCausale(causale.getText());
@@ -78,11 +71,6 @@ public class InserimentoController {
             tx.setData(data.getValue());
             tx.setCategoria(cdao.cercaCategoria(categoriaList.getValue()));
             tx.setUtente(SessionManager.getInstance().getUtente());
-
-            // Aggiorna il saldo dell'utente
-            //utenteDAO.updateSaldo(SessionManager.getInstance().getUtente(), importo);
-
-            // Salva la transazione nel database
             if (tdao.save(tx)) {
                 AudioClip clip = new AudioClip(
                         Objects.requireNonNull(getClass().getResource("/audio/suono_moneta.mp3")).toExternalForm()
@@ -94,22 +82,21 @@ public class InserimentoController {
                 sa.showAlert("Transazione non inserita", "Transazione non inserita", Alert.AlertType.ERROR);
             }
         } catch (NumberFormatException e) {
-            // Gestione dell'errore nel parsing dell'importo
             sa.showAlert("Errore", "Inserisci un importo valido (numero)", Alert.AlertType.ERROR);
         } catch (Exception e) {
-            // Gestione generale delle eccezioni
             sa.showAlert("Errore", "Si è verificato un errore: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
+    /**
+     * Metodo che permette di annullare l'inserimento di una transazione.
+     * @param actionEvent
+     */
     @FXML
     public void annulla(ActionEvent actionEvent) {
         try {
-            // Carica il file auth.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
             Parent root = loader.load();
-
-            // Ottieni la finestra corrente e imposta la nuova scena
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Pagina Home");

@@ -71,6 +71,9 @@ public class ModificaController {
 
     }
 
+    /**
+     * Configura le colonne della tabella corrente
+     */
     private void configuraColonne() {
         // Collega le colonne ai campi del modello Transazione
         codiceTr.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getId())));
@@ -80,16 +83,15 @@ public class ModificaController {
         categoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategoria().getNome()));
     }
 
+    /**
+     * Carica le transazioni legate all'utente corrente nella tabella
+     */
     private void caricaTransazioni() {
         try {
             // Recupera le transazioni legate all'utente dal DAO
             TransazioneDAO transazioneDAO = new TransazioneDAO();
             List<Transazione> transazioni = transazioneDAO.findTransactionByUser(SessionManager.getInstance().getUtente());
-
-            // Converte la lista in un ObservableList
             ObservableList<Transazione> transazioniUtente = FXCollections.observableArrayList(transazioni);
-
-            // Associa i dati alla TableView
             lista.setItems(transazioniUtente);
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,6 +99,9 @@ public class ModificaController {
         }
     }
 
+    /**
+     * Metodo che permette di modificare una transazione nel database, dalla lista delle transazioni in tabella e esegue dei controlli sui campi vuoti e sul formato dell'importo.
+     */
     @FXML
     public void modificaTransazione() {
 
@@ -136,13 +141,15 @@ public class ModificaController {
 
     }
 
+    /**
+     * Metodo che permette di annullare la modifica di una transazione
+     * @param actionEvent
+     */
+    @FXML
     public void handleAnnulClick(ActionEvent actionEvent) {
         try {
-            // Carica il file auth.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
             Parent root = loader.load();
-
-            // Ottieni la finestra corrente e imposta la nuova scena
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Pagina Home");

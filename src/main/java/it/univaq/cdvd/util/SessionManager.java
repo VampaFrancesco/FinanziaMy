@@ -2,6 +2,9 @@ package it.univaq.cdvd.util;
 
 import it.univaq.cdvd.model.Utente;
 
+/**
+ * Classe SINGLETON che si occupa di gestire la sessione dell'utente
+ */
 public class SessionManager {
 
     private static SessionManager instance;

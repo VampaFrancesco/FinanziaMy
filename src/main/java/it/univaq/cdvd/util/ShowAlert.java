@@ -4,7 +4,7 @@ import javafx.scene.control.Alert;
 
 public class ShowAlert {
 
-    private static Alert alert = new Alert(Alert.AlertType.NONE);
+    private static final Alert alert = new Alert(Alert.AlertType.NONE);
 
     public static Alert lastAlert;
 

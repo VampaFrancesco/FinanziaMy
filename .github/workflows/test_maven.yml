@@ -2,9 +2,9 @@ name: Java CI test with Maven
 
 on:
   push:
-    branches: [ master, Sprint3 ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, Sprint3 ]
+    branches: [ master ]
 
 jobs:
   build:

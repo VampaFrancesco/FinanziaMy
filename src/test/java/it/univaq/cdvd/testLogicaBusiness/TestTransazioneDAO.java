@@ -21,8 +21,8 @@ public class TestTransazioneDAO {
 
     private TransazioneDAO transazioneDAOTest;
     public Transazione transazione = new Transazione();
-    private UtenteDAO utenteDAOTest = new UtenteDAO();
-    private CategoriaDAO categoriaDAOTest = new CategoriaDAO();
+    private final UtenteDAO utenteDAOTest = new UtenteDAO();
+    private final CategoriaDAO categoriaDAOTest = new CategoriaDAO();
     public Utente utente;
 
     @BeforeAll
