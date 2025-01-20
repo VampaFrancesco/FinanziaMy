@@ -2,14 +2,14 @@ name: Java CI test with Maven
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, Sprint3 ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, Sprint3 ]
 
 jobs:
   build:
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       # Checkout del repository
@@ -22,14 +22,14 @@ jobs:
           java-version: '23'
           distribution: 'temurin'
 
-      # Build e Test con Maven
-      - name: Build and Run Tests
-        run: mvn clean verify -Dtest=!it.univaq.cdvd.testLogicaGui.**
-
+      - name: Run headless test
+        uses: coactions/setup-xvfb@v1
+        with:
+          run: mvn verify
       # Report dei risultati
       - name: Publish Test Results
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: target/surefire-reports/
+          path: src/risultati_test

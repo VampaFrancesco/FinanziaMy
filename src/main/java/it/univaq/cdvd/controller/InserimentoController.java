@@ -18,10 +18,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class InserimentoController {
 
@@ -82,6 +84,10 @@ public class InserimentoController {
 
             // Salva la transazione nel database
             if (tdao.save(tx)) {
+                AudioClip clip = new AudioClip(
+                        Objects.requireNonNull(getClass().getResource("/audio/suono_moneta.mp3")).toExternalForm()
+                );
+                clip.play();
                 sa.showAlert("Transazione inserita", "Transazione inserita con successo", Alert.AlertType.INFORMATION);
             } else {
                 sa.showAlert("Transazione non inserita", "Transazione non inserita", Alert.AlertType.ERROR);
