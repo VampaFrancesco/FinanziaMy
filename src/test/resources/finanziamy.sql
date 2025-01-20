@@ -10,7 +10,6 @@ CREATE TABLE utente (
 );
 
 CREATE TABLE categoria (
-                           id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                            nome VARCHAR(255) NOT NULL,
                            descrizione VARCHAR(255) NULL,
                            fk_utente VARCHAR(255),

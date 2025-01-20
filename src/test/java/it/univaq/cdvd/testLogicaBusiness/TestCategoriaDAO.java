@@ -40,6 +40,7 @@ class TestCategoriaDAO {
         CategoriaDAO catDAO = new CategoriaDAO();
         catDAO.save(cat);
     }
+    
     @Test
     void testSaveCategoria() {
         // Crea una nuova categoria
