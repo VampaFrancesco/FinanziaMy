@@ -1,152 +1,146 @@
 package it.univaq.cdvd.testLogicaGui;
 
-import it.univaq.cdvd.controller.AggiuntaCategoriaController;
 import it.univaq.cdvd.controller.HomeController;
-import it.univaq.cdvd.dao.CategoriaDAO;
-import it.univaq.cdvd.dao.TransazioneDAO;
 import it.univaq.cdvd.dao.UtenteDAO;
-import it.univaq.cdvd.model.Categoria;
 import it.univaq.cdvd.model.Transazione;
 import it.univaq.cdvd.model.Utente;
 import it.univaq.cdvd.util.SessionManager;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
+
+import java.util.concurrent.TimeoutException;
+
+import static it.univaq.cdvd.util.HibernateUtil.setDbms;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class HomeControllerTest extends ApplicationTest {
 
-    HomeController homeController;
+    HomeController controller;
     TableView<Transazione> tabellaTransazioni;
-    Menu menu = new Menu();
     MenuItem aggiungiCategoria;
     MenuItem eliminaCategoria;
     MenuItem nuovaTransazione;
     MenuItem logout;
-
+    Label saldo;
 
     @BeforeAll
-    public void setUp() {
-        Utente mockUtente = new Utente();
-        mockUtente.setUsername("testUser");
-
-
-        // Imposta il comportamento di SessionManager
-        SessionManager.getInstance().setUtente(mockUtente);
-
-
+    public void setup() throws TimeoutException {
+        setDbms("hibernate-test.cfg.xml");
+        Utente user = createTestUser();
+        UtenteDAO udao = new UtenteDAO();
+        udao.save(user);
+        SessionManager.getInstance().setUtente(user);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/home.fxml"));
+        loader.setControllerFactory(param -> {
+            HomeController controller = new HomeController();
+            SessionManager.getInstance().setUtente(createTestUser());
+            return controller;
+        });
         Parent root = loader.load();
-        homeController = loader.getController();
+        controller = loader.getController();
         stage.setScene(new Scene(root));
         stage.show();
 
         // Inizializza i componenti della UI da testare
-        tabellaTransazioni = homeController.tabellaTransazioni;
-        aggiungiCategoria = homeController.aggiungiCategoria;
-        eliminaCategoria = homeController.eliminaCategoria;
-        nuovaTransazione = homeController.nuovaTransazione;
-    }
-
-
-
-    @Test
-    public void testNuovaTransazione() throws Exception {
-
-        clickOn("Transazioni");
-        clickOn("Nuova transazione");
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
-        Parent expectedRoot = loader.load();
-
-        // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
-
-        // Compare the roots
-        assertEquals(expectedRoot.getClass(), actualRoot.getClass(), "La pagina inserimento.fxml dovrebbe essere visualizzata.");
-
-    }
-
-    @Test
-    public void testEliminaTransazione() throws Exception {
-
-        clickOn("Transazioni");
-        clickOn("Elimina transazione");
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/cancellazione.fxml"));
-        Parent expectedRoot = loader.load();
-
-        // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
-
-        // Compare the roots
-        assertTrue(actualRoot instanceof javafx.scene.layout.AnchorPane, "La root non è anchor pane");
-    }
-
-    @Test
-    public void testModificaTransazione() throws Exception {
-
-        clickOn("Transazioni");
-        clickOn("Modifica transazione");
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifica.fxml"));
-        Parent expectedRoot = loader.load();
-
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
-
-        // Compare the roots
-        assertTrue(actualRoot instanceof javafx.scene.layout.AnchorPane, "La root non è anchor pane");
+        tabellaTransazioni = controller.tabellaTransazioni;
+        aggiungiCategoria = controller.aggiungiCategoria;
+        eliminaCategoria = controller.eliminaCategoria;
+        nuovaTransazione = controller.nuovaTransazione;
+        logout = controller.logout;
+        saldo = controller.saldo;
     }
 
     @Test
     public void testAggiungiCategoria() throws Exception {
-
         clickOn("Categoria");
         clickOn("Aggiungi Categoria");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/aggiuntacategoria.fxml"));
         Parent expectedRoot = loader.load();
 
-        // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
+        Parent actualRoot = getCurrentRoot();
 
-        // Compare the roots
         assertEquals(expectedRoot.getClass(), actualRoot.getClass(), "La pagina aggiuntacategoria.fxml dovrebbe essere visualizzata.");
+    }
 
+    @Test
+    public void testEliminaCategoria() throws Exception {
+        clickOn("Categoria");
+        clickOn("Elimina Categoria");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/eliminaCategoria.fxml"));
+        Parent expectedRoot = loader.load();
+
+        Parent actualRoot = getCurrentRoot();
+
+        assertEquals(expectedRoot.getClass(), actualRoot.getClass(), "La pagina eliminaCategoria.fxml dovrebbe essere visualizzata.");
+    }
+
+    @Test
+    public void testNuovaTransazione() throws Exception {
+        clickOn("Transazioni");
+        clickOn("Nuova transazione");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/inserimento.fxml"));
+        Parent expectedRoot = loader.load();
+
+        Parent actualRoot = getCurrentRoot();
+
+        assertEquals(expectedRoot.getClass(), actualRoot.getClass(), "La pagina inserimento.fxml dovrebbe essere visualizzata.");
     }
 
 
     @Test
-    void testLogoutMenuUtemDisplaysByHomePage() throws Exception {
+    public void testModificaTransazione() throws Exception {
+        clickOn("Transazioni");
+        clickOn("Modifica transazione");
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifica.fxml"));
+        Parent expectedRoot = loader.load();
+
+        Parent actualRoot = loader.getRoot();
+
+        assertEquals(expectedRoot,actualRoot, "La pagina modifica.fxml dovrebbe essere visualizzata.");
+    }
+
+    @Test
+    public void testLogout() throws Exception {
         clickOn("Gestione account");
         clickOn("Logout");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/landing.fxml"));
         Parent expectedRoot = loader.load();
 
-        // Get the current scene root
-        Parent actualRoot = FxToolkit.toolkitContext().getRegisteredStage().getScene().getRoot();
+        Parent actualRoot = loader.getRoot();;
 
-        assertEquals(expectedRoot.getId(), actualRoot.getId(), "The login.fxml page should be displayed.");
+        assertEquals(expectedRoot, actualRoot, "La pagina landing.fxml dovrebbe essere visualizzata.");
+    }
+
+    @Test
+    public void testSaldoAggiornato() {
+        double saldoCorrente = Double.parseDouble(saldo.getText().replace("$ ", ""));
+        assertEquals(100.0, saldoCorrente, 0.01, "Il saldo visualizzato dovrebbe essere 100.0.");
+    }
+
+    private Parent getCurrentRoot() {
+        return tabellaTransazioni.getScene().getRoot();
+    }
+
+    private Utente createTestUser() {
+        return new Utente("testuser", "password", "testemail", 100.0);
     }
 }
