@@ -26,16 +26,10 @@ jobs:
       - name: Install xvfb
         run: sudo apt-get update && sudo apt-get install -y xvfb
 
-      # Avvia xvfb
-      - name: Start xvfb
+      # Build e Test con Maven utilizzando xvfb-run
+      - name: Build and Run Tests with xvfb
         run: |
-          export DISPLAY=:99
-          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-          echo "Xvfb started"
-
-      # Build e Test con Maven
-      - name: Build and Run Tests
-        run: mvn clean verify
+          xvfb-run -a mvn clean verify
 
       # Report dei risultati
       - name: Publish Test Results
@@ -43,4 +37,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: src/risultati_test
+          path: target/site/jacoco/index.html
