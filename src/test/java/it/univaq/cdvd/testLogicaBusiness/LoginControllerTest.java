@@ -50,5 +50,6 @@ class LoginControllerTest{
         assertNull(user, "L'utente non dovrebbe essere trovato con nome utente e password vuoti.");
     }
 
+    
 }
 
