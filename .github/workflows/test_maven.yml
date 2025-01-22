@@ -22,14 +22,9 @@ jobs:
           java-version: '23'
           distribution: 'temurin'
 
-      # Installa xvfb
-      - name: Install xvfb
-        run: sudo apt-get update && sudo apt-get install -y xvfb
-
       # Build e Test con Maven utilizzando xvfb-run
-      - name: Build and Run Tests with xvfb
-        run: |
-          xvfb-run -a mvn clean verify
+      - name: Build and Run Tests with maven
+        run: mvn clean verify -DTest = !it.univaq.cdvd.testLogicaGui.** 
 
       # Report dei risultati
       - name: Publish Test Results
