@@ -22,7 +22,7 @@ jobs:
           java-version: '23'
           distribution: 'temurin'
 
-      # Build e Test con Maven utilizzando xvfb-run
+      # Build e Test con Maven utilizzando maven
       - name: Build and Run Tests with maven
         run: mvn clean verify -Dtest=!it.univaq.cdvd.testLogicaGui.**
 
